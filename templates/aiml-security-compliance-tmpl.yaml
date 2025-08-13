@@ -1,0 +1,363 @@
+template:
+  id: aiml-security-compliance-template-v3
+  name: AI/ML Security & Compliance Assessment
+  version: 3.0
+  output:
+    format: markdown
+    filename: docs/aiml-security-compliance.md
+    title: "{{project_name}} AI/ML Security & Compliance Assessment"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: introduction
+    title: Introduction
+    content: |
+      This document provides a comprehensive security and compliance assessment for {{project_name}}, ensuring the AI/ML system meets Singapore regulatory requirements and international security standards.
+      
+      This assessment covers data protection, model security, adversarial robustness, and regulatory compliance throughout the ML lifecycle.
+    sections:
+      - id: assessment-context
+        title: Assessment Context
+        template: |
+          **System Name:** {{system_name}}
+          **Assessment Date:** {{date}}
+          **Assessor:** {{name_role}}
+          **Classification:** {{public_internal_confidential_restricted}}
+          
+          **Compliance Scope:**
+          - PDPA (Personal Data Protection Act Singapore)
+          - IMDA Model AI Governance Framework
+          - MAS FEAT Principles (if applicable)
+          - Cybersecurity Act 2018
+          - Industry-specific regulations
+      - id: changelog
+        title: Change Log
+        type: table
+        columns: [Date, Version, Changes, Approved By]
+
+  - id: threat-model
+    title: AI/ML Threat Model
+    instruction: Identify and assess threats specific to the AI/ML system
+    elicit: true
+    sections:
+      - id: threat-landscape
+        title: Threat Landscape
+        template: |
+          **System Boundaries:**
+          - Data sources: {{internal_external}}
+          - Model deployment: {{cloud_onprem_edge}}
+          - User access: {{internal_external_public}}
+          - Integration points: {{systems}}
+      - id: threat-analysis
+        title: Threat Analysis
+        type: table
+        columns: [Threat Category, Specific Threat, Likelihood, Impact, Risk Level]
+        template: |
+          | Data Poisoning | Training data manipulation | {{H/M/L}} | {{H/M/L}} | {{Critical/High/Medium/Low}} |
+          | Model Inversion | Extracting training data | {{H/M/L}} | {{H/M/L}} | {{level}} |
+          | Model Extraction | Stealing model IP | {{H/M/L}} | {{H/M/L}} | {{level}} |
+          | Adversarial Attacks | Malicious inputs | {{H/M/L}} | {{H/M/L}} | {{level}} |
+          | Membership Inference | Privacy breach | {{H/M/L}} | {{H/M/L}} | {{level}} |
+          | Backdoor Attacks | Hidden malicious behavior | {{H/M/L}} | {{H/M/L}} | {{level}} |
+      - id: attack-vectors
+        title: Attack Vectors
+        template: |
+          **Data Pipeline Attacks:**
+          - Input validation bypass: {{risk_mitigation}}
+          - Data injection: {{risk_mitigation}}
+          - Feature manipulation: {{risk_mitigation}}
+          
+          **Model Attacks:**
+          - Evasion attacks: {{risk_mitigation}}
+          - Poisoning attacks: {{risk_mitigation}}
+          - Extraction attacks: {{risk_mitigation}}
+          
+          **Infrastructure Attacks:**
+          - API exploitation: {{risk_mitigation}}
+          - Container escape: {{risk_mitigation}}
+          - Supply chain: {{risk_mitigation}}
+
+  - id: data-security
+    title: Data Security & Privacy
+    instruction: Comprehensive data protection measures throughout the ML lifecycle
+    elicit: true
+    sections:
+      - id: data-classification
+        title: Data Classification & Handling
+        template: |
+          **Data Categories:**
+          | Category | Classification | Examples | Handling Requirements |
+          |----------|---------------|----------|----------------------|
+          | PII | Restricted | {{examples}} | {{requirements}} |
+          | Sensitive Business | Confidential | {{examples}} | {{requirements}} |
+          | Model Data | Internal | {{examples}} | {{requirements}} |
+          | Public Data | Public | {{examples}} | {{requirements}} |
+      - id: data-protection
+        title: Data Protection Measures
+        template: |
+          **Encryption:**
+          - At rest: {{algorithm_key_management}}
+          - In transit: {{tls_version_protocols}}
+          - In processing: {{homomorphic_secure_enclaves}}
+          
+          **Access Control:**
+          - Authentication: {{method_mfa}}
+          - Authorization: {{rbac_abac}}
+          - Audit logging: {{what_where_retention}}
+          
+          **Data Minimization:**
+          - Collection: {{only_necessary}}
+          - Retention: {{period_policy}}
+          - Deletion: {{secure_methods}}
+      - id: privacy-compliance
+        title: Privacy Compliance (PDPA)
+        template: |
+          **Consent Management:**
+          - Collection consent: {{process}}
+          - Use limitation: {{controls}}
+          - Third-party sharing: {{agreements}}
+          
+          **Individual Rights:**
+          - Access requests: {{process_timeline}}
+          - Correction requests: {{process_timeline}}
+          - Deletion requests: {{process_timeline}}
+          - Data portability: {{format_process}}
+          
+          **Cross-Border Transfer:**
+          - Countries involved: {{list}}
+          - Legal basis: {{agreements}}
+          - Protection measures: {{technical_contractual}}
+
+  - id: model-security
+    title: Model Security
+    instruction: Security measures specific to ML models and algorithms
+    sections:
+      - id: model-protection
+        title: Model Protection
+        template: |
+          **Intellectual Property Protection:**
+          - Model encryption: {{method}}
+          - Watermarking: {{technique}}
+          - Licensing: {{enforcement}}
+          - Access logs: {{tracking}}
+          
+          **Model Integrity:**
+          - Checksum validation: {{implementation}}
+          - Version control: {{system}}
+          - Tamper detection: {{method}}
+          - Rollback capability: {{process}}
+      - id: adversarial-robustness
+        title: Adversarial Robustness
+        template: |
+          **Defense Mechanisms:**
+          - Input validation: {{rules_bounds}}
+          - Adversarial training: {{implementation}}
+          - Defensive distillation: {{applicable}}
+          - Input transformation: {{methods}}
+          
+          **Robustness Testing:**
+          - Attack methods tested: {{fgsm_pgd_carlini}}
+          - Robustness metrics: {{accuracy_under_attack}}
+          - Edge case handling: {{approach}}
+          - Confidence calibration: {{method}}
+      - id: model-monitoring
+        title: Security Monitoring
+        template: |
+          **Anomaly Detection:**
+          - Input anomalies: {{detection_method}}
+          - Output anomalies: {{detection_method}}
+          - Performance anomalies: {{thresholds}}
+          - Behavioral changes: {{monitoring}}
+          
+          **Alert System:**
+          - Alert triggers: {{conditions}}
+          - Escalation: {{levels_contacts}}
+          - Response time: {{sla}}
+          - Incident handling: {{process}}
+
+  - id: infrastructure-security
+    title: Infrastructure Security
+    instruction: Security measures for ML infrastructure and deployment
+    sections:
+      - id: deployment-security
+        title: Deployment Security
+        template: |
+          **Container Security:**
+          - Base images: {{scanning_policy}}
+          - Vulnerability scanning: {{frequency_tools}}
+          - Runtime protection: {{measures}}
+          - Registry security: {{access_scanning}}
+          
+          **API Security:**
+          - Authentication: {{oauth_jwt_apikey}}
+          - Rate limiting: {{policy}}
+          - Input validation: {{approach}}
+          - Output filtering: {{sensitive_data}}
+      - id: network-security
+        title: Network Security
+        template: |
+          **Network Segmentation:**
+          - Training environment: {{isolation}}
+          - Production environment: {{isolation}}
+          - Data storage: {{isolation}}
+          - Management plane: {{isolation}}
+          
+          **Traffic Control:**
+          - Firewall rules: {{ingress_egress}}
+          - DDoS protection: {{measures}}
+          - VPN requirements: {{when_where}}
+          - Zero trust: {{implementation}}
+
+  - id: compliance-framework
+    title: Regulatory Compliance Framework
+    instruction: Comprehensive compliance assessment for Singapore and international regulations
+    elicit: true
+    sections:
+      - id: singapore-compliance
+        title: Singapore Regulatory Compliance
+        type: table
+        columns: [Regulation, Requirement, Implementation, Evidence, Status]
+        template: |
+          | PDPA | Data protection | {{measures}} | {{documentation}} | {{compliant}} |
+          | IMDA AI Governance | Explainability | {{measures}} | {{documentation}} | {{status}} |
+          | IMDA AI Governance | Fairness | {{measures}} | {{documentation}} | {{status}} |
+          | Cybersecurity Act | Critical systems | {{measures}} | {{documentation}} | {{status}} |
+          | MAS FEAT | Fairness | {{measures}} | {{documentation}} | {{status}} |
+          | MAS FEAT | Ethics | {{measures}} | {{documentation}} | {{status}} |
+          | MAS FEAT | Accountability | {{measures}} | {{documentation}} | {{status}} |
+          | MAS FEAT | Transparency | {{measures}} | {{documentation}} | {{status}} |
+      - id: international-standards
+        title: International Standards Compliance
+        template: |
+          **ISO/IEC Standards:**
+          - ISO/IEC 27001 (Information Security): {{status}}
+          - ISO/IEC 23053 (AI Trustworthiness): {{status}}
+          - ISO/IEC 23894 (AI Risk Management): {{status}}
+          
+          **Industry Standards:**
+          - {{standard_1}}: {{compliance_status}}
+          - {{standard_2}}: {{compliance_status}}
+
+  - id: incident-response
+    title: Incident Response Plan
+    instruction: Define incident response procedures for AI/ML security events
+    sections:
+      - id: incident-classification
+        title: Incident Classification
+        type: table
+        columns: [Severity, Description, Examples, Response Time]
+        template: |
+          | Critical | System compromise | Model theft, data breach | <1 hour |
+          | High | Service disruption | DDoS, model failure | <4 hours |
+          | Medium | Performance degradation | Drift, accuracy drop | <24 hours |
+          | Low | Minor issues | False alerts | <72 hours |
+      - id: response-procedures
+        title: Response Procedures
+        template: |
+          **Detection & Analysis:**
+          1. Alert triggered/reported
+          2. Initial assessment ({{time}})
+          3. Severity classification
+          4. Team activation
+          
+          **Containment:**
+          1. Isolate affected systems
+          2. Preserve evidence
+          3. Prevent spread
+          4. Maintain operations
+          
+          **Eradication & Recovery:**
+          1. Remove threat
+          2. Patch vulnerabilities
+          3. Restore systems
+          4. Verify integrity
+          
+          **Post-Incident:**
+          1. Root cause analysis
+          2. Lessons learned
+          3. Update procedures
+          4. Stakeholder report
+
+  - id: audit-assessment
+    title: Security Audit & Assessment
+    instruction: Regular audit and assessment procedures
+    sections:
+      - id: audit-schedule
+        title: Audit Schedule
+        template: |
+          **Regular Assessments:**
+          - Vulnerability scanning: {{frequency}}
+          - Penetration testing: {{frequency}}
+          - Code review: {{frequency}}
+          - Compliance audit: {{frequency}}
+          
+          **Triggered Assessments:**
+          - Major changes: {{criteria}}
+          - Incidents: {{post_incident}}
+          - Regulatory updates: {{when}}
+      - id: audit-findings
+        title: Recent Audit Findings
+        type: table
+        columns: [Finding, Severity, Remediation, Status, Due Date]
+        template: |
+          | {{finding}} | {{H/M/L}} | {{action}} | {{status}} | {{date}} |
+
+  - id: training-awareness
+    title: Security Training & Awareness
+    instruction: Security training requirements for AI/ML teams
+    sections:
+      - id: training-program
+        title: Security Training Program
+        template: |
+          **Mandatory Training:**
+          - ML Security Fundamentals: {{frequency}}
+          - Data Privacy (PDPA): {{frequency}}
+          - Secure Coding: {{frequency}}
+          - Incident Response: {{frequency}}
+          
+          **Role-Specific Training:**
+          - Data Scientists: {{topics}}
+          - ML Engineers: {{topics}}
+          - DevOps: {{topics}}
+      - id: awareness-activities
+        title: Security Awareness
+        template: |
+          **Regular Activities:**
+          - Security bulletins: {{frequency}}
+          - Threat briefings: {{frequency}}
+          - Tabletop exercises: {{frequency}}
+          - Security champions: {{program}}
+
+  - id: recommendations
+    title: Security Recommendations
+    instruction: Prioritized security improvements and action items
+    type: table
+    columns: [Priority, Category, Recommendation, Effort, Impact, Timeline]
+    template: |
+      | Critical | {{category}} | {{recommendation}} | {{H/M/L}} | {{H/M/L}} | {{timeline}} |
+      | High | {{category}} | {{recommendation}} | {{H/M/L}} | {{H/M/L}} | {{timeline}} |
+      | Medium | {{category}} | {{recommendation}} | {{H/M/L}} | {{H/M/L}} | {{timeline}} |
+
+  - id: appendices
+    title: Appendices
+    sections:
+      - id: security-checklist
+        title: Security Checklist
+        type: checklist
+        items:
+          - Threat model documented
+          - Data encryption implemented
+          - Access controls configured
+          - Model security measures in place
+          - Adversarial defenses implemented
+          - Monitoring active
+          - Incident response plan tested
+          - Compliance verified
+          - Audit completed
+          - Training current
+      - id: references
+        title: References
+        instruction: List security frameworks, standards, and resources

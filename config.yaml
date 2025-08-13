@@ -1,0 +1,9 @@
+name: bmad-aisg-aiml
+version: 2.0.0
+short-title: AISG AI/ML Engineering Pack
+description: >-
+  This expansion pack extends BMad Method with comprehensive AI/ML engineering
+  capabilities that is battle-tested in AI Singapore. It provides streamlined workflows and agents,
+  optimized for machine learning development and operations in Singapore's AI ecosystem.
+author: AISG Innovation Team
+slashPrefix: bmadAISG

@@ -1,0 +1,289 @@
+team:
+  id: aisg-ladp-team
+  name: AISG LLM Application Developer Programme (LADP) Team
+  description: Team configuration for LLM application development training with real-world project
+  version: 3.0
+  program: AI Singapore LADP - LLM Application Developer Programme
+  duration: 4 months part-time (8-10 hrs/week) or 1-3 days full-time
+  
+  composition:
+    human_team:
+      - role: AISG Mentor (Guide, not code)
+        count: 1-2
+        responsibilities:
+          - Technical guidance and best practices
+          - Architecture reviews
+          - Problem-solving support
+          - Code reviews and feedback
+          
+      - role: Learners/Participants
+        count: 10-20 per cohort
+        profile:
+          - Developers wanting LLM skills
+          - Product managers
+          - Business analysts
+          - Domain experts
+        commitment:
+          - Part-time: 8-10 hours/week for 4 months
+          - Full-time: 1-3 day intensive programme
+        
+    ai_agents:
+      # Agents provide guidance but learners do the implementation
+      - id: ml-architect
+        name: Rizwan bin Abdullah
+        role: ML/AI System Architect
+        mentoring_focus: LLM architecture, RAG design, system integration
+        
+      - id: ml-engineer
+        name: Marcus Tan Wei Ming
+        role: ML/AI Engineer & MLOps Specialist
+        mentoring_focus: Implementation best practices, deployment, monitoring
+        
+      - id: ml-security-ethics-specialist
+        name: Priya Sharma
+        role: ML Security & Ethics Specialist
+        mentoring_focus: Security, compliance, responsible AI
+  
+  program_structure:
+    standard_part_time:
+      month_1_foundation:
+        format: Self-directed learning + Workshop 1
+        time_commitment: 8-10 hours/week
+        topics:
+          - LLM fundamentals and architecture
+          - GPT, Claude, Llama capabilities
+          - Prompt engineering basics
+          - RAG introduction
+          - Vector databases and embeddings
+        deliverables:
+          - Development environment setup
+          - Basic LLM application
+          - Project SOW finalized
+        workshop_1:
+          title: LLM Fundamentals & Best Practices
+          duration: Full day face-to-face
+          activities:
+            - LLM deep dive
+            - Hands-on application building
+            - Prompt engineering workshop
+            - SOW review clinic
+            
+      month_2_design:
+        lead_mentor: ml-architect
+        time_commitment: 8-10 hours/week
+        activities:
+          - Solution architecture design
+          - Technology stack selection
+          - Proof of concept development
+          - Cost estimation
+        mentor_support:
+          - Weekly 1-hour check-ins
+          - Architecture review
+          - Best practices guidance
+        workshop_2:
+          title: Advanced LLM Techniques
+          duration: Full day face-to-face
+          topics:
+            - RAG implementation deep dive
+            - Production considerations
+            - Advanced techniques
+            - 1-on-1 project consultations
+            
+      month_3_development:
+        lead_mentor: ml-engineer
+        time_commitment: 8-10 hours/week
+        activities:
+          - Backend development with LLM integration
+          - Vector database setup (if RAG)
+          - API development
+          - Frontend and system integration
+        mentor_support:
+          - Bi-weekly code reviews
+          - Technical troubleshooting
+          - Performance optimization
+          
+      month_4_deployment:
+        lead_mentor: ml-security-ethics-specialist
+        time_commitment: 8-10 hours/week
+        activities:
+          - Comprehensive testing
+          - Security assessment
+          - Production deployment
+          - Documentation completion
+        workshop_3:
+          title: Production Best Practices
+          duration: Full day face-to-face
+          activities:
+            - Deployment strategies
+            - Monitoring setup
+            - Project presentations
+            - Certificate ceremony
+            
+    custom_full_time:
+      one_day_intensive:
+        duration: 8 hours
+        agenda:
+          - LLM fundamentals (1.5 hrs)
+          - Prompt engineering (1.5 hrs)
+          - Hands-on building (2 hrs)
+          - RAG basics (1.5 hrs)
+          - Use case workshop (1.5 hrs)
+        deliverable: Basic LLM prototype
+        
+      two_day_program:
+        day_1:
+          - LLM architecture and capabilities
+          - Prompt engineering mastery
+          - API integration
+          - Hands-on exercises
+        day_2:
+          - RAG implementation
+          - Vector databases
+          - Mini-project development
+          - Deployment basics
+        deliverable: Working LLM application
+        
+      three_day_comprehensive:
+        day_1:
+          - Deep dive LLM concepts
+          - Advanced prompt techniques
+          - Cost optimization
+        day_2:
+          - RAG architecture
+          - Vector database optimization
+          - Security considerations
+        day_3:
+          - Full application development
+          - Testing and deployment
+          - Project presentations
+        deliverable: Production-ready application
+  
+  project_requirements:
+    scope:
+      - Real company problem from learner's organization
+      - Agreed Statement of Work (SOW)
+      - Achievable within programme duration
+      - Business value demonstration
+      
+    technical_requirements:
+      - LLM integration (GPT/Claude/Llama)
+      - Optional: RAG implementation
+      - API development
+      - User interface
+      - Security and compliance
+      - Production deployment
+      
+    deliverables:
+      - Working LLM application
+      - Source code and documentation
+      - Deployment guide
+      - Maintenance plan
+      - Project presentation
+  
+  mentor_guidelines:
+    philosophy:
+      - Guide, don't code for learners
+      - Teach problem-solving approach
+      - Share best practices and experience
+      - Enable self-sufficiency
+      
+    time_allocation:
+      month_1: 2 hours/week per learner
+      month_2_3: 3 hours/week per learner
+      month_4: 2 hours/week per learner
+      workshops: Full day participation
+      
+    focus_areas:
+      - Architecture and design decisions
+      - Code quality and best practices
+      - Security and compliance
+      - Performance optimization
+      - Production readiness
+  
+  learning_outcomes:
+    technical_skills:
+      - Understand LLM capabilities and limitations
+      - Master prompt engineering
+      - Implement RAG systems
+      - Build production LLM applications
+      - Deploy and monitor AI systems
+      
+    business_skills:
+      - Identify LLM use cases
+      - Estimate costs and ROI
+      - Manage AI projects
+      - Communicate with stakeholders
+      - Understand AI ethics and compliance
+  
+  assessment_structure:
+    continuous_assessment:
+      - Self-directed learning completion (20%)
+      - Workshop participation (20%)
+      - Mentor session engagement (10%)
+      
+    project_assessment:
+      - Technical implementation (25%)
+      - Business value (15%)
+      - Documentation (5%)
+      - Presentation (5%)
+      
+    certification_criteria:
+      - Complete all learning modules
+      - Attend all 3 workshops
+      - Deploy working application
+      - Pass final presentation
+  
+  support_resources:
+    learning_materials:
+      - AISG LLM course content
+      - API documentation
+      - Code templates and examples
+      - Video tutorials
+      - Reading lists
+      
+    technical_support:
+      - Mentor network
+      - Community forum
+      - Office hours
+      - Email support
+      - Peer learning groups
+      
+    tools_provided:
+      - Development environment guides
+      - API credits (if applicable)
+      - Cloud deployment credits
+      - Template repositories
+      - Testing frameworks
+  
+  success_metrics:
+    learner_metrics:
+      - Completion rate: >90%
+      - Satisfaction score: >4.5/5
+      - Project deployment: >70%
+      - Post-program application: >80%
+      
+    business_impact:
+      - Real problem solved
+      - Measurable ROI
+      - Process improvement
+      - Knowledge transfer to team
+      
+    program_kpis:
+      - NPS score: >50
+      - Alumni engagement: >60%
+      - Follow-on projects: >40%
+      - Career advancement: Track at 6 months
+  
+  post_program:
+    immediate_support:
+      - 30-day email support
+      - Final deployment assistance
+      - Bug fixing guidance
+      - Performance optimization
+      
+    long_term_benefits:
+      - Alumni network access
+      - Advanced workshop invitations
+      - Continued learning resources
+      - Career opportunities
+      - Future program discounts

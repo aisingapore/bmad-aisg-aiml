@@ -1,0 +1,267 @@
+team:
+  id: aisg-poc-team
+  name: AISG AIAP For Industry 3-Month POC Team
+  description: Team configuration for 3-month POC projects to validate AI feasibility
+  version: 2.0
+  program: AI Apprenticeship Programme (AIAP) For Industry
+  duration: 12 weeks
+  
+  composition:
+    human_team:
+      - role: AI Engineer (Lead)
+        count: 1
+        responsibilities:
+          - Technical execution
+          - Rapid prototyping
+          - Stakeholder demos
+          - Apprentice guidance
+          
+      - role: AI Apprentices
+        count: 2-4
+        responsibilities:
+          - Development support
+          - Data preparation
+          - Testing
+          - Documentation
+          
+    ai_agents:
+      # 3 primary agents for POC, 1 for validation
+      - id: ml-data-scientist
+        name: Sophia D'Cruz
+        role: Senior Data Scientist
+        allocation: 40%
+        
+      - id: ml-engineer
+        name: Marcus Tan Wei Ming
+        role: ML/AI Engineer & MLOps Specialist
+        allocation: 40%
+        
+      - id: ml-architect
+        name: Rizwan bin Abdullah
+        role: ML/AI System Architect
+        allocation: 10%
+        
+      - id: ml-security-ethics-specialist
+        name: Priya Sharma
+        role: ML Security & Ethics Specialist
+        allocation: 10%
+  
+  workflow:
+    week_1_2_discovery:
+      lead: ml-data-scientist
+      support: [ml-architect]
+      activities:
+        - Problem definition
+        - Data assessment
+        - Feasibility study
+        - Architecture options
+      deliverables:
+        - Feasibility report
+        - Data quality assessment
+        - POC plan
+        
+    week_3_8_development:
+      lead: ml-engineer
+      support: [ml-data-scientist]
+      activities:
+        - Data preparation
+        - Model development
+        - Hyperparameter tuning
+        - API development
+        - Demo creation
+      deliverables:
+        - Trained models
+        - Performance metrics
+        - API endpoints
+        - Demo application
+        
+    week_9_11_integration:
+      lead: ml-engineer
+      support: [ml-architect]
+      activities:
+        - Containerization
+        - Basic deployment
+        - Integration testing
+        - Performance testing
+      deliverables:
+        - Deployed prototype
+        - Test results
+        - Basic monitoring
+        
+    week_12_validation:
+      lead: ml-security-ethics-specialist
+      support: [ml-data-scientist, ml-engineer]
+      activities:
+        - Results compilation
+        - Business value assessment
+        - Quick security review
+        - Basic bias check
+        - Recommendations
+      deliverables:
+        - POC report
+        - Go/No-go recommendation
+        - MVP roadmap (if applicable)
+        - Risk assessment
+  
+  agent_responsibilities:
+    ml-data-scientist:
+      primary:
+        - Rapid data assessment
+        - Feature engineering
+        - Statistical validation
+        - Insights generation
+        - Business metrics
+      deliverables:
+        - EDA report
+        - Feature importance
+        - Model evaluation metrics
+        
+    ml-engineer:
+      primary:
+        - Quick model development
+        - Baseline establishment
+        - Performance optimization
+        - Prototype creation
+        - API development
+      deliverables:
+        - Working prototype
+        - API documentation
+        - Performance benchmarks
+        
+    ml-architect:
+      primary:
+        - Architecture validation
+        - Technology selection
+        - Scalability assessment
+        - Cost estimation
+      deliverables:
+        - Architecture options
+        - Technology recommendations
+        - Scaling strategy
+        
+    ml-security-ethics-specialist:
+      primary:
+        - Quick ethics check
+        - Basic bias assessment
+        - High-level security review
+        - Compliance check
+      deliverables:
+        - Risk assessment
+        - Compliance checklist
+        - Go/No-go input
+  
+  success_criteria:
+    technical:
+      - Baseline performance beaten by >10%
+      - Prototype functional
+      - API response time <500ms
+      - Core features working
+      
+    business:
+      - Clear value proposition
+      - Positive stakeholder feedback
+      - ROI potential validated
+      - Use case proven
+  
+  constraints:
+    time:
+      - 12 weeks hard deadline
+      - No scope extensions
+      - Focus on core features only
+      
+    resources:
+      - Limited compute budget
+      - Small team size
+      - Minimal infrastructure
+      
+    scope:
+      - Proof of concept only
+      - Not production-ready
+      - Limited testing
+      - Basic documentation
+  
+  poc_specific_approach:
+    data_strategy:
+      - Use sample/subset of data
+      - Focus on most important features
+      - Quick iterations over perfection
+      
+    modeling_strategy:
+      - Start with simple baselines
+      - Try 2-3 promising approaches
+      - Use pre-trained models where applicable
+      - Focus on business metrics
+      
+    deployment_strategy:
+      - Simple containerization
+      - Basic REST API
+      - Streamlit/Gradio for demos
+      - Cloud Run or equivalent
+  
+  tools:
+    development:
+      - Jupyter notebooks
+      - VS Code
+      - GitHub
+      - MLflow (basic tracking)
+      
+    deployment:
+      - Docker
+      - Streamlit/Gradio
+      - Cloud Run/App Engine
+      - Basic monitoring
+  
+  apprentice_allocation:
+    data_preparation:
+      mentor: ml-data-scientist
+      tasks:
+        - Data cleaning
+        - EDA support
+        - Feature engineering
+        
+    model_development:
+      mentor: ml-engineer
+      tasks:
+        - Model training
+        - Hyperparameter search
+        - API development
+        
+    documentation:
+      mentor: All agents
+      tasks:
+        - Code documentation
+        - Results compilation
+        - Report writing
+  
+  risk_management:
+    critical_checkpoints:
+      week_2:
+        - Data availability confirmed
+        - Feasibility validated
+        - Architecture approved
+        
+      week_6:
+        - First model results
+        - Performance trending positive
+        - No major blockers
+        
+      week_10:
+        - Prototype working
+        - Metrics achieved
+        - Demo ready
+  
+  transition_planning:
+    if_poc_successful:
+      next_step: 6-month MVP
+      considerations:
+        - Expand team
+        - Full security audit
+        - Production architecture
+        - Complete MLOps
+        
+    if_poc_fails:
+      actions:
+        - Document learnings
+        - Identify blockers
+        - Alternative approaches
+        - Pivot recommendations

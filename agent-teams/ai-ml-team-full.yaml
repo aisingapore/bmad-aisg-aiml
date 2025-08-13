@@ -1,0 +1,178 @@
+team:
+  id: ai-ml-team-full
+  name: Full AI/ML Engineering Team
+  description: Complete AI/ML team for comprehensive end-to-end projects including security, ethics, and MLOps
+  version: 2.0
+  last_updated: 2025-01-11
+  
+  agents:
+    # Core AI/ML Agents (4 streamlined roles)
+    - id: ml-engineer
+      name: Marcus Tan Wei Ming
+      role: ML/AI Engineer & MLOps Specialist
+      
+    - id: ml-architect
+      name: Rizwan bin Abdullah
+      role: ML/AI System Architect
+      
+    - id: ml-data-scientist
+      name: Sophia D'Cruz
+      role: Senior Data Scientist
+      
+    - id: ml-security-ethics-specialist
+      name: Priya Sharma
+      role: ML Security & Ethics Specialist
+      
+    # Core BMAD Support (Optional - can be included as needed)
+    - id: analyst
+    - id: pm
+    - id: qa
+    - id: po
+    - id: sm
+  
+  workflows:
+    full_ml_development:
+      description: Complete ML project from data to deployment
+      phases:
+        1_discovery:
+          lead: ml-data-scientist
+          support: [ml-architect]
+          activities:
+            - Data exploration and analysis
+            - Problem definition
+            - Feasibility assessment
+        
+        2_design:
+          lead: ml-architect
+          support: [ml-data-scientist, ml-engineer]
+          activities:
+            - System architecture design
+            - Model architecture selection
+            - Infrastructure planning
+        
+        3_development:
+          lead: ml-engineer
+          support: [ml-data-scientist]
+          activities:
+            - Feature engineering
+            - Model development
+            - Training pipeline
+        
+        4_validation:
+          lead: ml-security-ethics-specialist
+          support: [ml-data-scientist]
+          activities:
+            - Security testing
+            - Bias detection
+            - Ethics review
+            - Performance validation
+        
+        5_deployment:
+          lead: ml-engineer
+          support: [ml-architect]
+          activities:
+            - Production deployment
+            - Monitoring setup
+            - MLOps automation
+        
+        6_monitoring:
+          lead: ml-engineer
+          support: [ml-data-scientist, ml-security-ethics-specialist]
+          activities:
+            - Performance monitoring
+            - Drift detection
+            - Security monitoring
+    
+    llm_application:
+      description: LLM/RAG application development
+      phases:
+        1_requirements:
+          lead: ml-architect
+          support: [ml-data-scientist]
+          activities:
+            - Use case analysis
+            - Data requirements
+            - RAG architecture design
+        
+        2_implementation:
+          lead: ml-engineer
+          support: [ml-architect]
+          activities:
+            - LLM integration
+            - Vector database setup
+            - Prompt engineering
+        
+        3_evaluation:
+          lead: ml-data-scientist
+          support: [ml-security-ethics-specialist]
+          activities:
+            - Response quality metrics
+            - Hallucination detection
+            - Bias testing
+        
+        4_production:
+          lead: ml-engineer
+          support: [ml-security-ethics-specialist]
+          activities:
+            - API deployment
+            - Rate limiting
+            - Security hardening
+  
+  collaboration:
+    handoffs:
+      - from: ml-data-scientist
+        to: ml-engineer
+        artifacts: [feature_specs, notebooks, data_requirements]
+      
+      - from: ml-architect
+        to: ml-engineer
+        artifacts: [architecture_docs, design_specs, infrastructure_requirements]
+      
+      - from: ml-engineer
+        to: ml-security-ethics-specialist
+        artifacts: [model_artifacts, api_endpoints, deployment_configs]
+      
+      - from: ml-security-ethics-specialist
+        to: ml-engineer
+        artifacts: [security_findings, compliance_requirements, remediation_plans]
+    
+    reviews:
+      architecture_review:
+        reviewer: ml-architect
+        items: [system_design, infrastructure, scalability]
+      
+      code_review:
+        reviewer: ml-engineer
+        items: [implementation, optimization, best_practices]
+      
+      statistical_review:
+        reviewer: ml-data-scientist
+        items: [methodology, metrics, evaluation]
+      
+      security_review:
+        reviewer: ml-security-ethics-specialist
+        items: [vulnerabilities, compliance, ethics]
+  
+  tools:
+    development:
+      - Jupyter/VS Code
+      - Git/GitHub
+      - MLflow/W&B
+    
+    infrastructure:
+      - Docker/Kubernetes
+      - Terraform
+      - Cloud platforms (AWS/GCP/Azure)
+    
+    monitoring:
+      - Prometheus/Grafana
+      - Custom dashboards
+      - Alert systems
+  
+  success_metrics:
+    - Model performance (accuracy, precision, recall, F1)
+    - System reliability (uptime, latency)
+    - Security compliance score
+    - Bias metrics and fairness scores
+    - Deployment frequency
+    - Time to production

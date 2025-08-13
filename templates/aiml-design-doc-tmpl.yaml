@@ -1,0 +1,364 @@
+template:
+  id: aiml-design-doc-template-v3
+  name: AI/ML Design Document
+  version: 3.0
+  output:
+    format: markdown
+    filename: docs/aiml-design-document.md
+    title: "{{project_name}} AI/ML Design Document"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: goals-context
+    title: Goals and Background Context
+    instruction: |
+      Ask if Project Brief document is available. If NO Project Brief exists, STRONGLY recommend creating one first using aiml-brief-tmpl (it provides essential foundation: problem statement, target users, success metrics, scope, constraints). If user insists on Design Doc without brief, gather this information during Goals section. If Project Brief exists, review and use it to populate Goals and Background Context.
+    sections:
+      - id: goals
+        title: Goals
+        type: bullet-list
+        instruction: Bullet list of desired outcomes the ML system will deliver if successful
+        examples:
+          - Achieve 95% accuracy in fraud detection while maintaining <100ms latency
+          - Reduce manual review workload by 70% through automated classification
+          - Enable real-time personalization for 1M+ concurrent users
+          - Ensure PDPA compliance and model explainability for regulatory audits
+      - id: background
+        title: Background Context
+        type: paragraphs
+        instruction: 1-2 paragraphs summarizing the business problem, current state, ML opportunity, and expected impact
+      - id: changelog
+        title: Change Log
+        type: table
+        columns: [Date, Version, Description, Author]
+        instruction: Track document versions and changes
+
+  - id: executive-summary
+    title: Executive Summary
+    instruction: Create a compelling overview that captures the essence of the ML solution. Present this section first and get user feedback before proceeding.
+    elicit: true
+    sections:
+      - id: ml-solution-overview
+        title: ML Solution Overview
+        instruction: 3-4 sentences that clearly describe what the ML system does and its business value
+        template: |
+          {{ml_solution_description}}
+          
+          **ML Approach:** {{algorithm_approach}}
+          **Expected Performance:** {{key_metrics}}
+          **Business Impact:** {{roi_or_value}}
+      - id: system-capabilities
+        title: System Capabilities
+        instruction: List 4-6 key capabilities the ML system will provide
+        type: numbered-list
+        examples:
+          - Real-time fraud detection with sub-100ms latency
+          - Automated document classification with 95% accuracy
+          - Anomaly detection across 100+ feature dimensions
+          - Explainable predictions for regulatory compliance
+          - Continuous learning from production feedback
+      - id: success-metrics
+        title: Success Metrics
+        template: |
+          **ML Metrics:**
+          - {{metric_1}}: {{target}} (Baseline: {{current}})
+          - {{metric_2}}: {{target}} (Baseline: {{current}})
+          
+          **Business Metrics:**
+          - {{business_metric_1}}: {{target}}
+          - {{business_metric_2}}: {{target}}
+          
+          **Operational Metrics:**
+          - Inference latency: {{target}}
+          - System availability: {{sla}}
+
+  - id: data-strategy
+    title: Data Strategy
+    instruction: This section defines the comprehensive data approach for the ML system. After presenting each subsection, apply advanced elicitation to ensure completeness.
+    elicit: true
+    sections:
+      - id: data-requirements
+        title: Data Requirements
+        template: |
+          **Data Sources:**
+          | Source | Type | Volume | Update Frequency | Quality |
+          |--------|------|--------|------------------|---------|
+          | {{source}} | {{batch/stream}} | {{size}} | {{frequency}} | {{quality_score}} |
+          
+          **Feature Requirements:**
+          - Numerical features: {{count}} ({{examples}})
+          - Categorical features: {{count}} ({{examples}})
+          - Text features: {{count}} ({{examples}})
+          - Temporal features: {{count}} ({{examples}})
+          
+          **Label Requirements:**
+          - Label type: {{classification_regression}}
+          - Label source: {{manual_automated}}
+          - Label quality: {{accuracy_percentage}}
+          - Label volume: {{available_needed}}
+      - id: data-pipeline
+        title: Data Pipeline Architecture
+        instruction: Define the end-to-end data pipeline with specific technologies
+        template: |
+          **Ingestion Layer:**
+          - Method: {{batch_streaming_api}}
+          - Technology: {{kafka_airflow_etc}}
+          - Frequency: {{schedule}}
+          
+          **Processing Layer:**
+          - ETL Framework: {{spark_pandas_etc}}
+          - Validation: {{great_expectations_etc}}
+          - Storage: {{s3_gcs_hdfs}}
+          
+          **Feature Engineering:**
+          - Feature Store: {{feast_tecton_custom}}
+          - Computation: {{batch_streaming}}
+          - Versioning: {{strategy}}
+      - id: data-quality
+        title: Data Quality & Governance
+        template: |
+          **Quality Checks:**
+          - Completeness: >{{threshold}}%
+          - Consistency: {{validation_rules}}
+          - Accuracy: {{verification_method}}
+          - Timeliness: <{{latency}} hours
+          
+          **Data Governance:**
+          - Privacy: {{pii_handling}}
+          - Retention: {{policy}}
+          - Access Control: {{rbac_implementation}}
+          - Lineage Tracking: {{tool}}
+
+  - id: model-development
+    title: Model Development
+    instruction: Define the ML model approach, experimentation strategy, and evaluation methodology
+    elicit: true
+    sections:
+      - id: model-selection
+        title: Model Selection Strategy
+        template: |
+          **Baseline Model:**
+          - Algorithm: {{simple_baseline}}
+          - Performance: {{baseline_metrics}}
+          - Purpose: {{establish_minimum}}
+          
+          **Candidate Models:**
+          1. {{model_1}}: {{pros_cons}}
+          2. {{model_2}}: {{pros_cons}}
+          3. {{model_3}}: {{pros_cons}}
+          
+          **Selection Criteria:**
+          - Performance weight: {{percentage}}
+          - Interpretability weight: {{percentage}}
+          - Latency weight: {{percentage}}
+          - Complexity weight: {{percentage}}
+      - id: training-strategy
+        title: Training Strategy
+        template: |
+          **Data Splitting:**
+          - Train: {{percentage}}% ({{strategy}})
+          - Validation: {{percentage}}% ({{strategy}})
+          - Test: {{percentage}}% ({{strategy}})
+          - Time-based split: {{if_applicable}}
+          
+          **Training Approach:**
+          - Framework: {{tensorflow_pytorch_sklearn}}
+          - Optimization: {{optimizer}}
+          - Regularization: {{techniques}}
+          - Early stopping: {{criteria}}
+          
+          **Hyperparameter Tuning:**
+          - Method: {{grid_random_bayesian}}
+          - Search space: {{parameters}}
+          - Budget: {{iterations_or_time}}
+          - Tracking: {{mlflow_wandb}}
+      - id: evaluation-framework
+        title: Evaluation Framework
+        template: |
+          **Offline Evaluation:**
+          - Primary metric: {{metric}} > {{threshold}}
+          - Secondary metrics: {{list}}
+          - Cross-validation: {{k_fold_strategy}}
+          - Statistical tests: {{significance_tests}}
+          
+          **Business Evaluation:**
+          - A/B testing: {{approach}}
+          - Success criteria: {{business_metrics}}
+          - Rollback triggers: {{conditions}}
+          
+          **Bias & Fairness:**
+          - Protected attributes: {{list}}
+          - Fairness metrics: {{demographic_parity_etc}}
+          - Mitigation strategies: {{approaches}}
+
+  - id: mlops-deployment
+    title: MLOps & Deployment
+    instruction: Define the production deployment strategy and operational procedures
+    elicit: true
+    sections:
+      - id: deployment-architecture
+        title: Deployment Architecture
+        template: |
+          **Serving Pattern:**
+          - Type: {{rest_grpc_streaming}}
+          - Infrastructure: {{kubernetes_lambda_etc}}
+          - Scaling: {{horizontal_vertical}}
+          - Load balancing: {{strategy}}
+          
+          **Deployment Strategy:**
+          - Method: {{blue_green_canary_shadow}}
+          - Rollout: {{percentage_based}}
+          - Monitoring: {{metrics}}
+          - Rollback: {{automatic_manual}}
+      - id: cicd-pipeline
+        title: CI/CD Pipeline
+        template: |
+          **Continuous Integration:**
+          - Code quality: {{linting_testing}}
+          - Model validation: {{checks}}
+          - Data validation: {{checks}}
+          - Security scanning: {{tools}}
+          
+          **Continuous Deployment:**
+          - Containerization: {{docker}}
+          - Registry: {{ecr_gcr}}
+          - Orchestration: {{kubernetes_kubeflow}}
+          - Approval gates: {{manual_automated}}
+      - id: monitoring-strategy
+        title: Monitoring & Observability
+        template: |
+          **Model Monitoring:**
+          - Performance metrics: {{real_time_tracking}}
+          - Data drift: {{detection_method}}
+          - Concept drift: {{detection_method}}
+          - Prediction drift: {{thresholds}}
+          
+          **System Monitoring:**
+          - Infrastructure: {{cpu_memory_disk}}
+          - Application: {{latency_errors_throughput}}
+          - Business KPIs: {{metrics}}
+          - Alerting: {{pagerduty_slack}}
+          
+          **Dashboards:**
+          - Tool: {{grafana_datadog}}
+          - Update frequency: {{real_time_batch}}
+          - Stakeholder views: {{different_dashboards}}
+
+  - id: experimentation-framework
+    title: Experimentation Framework
+    instruction: Define how experiments are conducted and tracked
+    sections:
+      - id: experiment-design
+        title: Experiment Design
+        template: |
+          **Experiment Tracking:**
+          - Platform: {{mlflow_wandb_kubeflow}}
+          - Metrics logged: {{list}}
+          - Artifacts stored: {{models_data_configs}}
+          
+          **Experiment Protocol:**
+          1. Hypothesis definition
+          2. Baseline establishment
+          3. Variable isolation
+          4. Result validation
+          5. Decision criteria
+      - id: ab-testing
+        title: A/B Testing Framework
+        template: |
+          **Test Design:**
+          - Split: {{percentage_control_treatment}}
+          - Duration: {{minimum_days}}
+          - Sample size: {{calculation}}
+          
+          **Success Metrics:**
+          - Primary: {{metric}}
+          - Secondary: {{metrics}}
+          - Guardrails: {{metrics}}
+
+  - id: security-privacy
+    title: Security & Privacy
+    instruction: Address security measures and privacy protection specific to ML systems
+    sections:
+      - id: model-security
+        title: Model Security
+        template: |
+          **Access Control:**
+          - API authentication: {{method}}
+          - Rate limiting: {{policy}}
+          - Audit logging: {{implementation}}
+          
+          **Model Protection:**
+          - Adversarial defense: {{techniques}}
+          - Model extraction prevention: {{measures}}
+          - Input validation: {{approach}}
+      - id: data-privacy
+        title: Data Privacy
+        template: |
+          **Privacy Techniques:**
+          - Anonymization: {{methods}}
+          - Differential privacy: {{if_applicable}}
+          - Federated learning: {{if_applicable}}
+          
+          **Compliance:**
+          - PDPA requirements: {{measures}}
+          - Data retention: {{policy}}
+          - Right to explanation: {{implementation}}
+
+  - id: maintenance-evolution
+    title: Maintenance & Evolution
+    instruction: Define how the ML system will be maintained and improved over time
+    sections:
+      - id: retraining-strategy
+        title: Model Retraining Strategy
+        template: |
+          **Retraining Triggers:**
+          - Scheduled: {{frequency}}
+          - Performance-based: {{thresholds}}
+          - Drift-based: {{thresholds}}
+          - Data volume: {{criteria}}
+          
+          **Retraining Process:**
+          1. Data collection and validation
+          2. Feature engineering updates
+          3. Model training and validation
+          4. A/B testing
+          5. Production deployment
+      - id: continuous-improvement
+        title: Continuous Improvement
+        template: |
+          **Improvement Areas:**
+          - Model performance optimization
+          - Feature engineering enhancements
+          - Infrastructure optimization
+          - Cost reduction
+          
+          **Feedback Loops:**
+          - User feedback: {{collection_method}}
+          - Production metrics: {{analysis}}
+          - Business outcomes: {{measurement}}
+
+  - id: risk-mitigation
+    title: Risk Assessment & Mitigation
+    instruction: Identify and address potential risks in the ML system
+    type: table
+    columns: [Risk Category, Description, Probability, Impact, Mitigation]
+    template: |
+      | Data Quality | {{description}} | {{H/M/L}} | {{H/M/L}} | {{strategy}} |
+      | Model Performance | {{description}} | {{H/M/L}} | {{H/M/L}} | {{strategy}} |
+      | System Reliability | {{description}} | {{H/M/L}} | {{H/M/L}} | {{strategy}} |
+      | Security | {{description}} | {{H/M/L}} | {{H/M/L}} | {{strategy}} |
+      | Compliance | {{description}} | {{H/M/L}} | {{H/M/L}} | {{strategy}} |
+      | Ethical/Bias | {{description}} | {{H/M/L}} | {{H/M/L}} | {{strategy}} |
+
+  - id: appendices
+    title: Appendices
+    sections:
+      - id: glossary
+        title: Glossary
+        instruction: Define ML-specific terms and acronyms used in this document
+      - id: references
+        title: References
+        instruction: List papers, frameworks, and resources referenced

@@ -1,0 +1,130 @@
+workflow:
+  id: llm-application-development
+  name: LLM Application Development Workflow
+  description: Workflow for developing LLM-based applications with RAG, security, and ethics
+  version: 1.0
+  
+  phases:
+    - phase: planning
+      name: LLM Application Planning
+      description: Define LLM use case, requirements, and architecture
+      agents: [ml-data-scientist, ml-architect]
+      deliverables:
+        - LLM Project Brief
+        - Use Case Definition
+        - LLM Architecture Design
+        - Cost Analysis
+      
+    - phase: llm-selection
+      name: LLM Selection and Design
+      description: Select appropriate LLM and design system architecture
+      agents: [ml-architect, ml-engineer]
+      deliverables:
+        - LLM Comparison Matrix
+        - System Architecture
+        - Prompt Engineering Strategy
+        - Integration Design
+        
+    - phase: rag-development
+      name: RAG System Development
+      description: Develop retrieval-augmented generation components
+      agents: [ml-engineer, ml-data-scientist]
+      deliverables:
+        - Knowledge Base Design
+        - Embedding Pipeline
+        - Retrieval System
+        - RAG Integration
+        
+    - phase: safety-implementation
+      name: Safety and Security Implementation
+      description: Implement safety guardrails and security measures
+      agents: [ml-security-ethics-specialist, ml-engineer]
+      deliverables:
+        - Content Filtering System
+        - Input Validation Rules
+        - Security Controls
+        - Guardrail Implementation
+        
+    - phase: testing-validation
+      name: Comprehensive Testing
+      description: Test functionality, security, and ethical compliance
+      agents: [ml-security-ethics-specialist, ml-data-scientist]
+      deliverables:
+        - Security Test Report
+        - Prompt Injection Tests
+        - Bias Assessment
+        - Performance Benchmarks
+        
+    - phase: deployment
+      name: Production Deployment
+      description: Deploy LLM application with monitoring
+      agents: [ml-engineer, ml-architect]
+      deliverables:
+        - Deployed Application
+        - API Documentation
+        - Monitoring Setup
+        - Rate Limiting Config
+        
+    - phase: operations
+      name: Operations and Monitoring
+      description: Monitor and maintain LLM application
+      agents: [ml-engineer, ml-data-scientist]
+      deliverables:
+        - Usage Analytics
+        - Cost Reports
+        - Performance Metrics
+        - Incident Management
+
+  transitions:
+    - from: planning
+      to: llm-selection
+      condition: Requirements approved
+      
+    - from: llm-selection
+      to: rag-development
+      condition: Architecture approved
+      
+    - from: rag-development
+      to: safety-implementation
+      condition: RAG system functional
+      
+    - from: safety-implementation
+      to: testing-validation
+      condition: Safety measures implemented
+      
+    - from: testing-validation
+      to: deployment
+      condition: All tests passed
+      
+    - from: deployment
+      to: operations
+      condition: Successfully deployed
+      
+    - from: operations
+      to: safety-implementation
+      condition: Security updates needed
+
+  special_considerations:
+    - Continuous prompt optimization
+    - Regular security assessments
+    - Cost monitoring and optimization
+    - User feedback integration
+    - Compliance updates
+
+  diagram: |
+    graph TD
+      A[Planning] -->|Approved| B[LLM Selection]
+      B -->|Architecture OK| C[RAG Development]
+      C -->|RAG Ready| D[Safety Implementation]
+      D -->|Controls Ready| E[Testing & Validation]
+      E -->|Tests Passed| F[Deployment]
+      F -->|Deployed| G[Operations]
+      G -->|Updates Needed| D
+      
+      style A fill:#e8f5e9
+      style B fill:#fff3e0
+      style C fill:#e3f2fd
+      style D fill:#ffebee
+      style E fill:#f3e5f5
+      style F fill:#e0f2f1
+      style G fill:#f5f5f5

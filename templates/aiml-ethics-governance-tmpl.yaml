@@ -1,0 +1,347 @@
+template:
+  id: aiml-ethics-governance-template-v3
+  name: AI/ML Ethics & Governance Assessment
+  version: 3.0
+  output:
+    format: markdown
+    filename: docs/aiml-ethics-governance.md
+    title: "{{project_name}} AI/ML Ethics & Governance Assessment"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: introduction
+    title: Introduction
+    content: |
+      This document provides a comprehensive ethics and governance assessment for {{project_name}}, ensuring responsible AI development aligned with Singapore's Model AI Governance Framework and international best practices.
+      
+      This assessment addresses ethical considerations, bias mitigation, fairness, transparency, and accountability throughout the ML lifecycle.
+    sections:
+      - id: assessment-scope
+        title: Assessment Scope
+        template: |
+          **ML System:** {{system_name}}
+          **Assessment Date:** {{date}}
+          **Assessor:** {{name_role}}
+          **Stakeholders:** {{list}}
+          
+          **Regulatory Context:**
+          - IMDA Model AI Governance Framework
+          - PDPA (Personal Data Protection Act)
+          - MAS FEAT Principles (if FinTech)
+          - Industry-specific guidelines
+      - id: changelog
+        title: Change Log
+        type: table
+        columns: [Date, Version, Changes, Reviewer]
+
+  - id: ethical-principles
+    title: Ethical Principles & Alignment
+    instruction: Define the ethical principles guiding this AI/ML system and how they align with organizational values
+    elicit: true
+    sections:
+      - id: core-principles
+        title: Core Ethical Principles
+        template: |
+          **Fairness:** {{definition_and_implementation}}
+          **Transparency:** {{definition_and_implementation}}
+          **Accountability:** {{definition_and_implementation}}
+          **Privacy:** {{definition_and_implementation}}
+          **Beneficence:** {{definition_and_implementation}}
+          **Non-maleficence:** {{definition_and_implementation}}
+      - id: stakeholder-impact
+        title: Stakeholder Impact Assessment
+        type: table
+        columns: [Stakeholder Group, Potential Benefits, Potential Risks, Mitigation Measures]
+        template: |
+          | End Users | {{benefits}} | {{risks}} | {{mitigation}} |
+          | Business | {{benefits}} | {{risks}} | {{mitigation}} |
+          | Society | {{benefits}} | {{risks}} | {{mitigation}} |
+          | Vulnerable Groups | {{benefits}} | {{risks}} | {{mitigation}} |
+
+  - id: bias-fairness
+    title: Bias & Fairness Assessment
+    instruction: Comprehensive evaluation of bias and fairness in the ML system
+    elicit: true
+    sections:
+      - id: bias-sources
+        title: Potential Bias Sources
+        template: |
+          **Data Bias:**
+          - Historical bias: {{description}}
+          - Representation bias: {{description}}
+          - Measurement bias: {{description}}
+          - Sampling bias: {{description}}
+          
+          **Algorithmic Bias:**
+          - Feature selection: {{description}}
+          - Model architecture: {{description}}
+          - Optimization objectives: {{description}}
+          
+          **Human Bias:**
+          - Label bias: {{description}}
+          - Confirmation bias: {{description}}
+          - Automation bias: {{description}}
+      - id: fairness-metrics
+        title: Fairness Metrics & Evaluation
+        template: |
+          **Protected Attributes:**
+          - {{attribute_1}}: {{justification}}
+          - {{attribute_2}}: {{justification}}
+          
+          **Fairness Metrics Applied:**
+          - Demographic parity: {{result}}
+          - Equal opportunity: {{result}}
+          - Equalized odds: {{result}}
+          - Individual fairness: {{result}}
+          
+          **Disparate Impact Analysis:**
+          | Group | Performance | Disparity | Acceptable? |
+          |-------|-------------|-----------|-------------|
+          | {{group}} | {{metric}} | {{ratio}} | {{Y/N}} |
+      - id: bias-mitigation
+        title: Bias Mitigation Strategies
+        template: |
+          **Pre-processing:**
+          - Data augmentation: {{approach}}
+          - Re-sampling: {{approach}}
+          - Synthetic data: {{approach}}
+          
+          **In-processing:**
+          - Fairness constraints: {{implementation}}
+          - Adversarial debiasing: {{implementation}}
+          - Multi-objective optimization: {{implementation}}
+          
+          **Post-processing:**
+          - Threshold optimization: {{approach}}
+          - Output calibration: {{approach}}
+          - Fairness-aware ensemble: {{approach}}
+
+  - id: transparency-explainability
+    title: Transparency & Explainability
+    instruction: Define how the ML system provides transparency and explainability
+    sections:
+      - id: model-transparency
+        title: Model Transparency
+        template: |
+          **Model Documentation:**
+          - Model card: {{completeness}}
+          - Training data documentation: {{available}}
+          - Algorithm description: {{level_of_detail}}
+          - Limitations documented: {{yes_no}}
+          
+          **Decision Transparency:**
+          - Decision logic: {{explainable_blackbox}}
+          - Confidence scores: {{provided}}
+          - Uncertainty quantification: {{method}}
+      - id: explainability-methods
+        title: Explainability Methods
+        template: |
+          **Global Explainability:**
+          - Feature importance: {{method}}
+          - Model behavior: {{visualization}}
+          - Decision boundaries: {{representation}}
+          
+          **Local Explainability:**
+          - LIME/SHAP: {{implementation}}
+          - Counterfactual explanations: {{available}}
+          - Example-based: {{approach}}
+          
+          **User-Facing Explanations:**
+          - Technical users: {{format}}
+          - Business users: {{format}}
+          - End users: {{format}}
+          - Regulators: {{format}}
+
+  - id: accountability-governance
+    title: Accountability & Governance
+    instruction: Define governance structure and accountability mechanisms
+    elicit: true
+    sections:
+      - id: governance-structure
+        title: Governance Structure
+        template: |
+          **AI Ethics Committee:**
+          - Composition: {{roles}}
+          - Meeting frequency: {{schedule}}
+          - Decision authority: {{scope}}
+          
+          **Roles & Responsibilities:**
+          | Role | Responsibility | Accountability |
+          |------|---------------|----------------|
+          | Product Owner | {{resp}} | {{account}} |
+          | ML Engineer | {{resp}} | {{account}} |
+          | Data Scientist | {{resp}} | {{account}} |
+          | Ethics Officer | {{resp}} | {{account}} |
+      - id: decision-accountability
+        title: Decision Accountability
+        template: |
+          **Human Oversight:**
+          - Level of automation: {{full_partial_advisory}}
+          - Human intervention points: {{description}}
+          - Override capability: {{yes_no_conditions}}
+          
+          **Audit Trail:**
+          - Decision logging: {{what_is_logged}}
+          - Data retention: {{period}}
+          - Access control: {{who_can_access}}
+          
+          **Liability Framework:**
+          - Error responsibility: {{allocation}}
+          - Insurance coverage: {{type}}
+          - Compensation mechanism: {{process}}
+
+  - id: privacy-security
+    title: Privacy & Security Considerations
+    instruction: Address privacy and security aspects specific to AI/ML systems
+    sections:
+      - id: privacy-protection
+        title: Privacy Protection Measures
+        template: |
+          **Data Minimization:**
+          - Only necessary data collected: {{verification}}
+          - Feature selection justified: {{process}}
+          - Data retention minimized: {{policy}}
+          
+          **Privacy-Preserving Techniques:**
+          - Differential privacy: {{implementation}}
+          - Federated learning: {{applicable}}
+          - Homomorphic encryption: {{applicable}}
+          - Secure multi-party computation: {{applicable}}
+          
+          **Consent Management:**
+          - Informed consent: {{process}}
+          - Opt-out mechanisms: {{available}}
+          - Data deletion rights: {{implementation}}
+      - id: model-security
+        title: Model Security
+        template: |
+          **Adversarial Robustness:**
+          - Attack surface: {{assessment}}
+          - Defense mechanisms: {{implemented}}
+          - Testing performed: {{description}}
+          
+          **Model Protection:**
+          - IP protection: {{measures}}
+          - Model extraction defense: {{approach}}
+          - Watermarking: {{implementation}}
+
+  - id: societal-impact
+    title: Societal Impact Assessment
+    instruction: Evaluate broader societal implications of the AI/ML system
+    sections:
+      - id: social-impact
+        title: Social Impact Analysis
+        template: |
+          **Positive Impacts:**
+          - Efficiency gains: {{description}}
+          - Accessibility improvements: {{description}}
+          - Cost reduction: {{description}}
+          - Quality enhancement: {{description}}
+          
+          **Negative Risks:**
+          - Job displacement: {{assessment}}
+          - Digital divide: {{assessment}}
+          - Dependency risks: {{assessment}}
+          - Misuse potential: {{assessment}}
+      - id: environmental-impact
+        title: Environmental Considerations
+        template: |
+          **Carbon Footprint:**
+          - Training emissions: {{estimate}}
+          - Inference emissions: {{estimate}}
+          - Optimization efforts: {{description}}
+          
+          **Resource Efficiency:**
+          - Compute optimization: {{measures}}
+          - Data efficiency: {{measures}}
+          - Model compression: {{techniques}}
+
+  - id: continuous-monitoring
+    title: Continuous Monitoring & Improvement
+    instruction: Define ongoing monitoring and improvement processes for ethical AI
+    sections:
+      - id: monitoring-framework
+        title: Ethics Monitoring Framework
+        template: |
+          **Regular Assessments:**
+          - Frequency: {{quarterly_annual}}
+          - Scope: {{areas_covered}}
+          - Reviewers: {{internal_external}}
+          
+          **Key Metrics Tracked:**
+          - Fairness metrics: {{list}}
+          - Bias indicators: {{list}}
+          - Complaint rates: {{tracking}}
+          - User satisfaction: {{measurement}}
+      - id: improvement-process
+        title: Continuous Improvement Process
+        template: |
+          **Feedback Mechanisms:**
+          - User feedback: {{channels}}
+          - Stakeholder input: {{process}}
+          - External review: {{frequency}}
+          
+          **Update Protocol:**
+          - Trigger conditions: {{list}}
+          - Review process: {{steps}}
+          - Implementation: {{timeline}}
+          - Communication: {{stakeholders}}
+
+  - id: compliance-certification
+    title: Compliance & Certification
+    instruction: Document compliance with regulations and standards
+    sections:
+      - id: regulatory-compliance
+        title: Regulatory Compliance
+        type: table
+        columns: [Regulation, Requirements, Compliance Status, Evidence]
+        template: |
+          | PDPA | {{requirements}} | {{status}} | {{evidence}} |
+          | IMDA Framework | {{requirements}} | {{status}} | {{evidence}} |
+          | MAS FEAT | {{requirements}} | {{status}} | {{evidence}} |
+          | ISO/IEC 23053 | {{requirements}} | {{status}} | {{evidence}} |
+      - id: certification-status
+        title: Certification & Attestation
+        template: |
+          **Certifications Obtained:**
+          - {{certification_1}}: {{date_status}}
+          - {{certification_2}}: {{date_status}}
+          
+          **Self-Attestation:**
+          - Ethics review completed: {{date}}
+          - Bias assessment completed: {{date}}
+          - Privacy impact assessment: {{date}}
+
+  - id: recommendations
+    title: Recommendations & Action Items
+    instruction: Provide specific recommendations for improving ethical AI practices
+    type: table
+    columns: [Priority, Recommendation, Timeline, Owner, Status]
+    template: |
+      | High | {{recommendation}} | {{timeline}} | {{owner}} | {{status}} |
+      | Medium | {{recommendation}} | {{timeline}} | {{owner}} | {{status}} |
+      | Low | {{recommendation}} | {{timeline}} | {{owner}} | {{status}} |
+
+  - id: appendices
+    title: Appendices
+    sections:
+      - id: ethics-checklist
+        title: Ethics Checklist
+        type: checklist
+        items:
+          - Stakeholder impact assessed
+          - Bias evaluation completed
+          - Fairness metrics calculated
+          - Explainability implemented
+          - Privacy measures in place
+          - Security assessment done
+          - Governance structure defined
+          - Monitoring plan established
+          - Documentation complete
+          - Compliance verified
+      - id: references
+        title: References
+        instruction: List ethical frameworks, guidelines, and resources used

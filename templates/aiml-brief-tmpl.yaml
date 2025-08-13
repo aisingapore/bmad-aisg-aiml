@@ -1,0 +1,249 @@
+template:
+  id: aiml-brief-template-v3
+  name: AI/ML Project Brief
+  version: 3.0
+  output:
+    format: markdown
+    filename: docs/aiml-brief.md
+    title: "{{project_name}} AI/ML Project Brief"
+
+workflow:
+  mode: interactive
+
+sections:
+  - id: initial-setup
+    instruction: |
+      This template creates a comprehensive AI/ML project brief that serves as the foundation for all subsequent ML development work. The brief should capture the essential vision, scope, requirements, and constraints needed to create a detailed ML Design Document.
+      
+      This brief is typically created early in the ideation process, often after stakeholder meetings and initial data exploration, to crystallize the ML solution concept before moving into detailed design.
+
+  - id: project-vision
+    title: Project Vision
+    instruction: Establish the core vision and business value of the AI/ML project. Present each subsection and gather user feedback before proceeding.
+    sections:
+      - id: problem-statement
+        title: Problem Statement
+        instruction: 2-3 sentences that clearly capture the business problem being solved and why ML is the right approach
+        template: |
+          **Business Problem:** {{problem_description}}
+          **Why ML:** {{ml_justification}}
+          **Expected Impact:** {{business_impact}}
+      - id: elevator-pitch
+        title: Elevator Pitch
+        instruction: Single sentence that captures the essence of the ML solution in a memorable way
+        template: |
+          **"{{ml_solution_in_one_sentence}}"**
+      - id: success-criteria
+        title: Success Criteria
+        instruction: Define measurable success metrics for the ML project
+        template: |
+          **Business Metrics:**
+          - {{business_kpi_1}}: {{target_value}}
+          - {{business_kpi_2}}: {{target_value}}
+          
+          **ML Metrics:**
+          - {{ml_metric_1}}: {{threshold}}
+          - {{ml_metric_2}}: {{threshold}}
+          
+          **Timeline:** {{deployment_timeline}}
+
+  - id: target-users
+    title: Target Users & Stakeholders
+    instruction: Define the users, stakeholders, and their requirements. Apply `tasks#advanced-elicitation` after presenting this section.
+    sections:
+      - id: primary-users
+        title: Primary Users
+        template: |
+          **End Users:** {{user_description}}, {{usage_pattern}}
+          **Technical Users:** {{data_scientists_ml_engineers}}
+          **Business Users:** {{stakeholders_decision_makers}}
+      - id: stakeholder-requirements
+        title: Stakeholder Requirements
+        template: |
+          **Business Stakeholders:** {{requirements}}
+          **Technical Stakeholders:** {{requirements}}
+          **Compliance/Legal:** {{requirements}}
+          **Operations Team:** {{requirements}}
+
+  - id: ml-fundamentals
+    title: ML Fundamentals
+    instruction: Define the core ML approach and requirements. Each subsection should be specific enough to guide detailed design work.
+    sections:
+      - id: ml-problem-type
+        title: ML Problem Definition
+        template: |
+          **Problem Type:** {{classification_regression_clustering_generation}}
+          **Learning Approach:** {{supervised_unsupervised_reinforcement}}
+          **Model Type:** {{traditional_ml_deep_learning_llm}}
+          **Deployment Pattern:** {{batch_realtime_streaming}}
+      - id: data-requirements
+        title: Data Requirements
+        instruction: Define data needs and availability
+        template: |
+          **Data Sources:**
+          - {{source_1}}: {{volume}}, {{update_frequency}}
+          - {{source_2}}: {{volume}}, {{update_frequency}}
+          
+          **Data Quality:**
+          - Minimum volume: {{records_needed}}
+          - Required features: {{feature_categories}}
+          - Label availability: {{labeled_unlabeled}}
+          
+          **Privacy Constraints:**
+          - PII handling: {{requirements}}
+          - PDPA compliance: {{requirements}}
+      - id: performance-requirements
+        title: Performance Requirements
+        template: |
+          **Accuracy Requirements:**
+          - Minimum acceptable: {{threshold}}
+          - Target performance: {{target}}
+          - Baseline to beat: {{current_performance}}
+          
+          **Operational Requirements:**
+          - Inference latency: {{milliseconds}}
+          - Throughput: {{requests_per_second}}
+          - Availability: {{sla_percentage}}
+
+  - id: scope-constraints
+    title: Scope and Constraints
+    instruction: Define the boundaries and limitations that will shape development. Apply `tasks#advanced-elicitation` to clarify any constraints.
+    sections:
+      - id: project-scope
+        title: Project Scope
+        template: |
+          **In Scope:**
+          - {{scope_item_1}}
+          - {{scope_item_2}}
+          - {{scope_item_3}}
+          
+          **Out of Scope:**
+          - {{out_scope_1}}
+          - {{out_scope_2}}
+          
+          **Future Phases:**
+          - {{phase_2_items}}
+      - id: technical-constraints
+        title: Technical Constraints
+        template: |
+          **Infrastructure:**
+          - Cloud platform: {{aws_gcp_azure_onprem}}
+          - Compute budget: {{gpu_cpu_limits}}
+          - Storage limits: {{data_storage_constraints}}
+          
+          **Technology:**
+          - Required frameworks: {{tensorflow_pytorch_sklearn}}
+          - Integration requirements: {{existing_systems}}
+          - Language requirements: {{python_version}}
+      - id: regulatory-constraints
+        title: Regulatory & Compliance Constraints
+        template: |
+          **Singapore Regulations:**
+          - PDPA requirements: {{data_protection}}
+          - IMDA AI Governance: {{requirements}}
+          - MAS FEAT (if FinTech): {{requirements}}
+          
+          **Industry Standards:**
+          - {{standard_1}}: {{requirements}}
+          - {{standard_2}}: {{requirements}}
+
+  - id: risks-assumptions
+    title: Risks and Assumptions
+    instruction: Identify key risks and document critical assumptions
+    sections:
+      - id: risks
+        title: Key Risks
+        type: table
+        columns: [Risk, Probability, Impact, Mitigation]
+        template: |
+          | {{risk_description}} | {{H/M/L}} | {{H/M/L}} | {{mitigation_strategy}} |
+      - id: assumptions
+        title: Critical Assumptions
+        type: bullet-list
+        template: |
+          - {{assumption_about_data}}
+          - {{assumption_about_resources}}
+          - {{assumption_about_timeline}}
+          - {{assumption_about_performance}}
+
+  - id: deliverables-timeline
+    title: Deliverables and Timeline
+    instruction: Define what will be delivered and when
+    sections:
+      - id: deliverables
+        title: Key Deliverables
+        template: |
+          **Phase 1 - Data & Exploration ({{weeks}}):**
+          - Data pipeline implementation
+          - EDA and feature analysis
+          - Baseline model
+          
+          **Phase 2 - Model Development ({{weeks}}):**
+          - Model experimentation
+          - Performance optimization
+          - Model validation
+          
+          **Phase 3 - Productionization ({{weeks}}):**
+          - MLOps pipeline
+          - API development
+          - Monitoring setup
+          
+          **Phase 4 - Deployment ({{weeks}}):**
+          - Production deployment
+          - A/B testing
+          - Handover and documentation
+      - id: success-metrics
+        title: Success Metrics by Phase
+        template: |
+          **Phase 1:** {{metrics}}
+          **Phase 2:** {{metrics}}
+          **Phase 3:** {{metrics}}
+          **Phase 4:** {{metrics}}
+
+  - id: resource-requirements
+    title: Resource Requirements
+    instruction: Define team, infrastructure, and budget needs
+    sections:
+      - id: team-requirements
+        title: Team Requirements
+        template: |
+          **Core Team:**
+          - ML Engineer: {{fte_or_percentage}}
+          - Data Scientist: {{fte_or_percentage}}
+          - Data Engineer: {{fte_or_percentage}}
+          - MLOps Engineer: {{fte_or_percentage}}
+          
+          **Support Team:**
+          - Domain Expert: {{involvement}}
+          - Security Specialist: {{involvement}}
+          - Product Owner: {{involvement}}
+      - id: infrastructure-requirements
+        title: Infrastructure Requirements
+        template: |
+          **Development:**
+          - Compute: {{requirements}}
+          - Storage: {{requirements}}
+          - Tools: {{jupyter_mlflow_etc}}
+          
+          **Production:**
+          - Serving infrastructure: {{requirements}}
+          - Monitoring tools: {{requirements}}
+          - Data pipeline: {{requirements}}
+      - id: budget-estimate
+        title: Budget Estimate
+        template: |
+          **Development Costs:** ${{amount}}
+          **Infrastructure Costs:** ${{monthly}}
+          **Licensing/Tools:** ${{amount}}
+          **Total Estimate:** ${{total}}
+
+  - id: next-steps
+    title: Next Steps
+    instruction: Define immediate next actions after brief approval
+    template: |
+      1. **Stakeholder Approval:** Get sign-off from {{stakeholders}}
+      2. **Data Access:** Secure access to {{data_sources}}
+      3. **Team Formation:** Onboard {{team_members}}
+      4. **Environment Setup:** Provision {{development_environment}}
+      5. **Detailed Design:** Create ML Design Document using aiml-design-doc-tmpl
+      6. **Kick-off Meeting:** Schedule for {{date}}

@@ -1,0 +1,248 @@
+team:
+  id: aisg-short-industry-team
+  name: AISG Short Industry Project (SIP) Team
+  description: Team configuration for 4-week rapid AI prototype development
+  version: 2.0
+  program: AI Singapore Short Industry Project
+  duration: 4 weeks
+  
+  composition:
+    human_team:
+      - role: AI Engineer(s)
+        count: 1-2
+        responsibilities:
+          - Full ownership
+          - Rapid implementation
+          - Client communication
+          - Knowledge transfer
+        note: No apprentices - skill development focus
+        
+    ai_agents:
+      # Only 2-3 agents for ultra-rapid delivery
+      - id: ml-engineer
+        name: Marcus Tan Wei Ming
+        role: ML/AI Engineer & MLOps Specialist
+        allocation: 60%
+        
+      - id: ml-data-scientist
+        name: Sophia D'Cruz
+        role: Senior Data Scientist
+        allocation: 30%
+        
+      - id: ml-architect
+        name: Rizwan bin Abdullah
+        role: ML/AI System Architect
+        allocation: 10%
+  
+  workflow:
+    day_1_3_scoping:
+      lead: ml-data-scientist
+      activities:
+        - Problem understanding
+        - Data review
+        - Feasibility assessment
+        - Solution design
+      outputs:
+        - Project plan
+        - Technical approach
+        - Risk assessment
+        
+    week_2_development:
+      lead: ml-engineer
+      support: [ml-data-scientist]
+      activities:
+        - Data preparation
+        - Model development
+        - Feature engineering
+        - Initial testing
+      outputs:
+        - Working model
+        - Test results
+        - Performance metrics
+        
+    week_3_integration:
+      lead: ml-engineer
+      activities:
+        - API development
+        - System integration
+        - Testing & debugging
+        - Documentation
+      outputs:
+        - Integrated system
+        - API endpoints
+        - Test coverage
+        
+    week_4_delivery:
+      lead: ml-engineer
+      support: [ml-architect]
+      activities:
+        - Deployment setup
+        - Knowledge transfer
+        - Final documentation
+      outputs:
+        - Deployed solution
+        - Complete documentation
+        - Handover package
+  
+  agent_responsibilities:
+    ml-engineer:
+      primary:
+        - Rapid model development
+        - API implementation
+        - Integration and deployment
+        - Technical documentation
+      focus: Implementation and delivery
+      
+    ml-data-scientist:
+      primary:
+        - Data assessment
+        - Feature engineering
+        - Model evaluation
+        - Insights generation
+      focus: Data understanding and validation
+      
+    ml-architect:
+      primary:
+        - Technical feasibility
+        - Architecture recommendations
+        - Scalability planning
+      focus: Advisory and future planning
+  
+  project_types:
+    type_a_ml_prototype:
+      description: Build ML model prototype for specific use case
+      lead_agent: ml-engineer
+      support_agent: ml-data-scientist
+      deliverables:
+        - Trained model
+        - Performance report
+        - Jupyter notebooks
+        - Basic API
+        
+    type_b_llm_application:
+      description: Develop LLM-based application
+      lead_agent: ml-engineer
+      support_agent: ml-architect
+      deliverables:
+        - Working application
+        - Prompt templates
+        - API endpoints
+        - Deployment package
+        
+    type_c_data_analytics:
+      description: Advanced analytics and insights
+      lead_agent: ml-data-scientist
+      support_agent: ml-engineer
+      deliverables:
+        - Analysis reports
+        - Dashboards
+        - Predictive models
+        - Recommendations
+  
+  rapid_delivery_strategies:
+    week_1:
+      - Quick data assessment
+      - Use existing datasets if available
+      - Baseline model in 2 days
+      - Clear scope definition
+      
+    week_2_3:
+      - Focus on single best approach
+      - Use pre-trained models
+      - Iterate quickly
+      - Skip extensive testing
+      
+    week_4:
+      - Simple deployment only
+      - Basic documentation
+      - Focus on demo
+      - Clear handover
+  
+  deliverables:
+    core:
+      - Working prototype
+      - Source code
+      - Basic documentation
+      - Performance metrics
+      
+    optional:
+      - API documentation
+      - Deployment guide
+      - Future roadmap
+      - Cost analysis
+  
+  success_criteria:
+    must_achieve:
+      - Working prototype
+      - Meets basic requirements
+      - Documented code
+      - Successful handover
+      
+    nice_to_have:
+      - Exceeds performance targets
+      - Production-ready code
+      - Comprehensive testing
+      - Full documentation
+  
+  constraints:
+    strict:
+      - 4 weeks maximum
+      - 1-2 engineers only
+      - Limited budget
+      - Prototype level only
+      
+    flexible:
+      - Performance targets
+      - Documentation depth
+      - Testing coverage
+  
+  tools:
+    essential:
+      - Python/Jupyter
+      - Git/GitHub
+      - Docker
+      
+    ml_specific:
+      - Scikit-learn
+      - PyTorch/TensorFlow
+      - Hugging Face
+      - Streamlit/Gradio
+  
+  industry_applications:
+    common_projects:
+      - Fraud detection prototype
+      - Demand forecasting
+      - Customer segmentation
+      - Document processing
+      - Recommendation systems
+      
+    typical_stack:
+      - Python + FastAPI
+      - Docker containers
+      - Cloud deployment
+      - Simple monitoring
+  
+  risk_management:
+    critical_risks:
+      - Data not available → Use synthetic/public data
+      - Scope too large → Reduce to core feature
+      - Technical blocker → Pivot to simpler approach
+      
+    checkpoints:
+      day_3: Feasibility confirmed
+      week_2: Model showing results
+      week_3: Integration working
+      week_4: Demo ready
+  
+  knowledge_transfer:
+    documentation:
+      - README with setup instructions
+      - Code comments
+      - Architecture diagram
+      - API documentation
+      
+    handover_session:
+      - Code walkthrough
+      - Demo of functionality
+      - Q&A session
+      - Next steps discussion

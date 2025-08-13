@@ -1,0 +1,324 @@
+template:
+  id: aiml-story-template-v3
+  name: AI/ML Development Story
+  version: 3.0
+  output:
+    format: markdown
+    filename: "stories/{{epic_name}}/{{story_id}}-{{story_name}}.md"
+    title: "Story: {{story_title}}"
+
+workflow:
+  mode: interactive
+
+sections:
+  - id: initial-setup
+    instruction: |
+      This template creates detailed AI/ML development stories that are immediately actionable by ML engineers and data scientists. Each story should focus on a single, implementable ML component or feature.
+      
+      Before starting, ensure you have access to:
+      - AI/ML Design Document
+      - AI/ML Architecture Document
+      - Data specifications
+      - Any existing stories in this epic
+      
+      The story should be specific enough that an ML engineer can implement it without requiring additional design decisions.
+
+  - id: story-header
+    content: |
+      **Epic:** {{epic_name}}  
+      **Story ID:** {{story_id}}  
+      **Priority:** {{High|Medium|Low}}  
+      **Points:** {{story_points}}  
+      **Status:** Draft
+      **Type:** {{Model Development|Data Pipeline|Feature Engineering|MLOps|Experimentation|Bug Fix}}
+
+  - id: description
+    title: Description
+    instruction: Provide a clear, concise description of what this story implements. Focus on the specific ML component or feature being built. Reference the Design Doc section that defines this feature.
+    template: |
+      {{clear_description_of_ml_component}}
+      
+      **Design Doc Reference:** {{section_name}} (Section {{number}})
+      **Architecture Component:** {{component_name}}
+
+  - id: acceptance-criteria
+    title: Acceptance Criteria
+    instruction: Define specific, testable conditions that must be met for the story to be considered complete. Each criterion should be verifiable and ML-specific.
+    sections:
+      - id: functional-requirements
+        title: Functional Requirements
+        type: checklist
+        items:
+          - Model/component performs required function
+          - "{{specific_ml_requirement}}"
+          - Integration with existing pipeline successful
+          - Data flow validated end-to-end
+      - id: performance-requirements
+        title: Performance Requirements
+        type: checklist
+        items:
+          - Model accuracy: >{{threshold}}%
+          - Inference latency: <{{milliseconds}}ms
+          - Training time: <{{hours}} hours
+          - Memory usage: <{{GB}} GB
+          - "{{specific_performance_requirement}}"
+      - id: quality-requirements
+        title: Quality Requirements
+        type: checklist
+        items:
+          - Code follows Python/ML best practices
+          - Unit test coverage >80%
+          - Documentation complete
+          - Experiment tracked in MLflow/W&B
+          - Model artifacts versioned
+
+  - id: technical-specifications
+    title: Technical Specifications
+    instruction: Provide specific technical details that guide ML implementation. Include file paths, class names, and integration points.
+    sections:
+      - id: files-to-modify
+        title: Files to Create/Modify
+        template: |
+          **New Files:**
+          - `src/models/{{model_name}}.py` - Model implementation
+          - `src/features/{{feature_name}}.py` - Feature engineering
+          - `tests/test_{{component}}.py` - Unit tests
+          - `configs/{{config_name}}.yaml` - Configuration
+          
+          **Modified Files:**
+          - `src/pipelines/training_pipeline.py` - {{changes}}
+          - `src/api/inference.py` - {{changes}}
+      - id: implementation-details
+        title: Implementation Details
+        type: code
+        language: python
+        template: |
+          # Model Architecture
+          class {{ModelName}}:
+              def __init__(self, config):
+                  # Initialize with hyperparameters
+                  self.learning_rate = config['learning_rate']
+                  self.hidden_units = config['hidden_units']
+                  
+              def train(self, X_train, y_train):
+                  # Training logic
+                  pass
+                  
+              def predict(self, X):
+                  # Inference logic
+                  pass
+          
+          # Feature Engineering
+          def create_features(df):
+              # Feature engineering logic
+              return features
+          
+          # Configuration
+          config = {
+              'model_type': '{{algorithm}}',
+              'hyperparameters': {{params}},
+              'data_config': {{data_params}}
+          }
+      - id: data-requirements
+        title: Data Requirements
+        template: |
+          **Input Data:**
+          - Source: {{data_source}}
+          - Schema: {{columns_types}}
+          - Volume: {{records}}
+          - Format: {{csv_parquet_json}}
+          
+          **Feature Engineering:**
+          - Raw features: {{list}}
+          - Engineered features: {{list}}
+          - Transformations: {{scaling_encoding}}
+          
+          **Output:**
+          - Predictions: {{format}}
+          - Metrics: {{logged_metrics}}
+          - Artifacts: {{saved_files}}
+
+  - id: implementation-tasks
+    title: Implementation Tasks
+    instruction: Break down the implementation into specific, ordered tasks. Each task should be completable in 1-4 hours.
+    sections:
+      - id: ml-tasks
+        title: ML Development Tasks
+        template: |
+          **Data Preparation:**
+          - [ ] Load and validate input data
+          - [ ] Perform EDA and document findings
+          - [ ] Implement data cleaning pipeline
+          - [ ] Create train/val/test splits
+          
+          **Feature Engineering:**
+          - [ ] Implement feature extraction
+          - [ ] Create feature transformations
+          - [ ] Validate feature quality
+          - [ ] Version features in feature store
+          
+          **Model Development:**
+          - [ ] Implement baseline model
+          - [ ] Develop main model architecture
+          - [ ] Implement training loop
+          - [ ] Add evaluation metrics
+          
+          **Experimentation:**
+          - [ ] Run hyperparameter tuning
+          - [ ] Track experiments in MLflow
+          - [ ] Compare model variants
+          - [ ] Select best model
+          
+          **Testing & Validation:**
+          - [ ] Write unit tests (>80% coverage)
+          - [ ] Perform model validation
+          - [ ] Test edge cases
+          - [ ] Validate against holdout set
+          
+          **Documentation:**
+          - [ ] Update model card
+          - [ ] Document API changes
+          - [ ] Update experiment logs
+          - [ ] Create usage examples
+      - id: dev-record
+        title: Development Record
+        template: |
+          **Experiment Log:**
+          | Run ID | Model | Hyperparameters | Metrics | Notes |
+          |--------|-------|-----------------|---------|-------|
+          | | | | | |
+          
+          **Issues Encountered:**
+          <!-- Document any challenges and solutions -->
+          
+          **Performance Optimizations:**
+          <!-- Note any optimizations made -->
+
+  - id: mlops-requirements
+    title: MLOps Requirements
+    instruction: Define ML-specific operational requirements
+    sections:
+      - id: model-artifacts
+        title: Model Artifacts
+        template: |
+          **Training Artifacts:**
+          - Model weights: `models/{{model_name}}/weights.pkl`
+          - Config: `models/{{model_name}}/config.yaml`
+          - Metrics: `models/{{model_name}}/metrics.json`
+          - Preprocessing: `models/{{model_name}}/preprocessor.pkl`
+          
+          **Versioning:**
+          - Model version: {{semantic_version}}
+          - Data version: {{data_version}}
+          - Code version: {{git_commit}}
+      - id: deployment-readiness
+        title: Deployment Readiness
+        template: |
+          **Model Registry:**
+          - [ ] Model registered in MLflow/registry
+          - [ ] Metadata complete
+          - [ ] Performance benchmarks documented
+          - [ ] Approval workflow completed
+          
+          **API Integration:**
+          - [ ] Inference endpoint created
+          - [ ] Request/response schema defined
+          - [ ] Error handling implemented
+          - [ ] Rate limiting configured
+          
+          **Monitoring Setup:**
+          - [ ] Performance metrics configured
+          - [ ] Data drift detection enabled
+          - [ ] Alerts configured
+          - [ ] Dashboard created
+
+  - id: testing-requirements
+    title: Testing Requirements
+    instruction: Define comprehensive testing for ML components
+    sections:
+      - id: unit-tests
+        title: Unit Tests
+        template: |
+          **Test Coverage:**
+          - Data processing functions: >80%
+          - Feature engineering: >80%
+          - Model methods: >80%
+          - API endpoints: >80%
+          
+          **Test Scenarios:**
+          - Normal inputs: {{test_cases}}
+          - Edge cases: {{edge_cases}}
+          - Error conditions: {{error_cases}}
+          - Performance tests: {{load_tests}}
+      - id: integration-tests
+        title: Integration Tests
+        template: |
+          **End-to-End Tests:**
+          - [ ] Data pipeline → Feature engineering
+          - [ ] Feature engineering → Model training
+          - [ ] Model training → Model registry
+          - [ ] Model registry → Serving API
+          - [ ] API → Monitoring system
+      - id: model-validation
+        title: Model Validation
+        template: |
+          **Validation Checks:**
+          - [ ] Performance on test set: {{metric}} > {{threshold}}
+          - [ ] No data leakage verified
+          - [ ] Cross-validation completed
+          - [ ] Bias/fairness evaluation done
+          - [ ] Business metrics validated
+
+  - id: dependencies
+    title: Dependencies
+    instruction: List any dependencies that must be completed before this story
+    template: |
+      **Story Dependencies:**
+      - {{story_id}}: {{dependency_description}}
+      
+      **Data Dependencies:**
+      - Dataset: {{name}} ({{availability}})
+      - Features: {{required_features}}
+      
+      **Infrastructure Dependencies:**
+      - Compute: {{gpu_cpu_requirements}}
+      - Storage: {{requirements}}
+      - Tools: {{mlflow_jupyter_etc}}
+
+  - id: definition-of-done
+    title: Definition of Done
+    instruction: Checklist that must be completed before the story is considered finished
+    type: checklist
+    items:
+      - All acceptance criteria met
+      - Model performance validated
+      - Code reviewed and approved
+      - Unit tests written and passing (>80% coverage)
+      - Integration tests passing
+      - Documentation updated
+      - Experiment tracked in MLflow/W&B
+      - Model artifacts versioned
+      - Security scan passed
+      - No Python linting errors
+      - Performance benchmarks met
+      - Deployment readiness verified
+
+  - id: notes
+    title: Notes
+    instruction: Additional context, decisions, or implementation notes
+    template: |
+      **Implementation Notes:**
+      - {{note_1}}
+      - {{note_2}}
+      
+      **Design Decisions:**
+      - {{decision_1}}: {{rationale}}
+      - {{decision_2}}: {{rationale}}
+      
+      **Future Improvements:**
+      - {{improvement_1}}
+      - {{optimization_1}}
+      
+      **Lessons Learned:**
+      - {{learning_1}}
+      - {{learning_2}}

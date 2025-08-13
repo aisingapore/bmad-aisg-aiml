@@ -1,0 +1,229 @@
+team:
+  id: aisg-mvp-team
+  name: AISG 100 Experiments (100E) MVP Team
+  description: Team configuration for 6-month AISG MVP projects to build production-ready AI solutions
+  version: 2.0
+  program: AI Singapore 100E MVP Programme
+  duration: 24 weeks
+  
+  composition:
+    human_team:
+      - role: AI Engineer (Lead)
+        count: 1
+        responsibilities:
+          - Technical leadership
+          - Architecture decisions
+          - Mentoring apprentices
+          - Stakeholder communication
+          
+      - role: AI Apprentices
+        count: 2-6
+        responsibilities:
+          - Implementation support
+          - Testing and validation
+          - Documentation
+          - Learning and development
+          
+    ai_agents:
+      # 4 streamlined agents covering all phases
+      - id: ml-engineer
+        name: Marcus Tan Wei Ming
+        role: ML/AI Engineer & MLOps Specialist
+        
+      - id: ml-architect
+        name: Rizwan bin Abdullah
+        role: ML/AI System Architect
+        
+      - id: ml-data-scientist
+        name: Sophia D'Cruz
+        role: Senior Data Scientist
+        
+      - id: ml-security-ethics-specialist
+        name: Priya Sharma
+        role: ML Security & Ethics Specialist
+  
+  workflow_phases:
+    phase1_discovery:
+      weeks: 1-4
+      lead_agent: ml-data-scientist
+      support_agents: [ml-architect]
+      activities:
+        ml-data-scientist:
+          - Data exploration and profiling
+          - Statistical analysis
+          - Feature engineering design
+          - Business requirements analysis
+        ml-architect:
+          - ML architecture design
+          - Technology selection
+          - Scalability planning
+          - Cost estimation
+      deliverables:
+        - Data quality report
+        - ML architecture document
+        - Project plan with milestones
+        
+    phase2_experimentation:
+      weeks: 5-12
+      lead_agent: ml-engineer
+      support_agents: [ml-data-scientist]
+      activities:
+        ml-engineer:
+          - Model development
+          - Hyperparameter tuning
+          - Cross-validation
+          - Performance optimization
+        ml-data-scientist:
+          - Feature engineering implementation
+          - Data quality validation
+          - Experiment design
+          - Statistical evaluation
+      deliverables:
+        - Trained models with metrics
+        - Experiment tracking logs
+        - Model selection rationale
+        - Performance benchmarks
+        
+    phase3_productionization:
+      weeks: 13-20
+      lead_agent: ml-engineer
+      support_agents: [ml-architect, ml-security-ethics-specialist]
+      activities:
+        ml-engineer:
+          - CI/CD pipeline setup
+          - Containerization
+          - API implementation
+          - Monitoring implementation
+          - Auto-scaling configuration
+        ml-architect:
+          - System integration design
+          - API architecture review
+          - Infrastructure optimization
+        ml-security-ethics-specialist:
+          - Security hardening
+          - Initial bias testing
+          - Compliance checks
+      deliverables:
+        - Deployed production system
+        - API documentation
+        - Monitoring dashboards
+        - CI/CD pipelines
+        
+    phase4_validation:
+      weeks: 21-24
+      lead_agent: ml-security-ethics-specialist
+      support_agents: [ml-engineer, ml-data-scientist]
+      activities:
+        ml-security-ethics-specialist:
+          - Security testing
+          - Adversarial validation
+          - Final ethics review
+          - Bias evaluation
+          - Compliance certification
+        ml-engineer:
+          - Performance testing
+          - Load testing
+          - Final optimizations
+        ml-data-scientist:
+          - Model performance validation
+          - Business metrics evaluation
+          - Documentation review
+      deliverables:
+        - Security audit report
+        - Ethics compliance certificate
+        - Performance test results
+        - Handover documentation
+  
+  agent_collaboration:
+    handoffs:
+      - from: ml-data-scientist
+        to: ml-engineer
+        artifacts: [feature_specs, data_pipeline, notebooks]
+        
+      - from: ml-architect
+        to: ml-engineer
+        artifacts: [architecture_docs, infrastructure_specs]
+        
+      - from: ml-engineer
+        to: ml-security-ethics-specialist
+        artifacts: [deployed_system, api_endpoints, test_data]
+        
+      - from: ml-security-ethics-specialist
+        to: ml-engineer
+        artifacts: [security_findings, remediation_requirements]
+    
+    reviews:
+      - reviewer: ml-architect
+        review_points: [system_design, scalability, integration]
+        
+      - reviewer: ml-data-scientist
+        review_points: [statistical_validity, data_quality, metrics]
+        
+      - reviewer: ml-security-ethics-specialist
+        review_points: [security, compliance, ethics, bias]
+        
+      - reviewer: ml-engineer
+        review_points: [code_quality, performance, deployment]
+  
+  success_criteria:
+    technical:
+      - Model performance meets targets
+      - System latency <200ms
+      - Availability >99.9%
+      - Zero critical security issues
+      
+    business:
+      - ROI projection positive
+      - User acceptance achieved
+      - Stakeholder satisfaction >4/5
+      - On-time delivery
+      
+    governance:
+      - PDPA compliant
+      - Bias metrics within threshold
+      - Security audit passed
+      - Documentation complete
+  
+  tools_and_infrastructure:
+    development:
+      - Jupyter notebooks
+      - VS Code / PyCharm
+      - Git / GitHub
+      - MLflow for tracking
+      
+    compute:
+      - GPU instances for training
+      - Kubernetes cluster
+      - Cloud storage (S3/GCS)
+      - Container registry
+      
+    monitoring:
+      - Prometheus / Grafana
+      - Custom ML metrics dashboard
+      - Alert management system
+  
+  apprentice_allocation:
+    data_track:
+      mentor_agent: ml-data-scientist
+      focus: [data_preprocessing, feature_engineering, evaluation]
+      
+    engineering_track:
+      mentor_agent: ml-engineer
+      focus: [model_implementation, deployment, mlops]
+      
+    architecture_track:
+      mentor_agent: ml-architect
+      focus: [system_design, scalability, integration]
+  
+  risk_mitigation:
+    technical_risks:
+      - Data quality issues → Early validation by ml-data-scientist
+      - Model performance → Multiple approaches by ml-engineer
+      - Security vulnerabilities → Continuous testing by ml-security-ethics-specialist
+      - Scalability → Architecture review by ml-architect
+      
+    project_risks:
+      - Scope creep → Clear boundaries set by ml-architect
+      - Timeline delays → Buffer planning by all agents
+      - Resource constraints → Prioritization by ml-engineer
+      - Compliance issues → Early review by ml-security-ethics-specialist

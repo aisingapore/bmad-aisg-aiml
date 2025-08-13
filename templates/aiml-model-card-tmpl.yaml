@@ -1,0 +1,381 @@
+template:
+  id: aiml-model-card-template-v3
+  name: AI/ML Model Card
+  version: 3.0
+  output:
+    format: markdown
+    filename: docs/model-cards/{{model_name}}-model-card.md
+    title: "Model Card: {{model_name}}"
+
+workflow:
+  mode: interactive
+
+sections:
+  - id: header
+    title: Model Card for {{model_name}}
+    content: |
+      This model card provides comprehensive documentation for {{model_name}}, following the Model Cards framework for transparent model reporting and Singapore's AI governance guidelines.
+    sections:
+      - id: metadata
+        title: Model Metadata
+        template: |
+          **Model Name:** {{model_name}}
+          **Version:** {{version}}
+          **Date Created:** {{date}}
+          **Last Updated:** {{date}}
+          **Authors:** {{names_organizations}}
+          **Contact:** {{email}}
+          **License:** {{license_type}}
+          **Model Type:** {{classification_regression_generation}}
+          **Framework:** {{tensorflow_pytorch_sklearn}}
+          **Tags:** {{tags}}
+
+  - id: model-summary
+    title: Model Summary
+    instruction: Provide a concise overview of the model and its purpose
+    sections:
+      - id: description
+        title: Description
+        template: |
+          {{model_description_2_3_sentences}}
+          
+          **Primary Use Case:** {{intended_use}}
+          **Users:** {{target_users}}
+          **Domain:** {{application_domain}}
+      - id: architecture
+        title: Model Architecture
+        template: |
+          **Algorithm:** {{algorithm_name}}
+          **Architecture Details:**
+          - Input shape: {{dimensions}}
+          - Output shape: {{dimensions}}
+          - Parameters: {{total_parameters}}
+          - Layers/Components: {{description}}
+          
+          **Key Hyperparameters:**
+          - {{param_1}}: {{value}}
+          - {{param_2}}: {{value}}
+          - {{param_3}}: {{value}}
+
+  - id: intended-use
+    title: Intended Use
+    instruction: Clearly define appropriate and inappropriate uses of the model
+    sections:
+      - id: primary-use
+        title: Primary Intended Uses
+        type: bullet-list
+        template: |
+          - {{use_case_1}}
+          - {{use_case_2}}
+          - {{use_case_3}}
+      - id: out-of-scope
+        title: Out-of-Scope Uses
+        type: bullet-list
+        template: |
+          - {{inappropriate_use_1}}
+          - {{inappropriate_use_2}}
+          - {{edge_case_not_supported}}
+      - id: limitations
+        title: Known Limitations
+        template: |
+          **Technical Limitations:**
+          - {{limitation_1}}
+          - {{limitation_2}}
+          
+          **Domain Limitations:**
+          - {{domain_constraint_1}}
+          - {{domain_constraint_2}}
+          
+          **User Warnings:**
+          - {{warning_1}}
+          - {{warning_2}}
+
+  - id: training-data
+    title: Training Data
+    instruction: Document the data used to train the model
+    sections:
+      - id: dataset-description
+        title: Dataset Description
+        template: |
+          **Dataset Name:** {{name_version}}
+          **Size:** {{num_samples}} samples
+          **Time Period:** {{date_range}}
+          **Geographic Coverage:** {{regions}}
+          **Update Frequency:** {{if_continual_learning}}
+          
+          **Data Sources:**
+          | Source | Type | Volume | Quality |
+          |--------|------|--------|---------|
+          | {{source}} | {{type}} | {{size}} | {{quality}} |
+      - id: data-preprocessing
+        title: Data Preprocessing
+        template: |
+          **Cleaning Steps:**
+          - {{step_1}}
+          - {{step_2}}
+          
+          **Feature Engineering:**
+          - {{transformation_1}}
+          - {{transformation_2}}
+          
+          **Data Splits:**
+          - Training: {{percentage}}% ({{num_samples}})
+          - Validation: {{percentage}}% ({{num_samples}})
+          - Test: {{percentage}}% ({{num_samples}})
+          - Split strategy: {{random_temporal_stratified}}
+      - id: data-characteristics
+        title: Data Characteristics
+        template: |
+          **Feature Distribution:**
+          - Numerical features: {{count}} ({{list}})
+          - Categorical features: {{count}} ({{list}})
+          - Missing data handling: {{strategy}}
+          
+          **Label Distribution:**
+          - Classes/Range: {{description}}
+          - Class balance: {{balanced_imbalanced}}
+          - Label quality: {{manual_automated_quality}}
+
+  - id: evaluation
+    title: Model Evaluation
+    instruction: Comprehensive evaluation results and methodology
+    sections:
+      - id: metrics
+        title: Performance Metrics
+        template: |
+          **Primary Metrics:**
+          | Metric | Training | Validation | Test |
+          |--------|----------|------------|------|
+          | {{metric_1}} | {{value}} | {{value}} | {{value}} |
+          | {{metric_2}} | {{value}} | {{value}} | {{value}} |
+          
+          **Secondary Metrics:**
+          - {{metric_3}}: {{value}}
+          - {{metric_4}}: {{value}}
+          
+          **Business Metrics:**
+          - {{business_metric_1}}: {{value}}
+          - {{business_metric_2}}: {{value}}
+      - id: performance-analysis
+        title: Performance Analysis
+        template: |
+          **Performance by Segment:**
+          | Segment | {{Metric}} | Sample Size | Notes |
+          |---------|----------|-------------|-------|
+          | {{segment_1}} | {{value}} | {{n}} | {{observation}} |
+          | {{segment_2}} | {{value}} | {{n}} | {{observation}} |
+          
+          **Confidence Intervals:**
+          - {{metric}}: {{value}} ± {{ci}}
+          
+          **Statistical Significance:**
+          - vs Baseline: {{p_value}}
+          - vs Previous version: {{p_value}}
+      - id: robustness
+        title: Robustness Testing
+        template: |
+          **Stress Testing:**
+          - Edge cases: {{performance}}
+          - Noisy inputs: {{performance}}
+          - Missing features: {{performance}}
+          
+          **Adversarial Testing:**
+          - Attack type: {{method}}
+          - Robustness: {{metric}}
+          
+          **Temporal Stability:**
+          - Performance over time: {{trend}}
+          - Drift detection: {{method_results}}
+
+  - id: fairness-assessment
+    title: Fairness & Bias Assessment
+    instruction: Document fairness evaluation and bias mitigation efforts
+    sections:
+      - id: fairness-metrics
+        title: Fairness Metrics
+        template: |
+          **Protected Attributes Evaluated:**
+          - {{attribute_1}}: {{groups}}
+          - {{attribute_2}}: {{groups}}
+          
+          **Fairness Metrics:**
+          | Metric | Group 1 | Group 2 | Disparity | Threshold |
+          |--------|---------|---------|-----------|-----------|
+          | Accuracy | {{val}} | {{val}} | {{ratio}} | {{acceptable}} |
+          | False Positive Rate | {{val}} | {{val}} | {{ratio}} | {{acceptable}} |
+          | False Negative Rate | {{val}} | {{val}} | {{ratio}} | {{acceptable}} |
+      - id: bias-mitigation
+        title: Bias Mitigation
+        template: |
+          **Mitigation Techniques Applied:**
+          - Pre-processing: {{technique}}
+          - In-processing: {{technique}}
+          - Post-processing: {{technique}}
+          
+          **Residual Bias:**
+          - {{description_of_remaining_bias}}
+          - Acceptable for use case: {{yes_no_explanation}}
+
+  - id: explainability
+    title: Explainability & Interpretability
+    instruction: Document model explainability features
+    sections:
+      - id: interpretability-method
+        title: Interpretability Methods
+        template: |
+          **Global Interpretability:**
+          - Feature importance: {{method_results}}
+          - Model structure: {{visualization_available}}
+          
+          **Local Interpretability:**
+          - SHAP/LIME: {{available}}
+          - Example explanations: {{format}}
+          - Confidence scores: {{provided}}
+      - id: sample-explanations
+        title: Sample Explanations
+        template: |
+          **Example Prediction:**
+          - Input: {{features}}
+          - Prediction: {{output}}
+          - Confidence: {{score}}
+          - Top factors: {{explanation}}
+
+  - id: deployment
+    title: Deployment Information
+    instruction: Production deployment details and requirements
+    sections:
+      - id: technical-requirements
+        title: Technical Requirements
+        template: |
+          **Inference Requirements:**
+          - Memory: {{GB}}
+          - CPU/GPU: {{requirements}}
+          - Latency: {{milliseconds}}
+          - Throughput: {{requests_per_second}}
+          
+          **Dependencies:**
+          - Python: {{version}}
+          - Libraries: {{list_versions}}
+          - System: {{os_requirements}}
+      - id: deployment-config
+        title: Deployment Configuration
+        template: |
+          **Serving Setup:**
+          - Deployment type: {{api_batch_embedded}}
+          - Containerization: {{docker_image}}
+          - Scaling: {{auto_manual}}
+          - Monitoring: {{tools}}
+          
+          **Integration:**
+          - API endpoint: {{url_pattern}}
+          - Input format: {{json_schema}}
+          - Output format: {{json_schema}}
+          - Error handling: {{approach}}
+
+  - id: monitoring
+    title: Monitoring & Maintenance
+    instruction: Ongoing monitoring and maintenance procedures
+    sections:
+      - id: monitoring-metrics
+        title: Monitoring Metrics
+        template: |
+          **Performance Monitoring:**
+          - Accuracy tracking: {{real_time_batch}}
+          - Latency monitoring: {{p50_p95_p99}}
+          - Error rate: {{threshold}}
+          
+          **Data Monitoring:**
+          - Input distribution: {{drift_detection}}
+          - Feature importance: {{stability_check}}
+          - Output distribution: {{monitoring}}
+      - id: maintenance-schedule
+        title: Maintenance Schedule
+        template: |
+          **Retraining:**
+          - Frequency: {{schedule}}
+          - Trigger: {{performance_time_based}}
+          - Process: {{automated_manual}}
+          
+          **Updates:**
+          - Model updates: {{process}}
+          - Security patches: {{frequency}}
+          - Documentation: {{update_policy}}
+
+  - id: ethical-considerations
+    title: Ethical Considerations
+    instruction: Address ethical implications and responsible AI practices
+    sections:
+      - id: ethical-review
+        title: Ethical Review
+        template: |
+          **Ethical Assessment:**
+          - Potential harms: {{identified_risks}}
+          - Mitigation measures: {{implemented}}
+          - Stakeholder impact: {{assessment}}
+          
+          **Responsible AI Principles:**
+          - Transparency: {{measures}}
+          - Accountability: {{measures}}
+          - Privacy: {{measures}}
+      - id: environmental-impact
+        title: Environmental Impact
+        template: |
+          **Carbon Footprint:**
+          - Training emissions: {{kg_CO2}}
+          - Inference emissions: {{kg_CO2_per_1000_requests}}
+          - Optimization efforts: {{description}}
+
+  - id: compliance
+    title: Regulatory Compliance
+    instruction: Document compliance with relevant regulations
+    sections:
+      - id: singapore-compliance
+        title: Singapore Compliance
+        template: |
+          **IMDA AI Governance:**
+          - Explainability: {{compliant}}
+          - Fairness: {{compliant}}
+          - Transparency: {{compliant}}
+          
+          **PDPA Compliance:**
+          - Data protection: {{measures}}
+          - Consent: {{obtained}}
+          - Purpose limitation: {{confirmed}}
+          
+          **MAS FEAT (if applicable):**
+          - Fairness: {{assessment}}
+          - Ethics: {{assessment}}
+          - Accountability: {{assessment}}
+          - Transparency: {{assessment}}
+
+  - id: references
+    title: References & Resources
+    sections:
+      - id: citations
+        title: Citations
+        template: |
+          **Papers:**
+          - {{paper_1}}
+          - {{paper_2}}
+          
+          **Datasets:**
+          - {{dataset_citation}}
+          
+          **Code:**
+          - Repository: {{github_url}}
+          - Documentation: {{docs_url}}
+      - id: changelog
+        title: Model Changelog
+        type: table
+        columns: [Version, Date, Changes, Author]
+        template: |
+          | {{version}} | {{date}} | {{changes}} | {{author}} |
+
+  - id: contact
+    title: Contact Information
+    template: |
+      **Model Owner:** {{team_name}}
+      **Technical Contact:** {{email}}
+      **Business Contact:** {{email}}
+      **Issue Reporting:** {{process_url}}
+      **Feedback:** {{email_form}}

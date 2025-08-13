@@ -1,0 +1,122 @@
+workflow:
+  id: ml-model-development
+  name: ML Model Development Workflow
+  description: End-to-end workflow for developing, training, and deploying ML models
+  version: 1.0
+  
+  phases:
+    - phase: planning
+      name: ML Project Planning
+      description: Define ML problem, success criteria, and approach
+      agents: [ml-data-scientist, ml-architect]
+      deliverables:
+        - ML Project Brief
+        - Model Requirements Document
+        - ML Architecture Design
+      
+    - phase: data-preparation
+      name: Data Collection and Preparation
+      description: Gather, explore, and prepare data for model development
+      agents: [ml-data-scientist, ml-engineer]
+      deliverables:
+        - Data Quality Report
+        - EDA Results
+        - Feature Engineering Pipeline
+        - Data Cards
+        
+    - phase: model-development
+      name: Model Development and Training
+      description: Develop, train, and evaluate ML models
+      agents: [ml-engineer, ml-data-scientist]
+      deliverables:
+        - Trained Models
+        - Evaluation Reports
+        - Model Cards
+        - Experiment Tracking Logs
+        
+    - phase: model-validation
+      name: Model Validation and Testing
+      description: Validate model performance, fairness, and security
+      agents: [ml-engineer, ml-security-ethics-specialist]
+      deliverables:
+        - Performance Validation Report
+        - Fairness Assessment
+        - Security Test Results
+        - Model Approval Documentation
+        
+    - phase: deployment-preparation
+      name: Deployment Preparation
+      description: Prepare model for production deployment
+      agents: [ml-engineer, ml-architect]
+      deliverables:
+        - Deployment Pipeline
+        - Model Serving Configuration
+        - Monitoring Setup
+        - API Documentation
+        
+    - phase: production-deployment
+      name: Production Deployment
+      description: Deploy model to production with monitoring
+      agents: [ml-engineer, ml-architect]
+      deliverables:
+        - Deployed Model Endpoints
+        - Monitoring Dashboards
+        - Operational Runbooks
+        - Rollback Procedures
+        
+    - phase: monitoring-maintenance
+      name: Monitoring and Maintenance
+      description: Monitor model performance and maintain system
+      agents: [ml-engineer, ml-data-scientist]
+      deliverables:
+        - Performance Reports
+        - Drift Detection Alerts
+        - Retraining Recommendations
+        - Incident Reports
+
+  transitions:
+    - from: planning
+      to: data-preparation
+      condition: ML requirements approved
+      
+    - from: data-preparation
+      to: model-development
+      condition: Data quality validated
+      
+    - from: model-development
+      to: model-validation
+      condition: Model performance meets thresholds
+      
+    - from: model-validation
+      to: deployment-preparation
+      condition: Model approved for production
+      
+    - from: deployment-preparation
+      to: production-deployment
+      condition: Deployment pipeline tested
+      
+    - from: production-deployment
+      to: monitoring-maintenance
+      condition: Model successfully deployed
+      
+    - from: monitoring-maintenance
+      to: model-development
+      condition: Retraining required
+
+  diagram: |
+    graph TD
+      A[Planning] -->|Requirements Approved| B[Data Preparation]
+      B -->|Data Validated| C[Model Development]
+      C -->|Performance Met| D[Model Validation]
+      D -->|Model Approved| E[Deployment Prep]
+      E -->|Pipeline Tested| F[Production Deploy]
+      F -->|Deployed| G[Monitor & Maintain]
+      G -->|Retrain Needed| C
+      
+      style A fill:#e8f5e9
+      style B fill:#e3f2fd
+      style C fill:#fff3e0
+      style D fill:#f3e5f5
+      style E fill:#e0f2f1
+      style F fill:#ffebee
+      style G fill:#f5f5f5

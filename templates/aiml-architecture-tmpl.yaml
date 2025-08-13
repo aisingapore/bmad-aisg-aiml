@@ -1,0 +1,343 @@
+template:
+  id: aiml-architecture-template-v3
+  name: AI/ML System Architecture Document
+  version: 3.0
+  output:
+    format: markdown
+    filename: docs/aiml-architecture.md
+    title: "{{project_name}} AI/ML Architecture Document"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: introduction
+    title: Introduction
+    instruction: |
+      If available, review any provided relevant documents to gather all relevant context before beginning. At a minimum you should locate and review: Business Requirements Document (BRD), Product Requirements Document (PRD), Data Analysis Reports, Technical Preferences. If these are not available, ask the user what docs will provide the basis for the AI/ML architecture.
+    sections:
+      - id: intro-content
+        content: |
+          This document outlines the complete technical architecture for {{project_name}}, an AI/ML system built with modern MLOps practices. It serves as the technical foundation for ML-driven development, ensuring reproducibility, scalability, and operational excellence across all ML components.
+
+          This architecture is designed to support the business objectives defined in the BRD while maintaining model performance, data quality, and Singapore regulatory compliance (PDPA, IMDA, MAS FEAT where applicable).
+      - id: existing-infrastructure
+        title: Existing Infrastructure or Framework
+        instruction: |
+          Before proceeding with AI/ML architecture design, check if the project is based on existing infrastructure:
+
+          1. Review the BRD and technical docs for any mentions of:
+          - Existing ML platforms (Databricks, SageMaker, Vertex AI, Azure ML)
+          - Current data infrastructure (data lakes, warehouses, streaming)
+          - Model registries or experiment tracking systems
+          - Feature stores or data catalogs
+          - AISG program frameworks (100E, AIAP, SIP, LADP)
+
+          2. If existing infrastructure is mentioned:
+          - Ask the user to provide access or documentation
+          - Analyze current capabilities and limitations
+          - Identify integration points and constraints
+          - Use this analysis to inform architecture decisions
+
+          3. If this is a greenfield ML project:
+          - Suggest appropriate ML platforms based on requirements
+          - Explain build vs buy trade-offs
+          - Let the user decide on infrastructure approach
+
+          Document the decision here before proceeding with the architecture design. If none, just say N/A
+        elicit: true
+      - id: changelog
+        title: Change Log
+        type: table
+        columns: [Date, Version, Description, Author]
+        instruction: Track document versions and changes
+
+  - id: high-level-architecture
+    title: High Level Architecture
+    instruction: |
+      This section contains multiple subsections that establish the foundation of the AI/ML system architecture. Present all subsections together at once.
+    elicit: true
+    sections:
+      - id: technical-summary
+        title: Technical Summary
+        instruction: |
+          Provide a brief paragraph (3-5 sentences) overview of:
+          - The ML system's overall architecture style (microservices, serverless, containerized)
+          - Key ML components and their relationships (training, serving, monitoring)
+          - Primary technology choices (Python, frameworks, cloud platform)
+          - Core architectural patterns (batch vs streaming, online vs offline)
+          - Reference back to business objectives and how this architecture supports them
+      - id: ml-system-overview
+        title: ML System Overview
+        instruction: |
+          Based on the BRD's requirements, describe:
+
+          1. ML problem type (classification, regression, clustering, generation)
+          2. Data pipeline architecture (batch, streaming, hybrid)
+          3. Model lifecycle management (training, validation, deployment)
+          4. System boundaries and external interfaces
+          5. Key architectural decisions and their rationale
+      - id: system-diagram
+        title: High Level System Diagram
+        type: mermaid
+        mermaid_type: graph
+        instruction: |
+          Create a Mermaid diagram that visualizes the high-level ML architecture. Consider:
+          - Data sources and ingestion
+          - Feature engineering pipeline
+          - Model training infrastructure
+          - Model registry and versioning
+          - Serving infrastructure (REST/gRPC)
+          - Monitoring and observability
+          - External system integrations
+
+      - id: architectural-patterns
+        title: Architectural and Design Patterns
+        instruction: |
+          List the key patterns that will guide the ML architecture. For each pattern:
+
+          1. Present 2-3 viable options if multiple exist
+          2. Provide your recommendation with clear rationale
+          3. Get user confirmation before finalizing
+          4. These patterns should align with MLOps best practices
+
+          Common ML patterns to consider:
+          - Training patterns (batch, online, continuous)
+          - Serving patterns (REST API, streaming, batch prediction)
+          - Feature engineering patterns (feature store, streaming features)
+          - Deployment patterns (blue-green, canary, shadow mode)
+        template: "- **{{pattern_name}}:** {{pattern_description}} - _Rationale:_ {{rationale}}"
+        examples:
+          - "**Microservices Architecture:** Separate services for training, serving, monitoring - _Rationale:_ Independent scaling, technology flexibility, fault isolation"
+          - "**Feature Store Pattern:** Centralized feature management - _Rationale:_ Feature reusability, training-serving consistency"
+          - "**Event-Driven Pipeline:** Kafka-based streaming - _Rationale:_ Real-time processing, scalability, fault tolerance"
+
+  - id: tech-stack
+    title: Tech Stack
+    instruction: |
+      This is the DEFINITIVE technology selection section for the AI/ML system. Work with the user to make specific choices:
+
+      1. Review BRD requirements and any technical preferences
+      2. For each category, present 2-3 viable options with pros/cons
+      3. Make a clear recommendation based on project needs
+      4. Get explicit user approval for each selection
+      5. Document exact versions (avoid "latest" - pin specific versions)
+      6. This table is the single source of truth - all other docs must reference these choices
+
+      Key decisions to finalize:
+      - Python version and ML frameworks
+      - Cloud platform and services
+      - Data processing tools
+      - MLOps tools and orchestration
+      - Monitoring stack
+      - Development environment
+
+      Upon render of the table, ensure the user is aware of the importance of these choices.
+    elicit: true
+    sections:
+      - id: platform-infrastructure
+        title: Platform Infrastructure
+        template: |
+          - **Cloud Platform:** {{cloud_provider}} ({{region}})
+          - **Container Platform:** {{docker_kubernetes}}
+          - **ML Platform:** {{sagemaker_vertex_databricks}}
+          - **Orchestration:** {{airflow_kubeflow_prefect}}
+      - id: technology-stack-table
+        title: Technology Stack Table
+        type: table
+        columns: [Category, Technology, Version, Purpose, Rationale]
+        rows:
+          - ["Language", "Python", "3.10.x", "Primary development", "ML ecosystem support"]
+          - ["ML Framework", "{{framework}}", "{{version}}", "{{purpose}}", "{{rationale}}"]
+          - ["Data Processing", "{{tool}}", "{{version}}", "{{purpose}}", "{{rationale}}"]
+          - ["Feature Store", "{{tool}}", "{{version}}", "{{purpose}}", "{{rationale}}"]
+          - ["Model Registry", "{{tool}}", "{{version}}", "{{purpose}}", "{{rationale}}"]
+          - ["Experiment Tracking", "{{tool}}", "{{version}}", "{{purpose}}", "{{rationale}}"]
+          - ["Monitoring", "{{tool}}", "{{version}}", "{{purpose}}", "{{rationale}}"]
+          - ["Version Control", "Git", "2.x", "Code versioning", "Industry standard"]
+
+  - id: data-architecture
+    title: Data Architecture
+    instruction: |
+      Define the data pipeline architecture that feeds the ML system. This is critical for model performance and reliability.
+    elicit: true
+    sections:
+      - id: data-sources
+        title: Data Sources
+        template: |
+          **Primary Sources:**
+          - {{source_1}}: {{description}}, {{volume}}, {{update_frequency}}
+          - {{source_2}}: {{description}}, {{volume}}, {{update_frequency}}
+
+          **Data Quality Requirements:**
+          - Completeness: {{threshold}}%
+          - Accuracy: {{requirements}}
+          - Freshness: {{latency_requirements}}
+      - id: data-pipeline
+        title: Data Pipeline Architecture
+        instruction: |
+          Describe the end-to-end data flow from source to model:
+          1. Data ingestion methods (batch, streaming, APIs)
+          2. Data storage layers (raw, processed, features)
+          3. Data processing frameworks
+          4. Data validation and quality checks
+          5. Data versioning strategy
+      - id: feature-engineering
+        title: Feature Engineering
+        template: |
+          **Feature Pipeline:**
+          - Raw data → Feature extraction → Feature store
+          - Feature versioning strategy: {{approach}}
+          - Feature computation: {{batch_streaming}}
+
+          **Feature Categories:**
+          - {{category_1}}: {{features_description}}
+          - {{category_2}}: {{features_description}}
+
+  - id: model-architecture
+    title: Model Architecture
+    instruction: |
+      Define the ML model architecture, training pipeline, and evaluation strategy.
+    elicit: true
+    sections:
+      - id: model-design
+        title: Model Design
+        template: |
+          **Model Type:** {{classification_regression_generation}}
+          **Architecture:** {{architecture_description}}
+          **Algorithms:** {{algorithms_considered}}
+          **Baseline Model:** {{baseline_approach}}
+
+          **Training Strategy:**
+          - Data splits: {{train_val_test_split}}
+          - Cross-validation: {{strategy}}
+          - Hyperparameter tuning: {{approach}}
+      - id: training-pipeline
+        title: Training Pipeline
+        instruction: |
+          Describe the automated training pipeline:
+          1. Data preparation and preprocessing
+          2. Feature engineering and selection
+          3. Model training and validation
+          4. Hyperparameter optimization
+          5. Model evaluation and selection
+          6. Model registration and versioning
+      - id: evaluation-metrics
+        title: Evaluation Strategy
+        template: |
+          **Primary Metrics:**
+          - {{metric_1}}: Target {{threshold}}
+          - {{metric_2}}: Target {{threshold}}
+
+          **Business Metrics:**
+          - {{business_kpi_1}}: {{target}}
+          - {{business_kpi_2}}: {{target}}
+
+          **Validation Approach:**
+          - Offline: {{validation_method}}
+          - Online: {{ab_testing_approach}}
+
+  - id: deployment-architecture
+    title: Deployment Architecture
+    instruction: |
+      Define how models are deployed, served, and monitored in production.
+    elicit: true
+    sections:
+      - id: serving-infrastructure
+        title: Model Serving Infrastructure
+        template: |
+          **Serving Pattern:** {{rest_grpc_streaming}}
+          **Deployment Strategy:** {{blue_green_canary}}
+          **Infrastructure:**
+          - Compute: {{cpu_gpu_requirements}}
+          - Memory: {{memory_requirements}}
+          - Scaling: {{auto_scaling_policy}}
+
+          **Performance Targets:**
+          - Latency: {{p50_p95_p99}}
+          - Throughput: {{requests_per_second}}
+          - Availability: {{sla_target}}
+      - id: ci-cd-pipeline
+        title: CI/CD Pipeline
+        instruction: |
+          Describe the automated deployment pipeline:
+          1. Code quality checks and testing
+          2. Model validation and testing
+          3. Container building and registry
+          4. Deployment orchestration
+          5. Health checks and rollback
+          6. Post-deployment validation
+
+  - id: monitoring-operations
+    title: Monitoring & Operations
+    instruction: |
+      Define comprehensive monitoring and operational procedures for the ML system.
+    elicit: true
+    sections:
+      - id: monitoring-strategy
+        title: Monitoring Strategy
+        template: |
+          **Model Monitoring:**
+          - Performance metrics: {{metrics_tracked}}
+          - Data drift detection: {{approach}}
+          - Concept drift detection: {{approach}}
+          - Alert thresholds: {{thresholds}}
+
+          **System Monitoring:**
+          - Infrastructure metrics: {{cpu_memory_disk}}
+          - Application metrics: {{latency_errors_throughput}}
+          - Business metrics: {{kpis_tracked}}
+      - id: operational-procedures
+        title: Operational Procedures
+        template: |
+          **Model Retraining:**
+          - Trigger: {{scheduled_performance_drift}}
+          - Frequency: {{daily_weekly_monthly}}
+          - Validation: {{approach}}
+
+          **Incident Response:**
+          - Alert routing: {{process}}
+          - Escalation: {{levels}}
+          - Rollback procedure: {{steps}}
+
+  - id: security-compliance
+    title: Security & Compliance
+    instruction: |
+      Address security requirements and regulatory compliance for Singapore context.
+    elicit: true
+    sections:
+      - id: security-measures
+        title: Security Measures
+        template: |
+          **Data Security:**
+          - Encryption: {{at_rest_in_transit}}
+          - Access control: {{rbac_implementation}}
+          - Audit logging: {{approach}}
+
+          **Model Security:**
+          - API authentication: {{method}}
+          - Rate limiting: {{policy}}
+          - Adversarial defense: {{measures}}
+      - id: compliance-requirements
+        title: Compliance Requirements
+        template: |
+          **Singapore Regulations:**
+          - PDPA: {{compliance_measures}}
+          - IMDA Guidelines: {{ai_governance}}
+          - MAS FEAT: {{if_applicable}}
+
+          **Privacy Protection:**
+          - PII handling: {{approach}}
+          - Data retention: {{policy}}
+          - Right to deletion: {{implementation}}
+
+  - id: appendices
+    title: Appendices
+    sections:
+      - id: glossary
+        title: Glossary
+        instruction: Define technical terms and acronyms used in this document
+      - id: references
+        title: References
+        instruction: List external documents, standards, and resources referenced

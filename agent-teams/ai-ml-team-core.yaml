@@ -1,0 +1,168 @@
+# AI/ML Core Team Configuration
+# Streamlined team structure with consolidated agents
+
+team:
+  name: "AI/ML Engineering Core Team"
+  description: "Streamlined team for comprehensive AI/ML development and deployment"
+  type: "ml-engineering"
+  
+agents:
+  - id: "ml-engineer"
+    name: "Marcus Tan Wei Ming"
+    role: "ML/AI Engineer & MLOps Specialist"
+    responsibilities:
+      - "ML model development and training"
+      - "MLOps pipeline implementation"
+      - "Infrastructure automation"
+      - "Model deployment and serving"
+      - "Performance optimization"
+    primary_skills:
+      - "PyTorch/TensorFlow"
+      - "Kubernetes/Docker"
+      - "CI/CD pipelines"
+      - "Cloud platforms (AWS/GCP/Azure)"
+    
+  - id: "ml-architect"
+    name: "Rizwan bin Abdullah"
+    role: "ML/AI System Architect"
+    responsibilities:
+      - "System architecture design"
+      - "Model architecture selection"
+      - "Infrastructure planning"
+      - "Technical strategy"
+      - "Design reviews"
+    primary_skills:
+      - "ML system design"
+      - "Distributed systems"
+      - "LLM architectures"
+      - "Scalability patterns"
+    
+  - id: "ml-data-scientist"
+    name: "Sophia D'Cruz"
+    role: "Senior Data Scientist"
+    responsibilities:
+      - "Data analysis and EDA"
+      - "Statistical modeling"
+      - "Experiment design"
+      - "Feature engineering"
+      - "Model evaluation"
+    primary_skills:
+      - "Statistical analysis"
+      - "Machine learning"
+      - "Python/R"
+      - "Data visualization"
+    
+  - id: "ml-security-ethics-specialist"
+    name: "Priya Sharma"
+    role: "ML Security & Ethics Specialist"
+    responsibilities:
+      - "Security testing"
+      - "Adversarial robustness"
+      - "Bias detection"
+      - "Ethics review"
+      - "Compliance validation"
+    primary_skills:
+      - "Adversarial ML"
+      - "Security testing"
+      - "AI ethics"
+      - "Compliance frameworks"
+
+workflows:
+  standard_development:
+    description: "Standard ML development workflow"
+    steps:
+      1:
+        agent: "ml-data-scientist"
+        action: "Perform EDA and feature engineering"
+      2:
+        agent: "ml-architect"
+        action: "Design system architecture"
+      3:
+        agent: "ml-engineer"
+        action: "Implement and train models"
+      4:
+        agent: "ml-security-ethics-specialist"
+        action: "Security and ethics review"
+      5:
+        agent: "ml-engineer"
+        action: "Deploy to production"
+  
+  rapid_prototype:
+    description: "Quick prototype development"
+    steps:
+      1:
+        agent: "ml-data-scientist"
+        action: "Quick data analysis"
+      2:
+        agent: "ml-engineer"
+        action: "Build baseline model"
+      3:
+        agent: "ml-security-ethics-specialist"
+        action: "Basic validation"
+  
+  production_deployment:
+    description: "Production deployment workflow"
+    steps:
+      1:
+        agent: "ml-architect"
+        action: "Review deployment architecture"
+      2:
+        agent: "ml-engineer"
+        action: "Prepare deployment pipeline"
+      3:
+        agent: "ml-security-ethics-specialist"
+        action: "Security audit"
+      4:
+        agent: "ml-engineer"
+        action: "Execute deployment"
+      5:
+        agent: "ml-data-scientist"
+        action: "Monitor performance metrics"
+
+collaboration_patterns:
+  handoffs:
+    - from: "ml-data-scientist"
+      to: "ml-engineer"
+      artifact: "Feature specifications and notebooks"
+    - from: "ml-architect"
+      to: "ml-engineer"
+      artifact: "Architecture documents"
+    - from: "ml-engineer"
+      to: "ml-security-ethics-specialist"
+      artifact: "Model artifacts for testing"
+    - from: "ml-security-ethics-specialist"
+      to: "ml-engineer"
+      artifact: "Security findings and remediations"
+  
+  reviews:
+    - reviewer: "ml-architect"
+      reviews: ["System designs", "Infrastructure changes"]
+    - reviewer: "ml-security-ethics-specialist"
+      reviews: ["Security implementations", "Ethics compliance"]
+    - reviewer: "ml-data-scientist"
+      reviews: ["Statistical validity", "Model performance"]
+
+tools_and_platforms:
+  development:
+    - "Jupyter/VS Code"
+    - "MLflow/Weights & Biases"
+    - "Git/GitHub"
+  
+  infrastructure:
+    - "Kubernetes/Docker"
+    - "Terraform/Ansible"
+    - "Cloud platforms"
+  
+  monitoring:
+    - "Prometheus/Grafana"
+    - "Custom dashboards"
+    - "Alert systems"
+
+success_metrics:
+  - "Model performance (accuracy, F1, etc.)"
+  - "Deployment frequency"
+  - "System reliability (uptime)"
+  - "Security compliance score"
+  - "Bias metrics"
+  - "Response time/latency"
+  - "Cost optimization"

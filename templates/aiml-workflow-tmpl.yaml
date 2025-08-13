@@ -1,0 +1,570 @@
+template:
+  id: aiml-workflow-template-v3
+  name: AISG Program Workflow Document
+  version: 3.0
+  output:
+    format: markdown
+    filename: docs/aisg-{{program_type}}-workflow.md
+    title: "{{project_name}} - AISG {{program_type}} Workflow"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: program-selection
+    title: AISG Program Selection
+    instruction: |
+      Select the appropriate AI Singapore (AISG) program for this project. Each program has specific requirements, timelines, and deliverables.
+      
+      Programs available:
+      1. **100E (100 Experiments)** - Rapid MVP development (3-6 months)
+      2. **AIAP For Industry** - 3-month POC with AISG apprentices
+      3. **SIP (Seed Investment Programme)** - 9-month deep tech development
+      4. **LADP (LLM Application Developer Programme)** - LLM application development training with real-world project
+      
+      Ask the user which program this project falls under, then customize the workflow accordingly.
+    sections:
+      - id: program-details
+        title: Program Details
+        template: |
+          **Program Type:** {{100E|AIAP|SIP|LADP}}
+          **Project Name:** {{project_name}}
+          **Start Date:** {{date}}
+          **End Date:** {{date}}
+          **AISG Contact:** {{name_email}}
+          **Company Contact:** {{name_email}}
+          
+          **Program Objectives:**
+          - {{objective_1}}
+          - {{objective_2}}
+          - {{objective_3}}
+
+  - id: workflow-100e
+    title: 100E MVP Workflow
+    condition: program_type == "100E"
+    instruction: Define the 100E program workflow for rapid MVP development
+    sections:
+      - id: phase1-discovery
+        title: "Phase 1: Discovery & Scoping (Week 1-2)"
+        template: |
+          **Objectives:**
+          - Define problem statement clearly
+          - Assess data availability and quality
+          - Determine MVP scope and success criteria
+          
+          **Activities:**
+          - [ ] Stakeholder alignment meeting
+          - [ ] Data exploration and EDA
+          - [ ] Technical feasibility assessment
+          - [ ] MVP scope definition
+          - [ ] Success metrics agreement
+          
+          **Deliverables:**
+          - Problem statement document
+          - Data assessment report
+          - MVP scope document
+          - Success criteria agreement
+      - id: phase2-development
+        title: "Phase 2: Rapid Development (Week 3-10)"
+        template: |
+          **Sprint 1-2: Data Pipeline (Week 3-4)**
+          - [ ] Data ingestion setup
+          - [ ] Data cleaning and preprocessing
+          - [ ] Feature engineering
+          - [ ] Data validation
+          
+          **Sprint 3-4: Model Development (Week 5-6)**
+          - [ ] Baseline model development
+          - [ ] Model experimentation
+          - [ ] Hyperparameter tuning
+          - [ ] Model validation
+          
+          **Sprint 5-6: Integration (Week 7-8)**
+          - [ ] API development
+          - [ ] Basic UI/demo interface
+          - [ ] End-to-end testing
+          - [ ] Performance optimization
+          
+          **Sprint 7-8: Deployment (Week 9-10)**
+          - [ ] Deployment setup
+          - [ ] User acceptance testing
+          - [ ] Documentation
+          - [ ] Knowledge transfer
+      - id: phase3-validation
+        title: "Phase 3: Validation & Handover (Week 11-12)"
+        template: |
+          **Validation:**
+          - [ ] Performance validation against success criteria
+          - [ ] Business value assessment
+          - [ ] Technical debt documentation
+          
+          **Handover:**
+          - [ ] Code repository transfer
+          - [ ] Documentation package
+          - [ ] Training session
+          - [ ] Support transition plan
+          
+          **Next Steps:**
+          - [ ] Production roadmap
+          - [ ] Scaling considerations
+          - [ ] Maintenance plan
+
+  - id: workflow-aiap
+    title: AIAP For Industry POC Workflow
+    condition: program_type == "AIAP"
+    instruction: Define the AIAP 3-month POC workflow with apprentice involvement
+    sections:
+      - id: month1-foundation
+        title: "Month 1: Foundation & Understanding"
+        template: |
+          **Week 1-2: Onboarding & Setup**
+          - [ ] AIAP apprentice onboarding
+          - [ ] Environment setup
+          - [ ] Domain knowledge transfer
+          - [ ] Data access provisioning
+          
+          **Week 3-4: Problem Definition & EDA**
+          - [ ] Business problem deep dive
+          - [ ] Data exploration and profiling
+          - [ ] Initial hypothesis formulation
+          - [ ] POC scope refinement
+          
+          **Apprentice Focus:**
+          - Domain understanding
+          - Data familiarization
+          - Tool setup and configuration
+      - id: month2-development
+        title: "Month 2: Model Development"
+        template: |
+          **Week 5-6: Feature Engineering**
+          - [ ] Feature extraction and creation
+          - [ ] Feature selection and validation
+          - [ ] Feature store setup (if applicable)
+          
+          **Week 7-8: Model Training**
+          - [ ] Baseline model development
+          - [ ] Advanced model experimentation
+          - [ ] Hyperparameter optimization
+          - [ ] Cross-validation and testing
+          
+          **Apprentice Development:**
+          - Hands-on model development
+          - Experiment tracking
+          - Code review and best practices
+      - id: month3-delivery
+        title: "Month 3: Integration & Delivery"
+        template: |
+          **Week 9-10: Productionization**
+          - [ ] Model packaging and deployment
+          - [ ] API/interface development
+          - [ ] Integration with existing systems
+          - [ ] Performance testing
+          
+          **Week 11-12: Validation & Handover**
+          - [ ] End-to-end validation
+          - [ ] Documentation completion
+          - [ ] Knowledge transfer sessions
+          - [ ] Final presentation
+          
+          **Deliverables:**
+          - Working POC system
+          - Technical documentation
+          - Source code and notebooks
+          - Final report and presentation
+
+  - id: workflow-sip
+    title: SIP Deep Tech Workflow
+    condition: program_type == "SIP"
+    instruction: Define the 9-month SIP deep tech development workflow
+    sections:
+      - id: quarter1
+        title: "Q1: Research & Foundation (Month 1-3)"
+        template: |
+          **Month 1: Research & Planning**
+          - [ ] Literature review and SOTA analysis
+          - [ ] Technical architecture design
+          - [ ] Research roadmap development
+          - [ ] Team formation and roles
+          
+          **Month 2: Data & Infrastructure**
+          - [ ] Data collection and annotation
+          - [ ] Infrastructure setup (GPU, cloud)
+          - [ ] Development environment configuration
+          - [ ] MLOps pipeline foundation
+          
+          **Month 3: Initial Prototyping**
+          - [ ] Proof of concept development
+          - [ ] Baseline implementation
+          - [ ] Initial experiments
+          - [ ] Technical validation
+          
+          **Milestones:**
+          - Technical design approved
+          - Infrastructure operational
+          - Initial prototype demonstrated
+      - id: quarter2
+        title: "Q2: Core Development (Month 4-6)"
+        template: |
+          **Month 4: Advanced Model Development**
+          - [ ] Novel algorithm implementation
+          - [ ] Custom architecture development
+          - [ ] Advanced feature engineering
+          - [ ] Model optimization
+          
+          **Month 5: Experimentation & Validation**
+          - [ ] Comprehensive experimentation
+          - [ ] Ablation studies
+          - [ ] Performance benchmarking
+          - [ ] Robustness testing
+          
+          **Month 6: Integration & Testing**
+          - [ ] System integration
+          - [ ] End-to-end testing
+          - [ ] Performance optimization
+          - [ ] Security assessment
+          
+          **Milestones:**
+          - Core innovation validated
+          - Performance targets met
+          - System integration complete
+      - id: quarter3
+        title: "Q3: Productionization (Month 7-9)"
+        template: |
+          **Month 7: Production Readiness**
+          - [ ] Production deployment setup
+          - [ ] Monitoring and alerting
+          - [ ] A/B testing framework
+          - [ ] Documentation completion
+          
+          **Month 8: Pilot & Validation**
+          - [ ] Pilot deployment
+          - [ ] User feedback collection
+          - [ ] Performance monitoring
+          - [ ] Iterative improvements
+          
+          **Month 9: Handover & Sustainability**
+          - [ ] Final deployment
+          - [ ] Knowledge transfer
+          - [ ] Maintenance planning
+          - [ ] IP documentation
+          
+          **Final Deliverables:**
+          - Production-ready system
+          - Comprehensive documentation
+          - IP and patents (if applicable)
+          - Sustainability plan
+
+  - id: workflow-ladp
+    title: LADP LLM Application Developer Programme
+    condition: program_type == "LADP"
+    instruction: Define the LADP workflow for LLM application development training and project implementation
+    sections:
+      - id: program-structure
+        title: "LADP Program Structure"
+        template: |
+          **Program Format:** {{part_time_4months|full_time_custom}}
+          **Duration:** {{4_months_part_time|1_3_days_full_time}}
+          **Time Commitment:** {{8_10_hours_per_week|full_days}}
+          **Delivery Mode:** {{hybrid_online_self_directed_plus_workshops}}
+          
+          **Learning Components:**
+          - Self-directed learning materials
+          - 3 Face-to-face workshops
+          - Mentor guidance sessions
+          - Real-world project implementation
+          
+          **Project Scope:**
+          - Company problem statement
+          - Agreed Statement of Work (SOW)
+          - LLM-based solution development
+          - Production-ready application
+      - id: month1-learning
+        title: "Month 1: Self-Directed Learning Phase"
+        template: |
+          **Week 1-2: Foundation**
+          - [ ] Complete LLM fundamentals modules
+          - [ ] Introduction to prompt engineering
+          - [ ] Understanding LLM capabilities and limitations
+          - [ ] Setting up development environment
+          - [ ] Hands-on exercises with GPT/Claude/Llama
+          
+          **Week 3: Advanced Concepts**
+          - [ ] RAG (Retrieval Augmented Generation)
+          - [ ] Fine-tuning concepts
+          - [ ] Vector databases and embeddings
+          - [ ] LLM application patterns
+          - [ ] Security and ethics in LLM applications
+          
+          **Week 4: Project Preparation**
+          - [ ] Problem statement refinement
+          - [ ] SOW finalization with company
+          - [ ] Technical feasibility assessment
+          - [ ] Project plan development
+          - [ ] Data requirements identification
+          
+          **Workshop 1: LLM Fundamentals & Best Practices**
+          - Date: {{date}}
+          - Topics: LLM basics, prompt engineering, use cases
+          - Hands-on: Building first LLM application
+          - Q&A and troubleshooting
+      - id: month2-design
+        title: "Month 2: Project Design & Prototyping"
+        template: |
+          **Week 5-6: Solution Design**
+          - [ ] Architecture design for LLM application
+          - [ ] Data pipeline planning
+          - [ ] Integration requirements mapping
+          - [ ] Technology stack selection
+          - [ ] Cost estimation for LLM usage
+          
+          **Week 7-8: Proof of Concept**
+          - [ ] Basic prototype development
+          - [ ] Initial prompt design and testing
+          - [ ] Data preparation and preprocessing
+          - [ ] API integration setup
+          - [ ] Performance benchmarking
+          
+          **Workshop 2: Advanced LLM Techniques**
+          - Date: {{date}}
+          - Topics: RAG implementation, fine-tuning, optimization
+          - Hands-on: Building RAG systems
+          - Project clinic: 1-on-1 consultations
+          
+          **Mentor Guidance:**
+          - Weekly check-ins (1 hour)
+          - Architecture review
+          - Technical problem-solving
+          - Best practices guidance
+      - id: month3-development
+        title: "Month 3: Core Development"
+        template: |
+          **Week 9-10: Backend Development**
+          - [ ] LLM integration implementation
+          - [ ] Vector database setup (if using RAG)
+          - [ ] API development
+          - [ ] Data pipeline implementation
+          - [ ] Error handling and logging
+          
+          **Week 11-12: Frontend & Integration**
+          - [ ] User interface development
+          - [ ] System integration
+          - [ ] Authentication and authorization
+          - [ ] Testing and debugging
+          - [ ] Performance optimization
+          
+          **Mentor Support:**
+          - Bi-weekly code reviews
+          - Technical troubleshooting
+          - Performance optimization guidance
+          - Security review
+      - id: month4-deployment
+        title: "Month 4: Testing & Deployment"
+        template: |
+          **Week 13-14: Testing & Refinement**
+          - [ ] Comprehensive testing (unit, integration, UAT)
+          - [ ] Prompt optimization and tuning
+          - [ ] Performance testing and optimization
+          - [ ] Security assessment
+          - [ ] User feedback incorporation
+          
+          **Week 15-16: Production Deployment**
+          - [ ] Production environment setup
+          - [ ] Deployment pipeline configuration
+          - [ ] Monitoring and alerting setup
+          - [ ] Documentation completion
+          - [ ] Knowledge transfer to team
+          
+          **Workshop 3: Production Best Practices**
+          - Date: {{date}}
+          - Topics: Deployment, monitoring, maintenance
+          - Project presentations by learners
+          - Peer learning and feedback
+          - Certificate ceremony
+          
+          **Final Deliverables:**
+          - Working LLM application
+          - Source code and documentation
+          - Deployment guide
+          - Maintenance plan
+          - Project presentation
+      - id: ladp-custom
+        title: "LADP Custom Full-Time Programme"
+        template: |
+          **1-Day Intensive Workshop:**
+          - LLM fundamentals and hands-on
+          - Use case identification
+          - Basic application building
+          - Best practices overview
+          
+          **2-Day Programme:**
+          - Day 1: Foundations and hands-on
+          - Day 2: Advanced topics and project work
+          - Mini-project completion
+          - Deployment basics
+          
+          **3-Day Comprehensive:**
+          - Day 1: Foundations and prompt engineering
+          - Day 2: RAG and advanced techniques
+          - Day 3: Project development and deployment
+          - Complete mini-application
+          
+          **Follow-up Support:**
+          - 30-day email support
+          - Resource library access
+          - Community forum access
+
+  - id: common-deliverables
+    title: Common Deliverables Across Programs
+    instruction: Define deliverables common to all AISG programs
+    sections:
+      - id: technical-deliverables
+        title: Technical Deliverables
+        template: |
+          **Code & Models:**
+          - [ ] Source code repository
+          - [ ] Trained models
+          - [ ] Model cards
+          - [ ] API documentation
+          
+          **Data Artifacts:**
+          - [ ] Processed datasets
+          - [ ] Feature definitions
+          - [ ] Data pipelines
+          - [ ] Data quality reports
+          
+          **Infrastructure:**
+          - [ ] Deployment configurations
+          - [ ] CI/CD pipelines
+          - [ ] Monitoring dashboards
+          - [ ] Infrastructure as code
+      - id: documentation
+        title: Documentation Requirements
+        template: |
+          **Technical Documentation:**
+          - [ ] Architecture documents
+          - [ ] API specifications
+          - [ ] Model documentation
+          - [ ] Deployment guides
+          
+          **Business Documentation:**
+          - [ ] Business case analysis
+          - [ ] ROI assessment
+          - [ ] Risk analysis
+          - [ ] Recommendations report
+          
+          **Knowledge Transfer:**
+          - [ ] Training materials
+          - [ ] User guides
+          - [ ] Maintenance manuals
+          - [ ] Handover checklist
+
+  - id: success-metrics
+    title: Program Success Metrics
+    instruction: Define success metrics specific to the selected program
+    sections:
+      - id: technical-metrics
+        title: Technical Success Metrics
+        template: |
+          **Model Performance:**
+          - Primary metric: {{metric}} > {{threshold}}
+          - Secondary metrics: {{list}}
+          - Baseline improvement: {{percentage}}
+          
+          **System Performance:**
+          - Latency: <{{milliseconds}}ms
+          - Throughput: >{{rps}} requests/sec
+          - Availability: >{{percentage}}%
+          - Error rate: <{{percentage}}%
+      - id: business-metrics
+        title: Business Success Metrics
+        template: |
+          **Value Delivery:**
+          - Cost reduction: {{amount_percentage}}
+          - Efficiency gain: {{percentage}}
+          - Revenue impact: {{amount}}
+          - User adoption: {{target}}
+          
+          **Program Goals:**
+          - Milestone completion: {{on_time_percentage}}
+          - Budget adherence: {{within_percentage}}
+          - Knowledge transfer: {{completed}}
+          - Sustainability: {{plan_in_place}}
+
+  - id: risk-management
+    title: Risk Management
+    instruction: Identify and mitigate risks specific to the program
+    type: table
+    columns: [Risk Category, Description, Probability, Impact, Mitigation]
+    template: |
+      | Data | {{description}} | {{H/M/L}} | {{H/M/L}} | {{mitigation}} |
+      | Technical | {{description}} | {{H/M/L}} | {{H/M/L}} | {{mitigation}} |
+      | Resource | {{description}} | {{H/M/L}} | {{H/M/L}} | {{mitigation}} |
+      | Timeline | {{description}} | {{H/M/L}} | {{H/M/L}} | {{mitigation}} |
+      | Adoption | {{description}} | {{H/M/L}} | {{H/M/L}} | {{mitigation}} |
+
+  - id: stakeholder-management
+    title: Stakeholder Management
+    instruction: Define stakeholder engagement plan
+    sections:
+      - id: stakeholder-matrix
+        title: Stakeholder Matrix
+        type: table
+        columns: [Stakeholder, Role, Interest, Influence, Engagement]
+        template: |
+          | AISG Team | {{role}} | {{H/M/L}} | {{H/M/L}} | {{frequency}} |
+          | Business Sponsor | {{role}} | {{H/M/L}} | {{H/M/L}} | {{frequency}} |
+          | Technical Team | {{role}} | {{H/M/L}} | {{H/M/L}} | {{frequency}} |
+          | End Users | {{role}} | {{H/M/L}} | {{H/M/L}} | {{frequency}} |
+      - id: communication-plan
+        title: Communication Plan
+        template: |
+          **Regular Meetings:**
+          - Weekly standup: {{participants}}
+          - Bi-weekly steering: {{participants}}
+          - Monthly review: {{participants}}
+          
+          **Reporting:**
+          - Progress reports: {{frequency}}
+          - Technical updates: {{frequency}}
+          - Executive dashboard: {{frequency}}
+          
+          **Escalation Path:**
+          1. {{level_1}}
+          2. {{level_2}}
+          3. {{level_3}}
+
+  - id: post-program
+    title: Post-Program Sustainability
+    instruction: Plan for sustainability after program completion
+    sections:
+      - id: transition-plan
+        title: Transition Plan
+        template: |
+          **Handover Timeline:**
+          - T-4 weeks: Documentation completion
+          - T-2 weeks: Knowledge transfer sessions
+          - T-1 week: Final testing and validation
+          - T-0: Official handover
+          
+          **Support Model:**
+          - Warranty period: {{duration}}
+          - Support level: {{description}}
+          - Escalation process: {{description}}
+      - id: continuous-improvement
+        title: Continuous Improvement
+        template: |
+          **Maintenance Plan:**
+          - Model retraining: {{frequency}}
+          - Performance monitoring: {{approach}}
+          - Feature updates: {{process}}
+          
+          **Capability Building:**
+          - Internal team training: {{completed}}
+          - Documentation: {{available}}
+          - Community of practice: {{established}}
+          
+          **Future Roadmap:**
+          - Next phase: {{description}}
+          - Scaling plan: {{approach}}
+          - Innovation pipeline: {{initiatives}}
