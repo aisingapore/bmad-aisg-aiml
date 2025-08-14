@@ -39,7 +39,7 @@ Your target project must be BMAD-enabled with instructions from [BMAD-METHOD](ht
 
 ```bash
 # Clone the expansion pack
-git clone https://github.com/najibninaba/bmad-aisg-aiml.git
+git clone https://github.com/aisingapore/bmad-aisg-aiml.git
 cd bmad-aisg-aiml
 ```
 
