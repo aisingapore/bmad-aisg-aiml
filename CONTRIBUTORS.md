@@ -8,8 +8,6 @@
 - Established the foundational framework and methodology
 - Transitioned project leadership to the core team
 
-*Note: Laurence does not have an active GitHub account but his foundational contributions are the cornerstone of this project.*
-
 ## Core Team
 
 The core team consists of active maintainers with write access to the repository who are responsible for project governance, code reviews, and maintaining project quality.
