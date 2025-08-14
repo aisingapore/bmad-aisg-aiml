@@ -2,6 +2,14 @@
 
 This expansion pack extends the BMAD Method framework to support AI/ML engineering projects with a streamlined, consolidated architecture that reduces complexity while maintaining full capabilities.
 
+## 🏛️ Project History
+
+**Founder**: Laurence Liew - Original visionary who developed the initial workflows and agent framework that became the foundation of this expansion pack. Though not actively maintaining the codebase, his contributions established the core methodology and approach.
+
+**Current Maintainers**: 
+- **Najib Ninaba** ([@najibninaba](https://github.com/najibninaba)) - Core Team Member
+- **Siavash Sakhavi** ([@ssakhavi](https://github.com/ssakhavi)) - Core Team Member
+
 ## 🚀 Accelerated AI-Driven Delivery
 
 With modern agentic AI frameworks like BMAD, we've revolutionized project delivery:
@@ -159,6 +167,18 @@ All agents include:
 - AISG program experience
 - Understanding of local market dynamics
 - Government standards compliance
+
+## 🤝 Contributing
+
+We welcome contributions from the community! 
+
+- **Core Team**: Direct commit access for maintenance and development
+- **External Contributors**: Please submit contributions via pull requests
+- **Review Process**: All PRs require approval from core team members
+
+See our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on how to contribute.
+
+For a complete list of contributors, see [CONTRIBUTORS.md](CONTRIBUTORS.md).
 
 ## 🚦 Getting Started
 
