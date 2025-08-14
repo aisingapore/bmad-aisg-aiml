@@ -1,22 +1,22 @@
-# BMAD AI/ML Engineering Expansion Pack (v2.0 - Streamlined)
+# BMAD AI/ML Engineering Expansion Pack (v2.0)
 
-This expansion pack extends the BMAD Method framework to support AI/ML engineering projects with a streamlined, consolidated architecture that reduces complexity while maintaining full capabilities.
+This expansion pack extends the BMAD Method framework to support AI/ML engineering projects. It provides agents, workflows, templates, and best practices in a consolidated architecture.
 
-## 🏛️ Project History
+## Project History
 
-**Founder**: Laurence Liew - Original visionary who developed the initial workflows and agent framework that became the foundation of this expansion pack. Though not actively maintaining the codebase, his contributions established the core methodology and approach.
+**Founder**: Laurence Liew - Developed the initial workflows and agent framework. His contributions established the core methodology and approach.
 
 **Current Maintainers**: 
 - **Najib Ninaba** ([@najibninaba](https://github.com/najibninaba)) - Core Team Member
 - **Siavash Sakhavi** ([@ssakhavi](https://github.com/ssakhavi)) - Core Team Member
 
-## 🚀 Accelerated AI-Driven Delivery
+## Project Timelines
 
-With modern agentic AI frameworks like BMAD, we've revolutionized project delivery:
-- **Traditional Timeline**: 6-12 months → **BMAD Timeline**: 3-12 weeks
-- **Higher Quality**: AI agents ensure consistent best practices
-- **Faster Iteration**: Rapid prototyping and testing cycles
-- **Continuous Delivery**: Deploy multiple times per day, not per quarter
+BMAD frameworks support different project timelines:
+- **Traditional Timeline**: 6-12 months
+- **BMAD Timeline**: 3-12 weeks
+- **Iteration Speed**: Prototyping and testing cycles
+- **Deployment Frequency**: Multiple deployments per day
 
 ## Overview
 
@@ -29,9 +29,95 @@ The streamlined AI/ML Engineering expansion pack provides specialized agents, wo
 - Data science and analytics workflows
 - AI Singapore program-specific workflows
 
-## 👥 Core Agent Team
+## Installation
 
-### 4 Streamlined Agents Representing Singapore's Diversity
+### Prerequisites
+
+Your target project must be BMAD-enabled with instructions from [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD).
+
+### Install the [BMAD Pack Installer](https://github.com/najibninaba/bmad-pack-installer) via `uv`
+
+```bash
+# Install once (recommended for regular use)
+uv tool install bmad-pack-installer
+
+# Or run directly without installation
+uvx --from bmad-pack-installer bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project
+```
+
+### Deploy This Pack
+
+```bash
+# Basic installation
+bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project
+
+# Preview changes without installing
+bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project --dry-run
+
+# Force reinstall over existing pack
+bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project --force
+```
+
+### Validation
+
+```bash
+# Check if target is valid BMAD project
+bmad-pack-installer check /path/to/project
+
+# Validate this expansion pack
+bmad-pack-installer validate ./bmad-aisg-aiml
+```
+
+The installer creates:
+- Hidden directory: `.bmad-aisg-aiml/`
+- Claude commands: `.claude/commands/bmadAISG/`
+- Updated manifests and symbolic links
+
+## Usage
+
+### Choose Your Program
+
+```
+Decision Tree:
+├── Need to train apprentices?
+│   ├── Yes → 6 months available? → MVP
+│   └── Yes → 3 months only? → POC
+├── Need fast MVP without training?
+│   └── Yes → SIP (3 months)
+└── Learning LLM development?
+    └── Yes → LADP (4 months)
+```
+
+### Follow the Workflow
+
+```bash
+# Navigate to installed workflows
+cd .bmad-aisg-aiml/workflows/
+# Choose your program-specific workflow
+cat aisg-[mvp|poc|sip|ladp].md
+```
+
+### Quick Commands
+
+#### Agent Activation
+```
+@marcus - ML Engineering & MLOps
+@rizwan - System Architecture
+@sophia - Data Science
+@priya - Security & Ethics
+```
+
+#### Workflow Selection
+```
+"Start 6-month MVP with 4 apprentices"
+"Begin 3-month POC for feasibility"
+"Launch 3-month SIP for fast MVP"
+"Start LADP programme for LLM training"
+```
+
+## Core Agent Team
+
+### 4 Agents
 
 1. **Marcus Tan Wei Ming** - ML/AI Engineer & MLOps Specialist (`ml-engineer`)
    - **Heritage**: Singaporean Chinese
@@ -57,7 +143,7 @@ The streamlined AI/ML Engineering expansion pack provides specialized agents, wo
    - **Technical Skills**: Red teaming, bias detection, privacy protection
    - **Focus Areas**: Security audits, ethical reviews, regulatory compliance
 
-## 📋 Streamlined Workflows
+## Workflows
 
 ### Standard ML Workflows
 - **ML Development**: End-to-end model development process
@@ -98,47 +184,44 @@ The streamlined AI/ML Engineering expansion pack provides specialized agents, wo
 - **Structure**: Month 1 (Self-learning) → Month 2 (Design) → Month 3 (Development) → Month 4 (Deployment)
 - **3 workshops** + project implementation
 
-## 📁 Consolidated Resources
+### Program Outcomes
+- **MVP**: Production systems completed in 6 months with training
+- **POC**: Proof of concepts completed in 3 months with learning
+- **SIP**: Production MVPs completed in 3 months
+- **LADP**: LLM applications developed in 4 months
 
-### Massive Consolidation Achievement
+## Resources
 
-| Resource | Before | After | Reduction |
-|----------|--------|-------|-----------|
-| **Tasks** | 66 files | 5 files | 92% reduction |
-| **Checklists** | 18 files | 4 files | 78% reduction |
-| **Templates** | 24 files | 8 files | 67% reduction |
-| **Data** | 25 files | 2 files | 92% reduction |
-
-### Tasks (5 Comprehensive Files)
+### Tasks
 1. `advanced-elicitation.md` - Requirements gathering
 2. `correct-aiml-design.md` - Design correction and validation
 3. `create-aiml-story.md` - User story creation
 4. `aiml-design-brainstorming.md` - Solution ideation
 5. `validate-aiml-story.md` - Story validation
 
-### Checklists (4 Essential Files)
+### Checklists
 1. `aiml-architect-checklist.md` - Architecture review
 2. `aiml-change-checklist.md` - Change management
 3. `aiml-design-checklist.md` - Design validation
 4. `aiml-story-dod-checklist.md` - Definition of done
 
-### Templates (8 Core Files)
+### Templates
 1. `aiml-architecture-tmpl.yaml` - System architecture
 2. `aiml-brief-tmpl.yaml` - Project brief
 3. `aiml-design-doc-tmpl.yaml` - Design documentation
 4. `aiml-story-tmpl.yaml` - User stories
-5. `aiml-ethics-governance-tmpl.yaml` - AI ethics (unique to AI/ML)
-6. `aiml-security-compliance-tmpl.yaml` - Security & compliance (Singapore focus)
+5. `aiml-ethics-governance-tmpl.yaml` - AI ethics
+6. `aiml-security-compliance-tmpl.yaml` - Security & compliance
 7. `aiml-model-card-tmpl.yaml` - Model transparency
 8. `aiml-workflow-tmpl.yaml` - Workflow definitions
 
-### Data (2 Comprehensive References)
+### Data
 1. `bmad-kd.md` - Complete BMAD knowledge base
 2. `development-guidelines.md` - Python standards, ML patterns, MLOps requirements
 
-## 💻 Web Bundles
+## Web Bundles
 
-Ready-to-use bundles for web-based AI platforms:
+Bundles for web-based AI platforms:
 
 1. **`ai-ml-team-full.txt`** - All 4 agents for flexible use
 2. **`aisg-mvp-team.txt`** - 6-month MVP workflow
@@ -146,77 +229,14 @@ Ready-to-use bundles for web-based AI platforms:
 4. **`aisg-short-industry-team.txt`** - 3-month SIP workflow (NEW)
 5. **`aisg-ladp-team.txt`** - 4-month LADP programme
 
-## 🎯 Key Improvements in v2.0
-
-### Reduced Complexity
-- **From 7-8 agents → 4 agents** (50% reduction)
-- **From 66 tasks → 5 tasks** (92% reduction)
-- **From 18 checklists → 4 checklists** (78% reduction)
-- **From 24 templates → 8 templates** (67% reduction)
-- **From 25 data files → 2 files** (92% reduction)
-
-### Enhanced Clarity
-- Clear distinction between SIP and POC (both 3 months, different goals)
-- Proper LADP structure (4 months with mentorship model)
-- Unified security and ethics in single specialist
-- Streamlined team collaboration
-
-### Singapore Context
+## Singapore Context
 All agents include:
 - Local regulatory knowledge (PDPA, IMDA, MAS)
 - AISG program experience
 - Understanding of local market dynamics
 - Government standards compliance
 
-## 🤝 Contributing
-
-We welcome contributions from the community! 
-
-- **Core Team**: Direct commit access for maintenance and development
-- **External Contributors**: Please submit contributions via pull requests
-- **Review Process**: All PRs require approval from core team members
-
-See our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on how to contribute.
-
-For a complete list of contributors, see [CONTRIBUTORS.md](CONTRIBUTORS.md).
-
-## 🚦 Getting Started
-
-### 1. Choose Your Program
-
-```
-Decision Tree:
-├── Need to train apprentices?
-│   ├── Yes → 6 months available? → MVP
-│   └── Yes → 3 months only? → POC
-├── Need fast MVP without training?
-│   └── Yes → SIP (3 months)
-└── Learning LLM development?
-    └── Yes → LADP (4 months)
-```
-
-### 2. Activate Your Team
-
-```yaml
-# Load appropriate team configuration
-agent-teams/
-├── ai-ml-team-full.yaml      # All agents, any project
-├── aisg-mvp-team.yaml        # 6-month MVP team
-├── aisg-poc-team.yaml        # 3-month POC team
-├── aisg-short-industry-team.yaml  # 3-month SIP team
-└── aisg-ladp-team.yaml       # 4-month LADP team
-```
-
-### 3. Follow the Workflow
-
-```bash
-# Navigate to workflows
-cd workflows/
-# Choose your program-specific workflow
-cat aisg-[mvp|poc|sip|ladp].md
-```
-
-## 📂 File Structure
+## File Structure
 
 ```
 bmad-ai-ml-engineering/
@@ -226,22 +246,22 @@ bmad-ai-ml-engineering/
 │   ├── ml-data-scientist.md
 │   └── ml-security-ethics-specialist.md
 ├── agent-teams/              # 5 team configurations
-├── checklists/              # 4 consolidated checklists
-├── templates/               # 8 essential templates
-├── tasks/                   # 5 comprehensive tasks
+├── checklists/              # 4 checklists
+├── templates/               # 8 templates
+├── tasks/                   # 5 tasks
 ├── workflows/               # Standard + 4 AISG workflows
 ├── data/                    # 2 reference files
 ├── web-bundles/            # 5 ready-to-use bundles
 └── config.yaml             # Configuration
 ```
 
-## 🔧 Dependencies
+## Dependencies
 
 - **Required**: bmad-core >= 4.0.0
 - **Recommended**: Python >= 3.8, Docker, Kubernetes
 - **Optional**: Terraform, MLflow, Kubeflow
 
-## 📜 Compliance & Standards
+## Compliance & Standards
 
 ### Singapore Regulations
 - **PDPA**: Personal Data Protection Act compliance
@@ -252,7 +272,18 @@ bmad-ai-ml-engineering/
 - ISO/IEC 23053: Framework for AI using ML
 - ISO/IEC 23894: AI risk management
 
-## 🎓 Training & Support
+## Contributing
+
+Contribution process:
+- **Core Team**: Direct commit access for maintenance and development
+- **External Contributors**: Submit contributions via pull requests
+- **Review Process**: All PRs require approval from core team members
+
+See our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on how to contribute.
+
+For a complete list of contributors, see [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
+## Training & Support
 
 ### Documentation
 - **Quick Start**: This README
@@ -266,56 +297,16 @@ bmad-ai-ml-engineering/
 - Consult workflow guides
 - Raise issues in the repository
 
-## 🏆 Success Stories
-
-### Efficiency Gains
-- **66 tasks → 5 tasks**: 92% reduction in complexity
-- **25 data files → 2 files**: 92% consolidation
-- **7 agents → 4 agents**: Clearer responsibilities
-- **Faster onboarding**: From days to hours
-
-### Program Success
-- **MVP**: Full production systems in 6 months with training
-- **POC**: Validated concepts in 3 months with learning
-- **SIP**: Production MVPs in 3 months without overhead
-- **LADP**: LLM developers trained in 4 months
-
-## 🚀 Quick Commands
-
-### Agent Activation
-```
-@marcus - ML Engineering & MLOps
-@rizwan - System Architecture
-@sophia - Data Science
-@priya - Security & Ethics
-```
-
-### Workflow Selection
-```
-"Start 6-month MVP with 4 apprentices"
-"Begin 3-month POC for feasibility"
-"Launch 3-month SIP for fast MVP"
-"Start LADP programme for LLM training"
-```
-
 ---
 
 ## Version History
 
 ### v2.0.0 (Current)
-- Streamlined from 7 to 4 agents
-- Consolidated resources by 67-92%
-- Added SIP workflow for fast MVP delivery
-- Corrected LADP to 4-month programme
-- Enhanced Singapore context
+- 4 core agents
+- Added SIP workflow for MVP delivery
+- Updated LADP to 4-month programme
+- Added Singapore context
 
 ### v1.0.0
-- Initial release with 7 agents
-- 66 tasks, 24 templates, 18 checklists
+- Initial release
 - Basic AISG workflows
-
----
-
-*Version 2.0 - Streamlined for efficiency, built for production, optimized for Singapore's AI ecosystem*
-
-**Choose wisely. Build rapidly. Deploy confidently.**
