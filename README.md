@@ -35,27 +35,35 @@ The streamlined AI/ML Engineering expansion pack provides specialized agents, wo
 
 Your target project must be BMAD-enabled with instructions from [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD).
 
-### Install the [BMAD Pack Installer](https://github.com/najibninaba/bmad-pack-installer) via `uv`
+### 1. Clone This Repository
+
+```bash
+# Clone the expansion pack
+git clone https://github.com/najibninaba/bmad-aisg-aiml.git
+cd bmad-aisg-aiml
+```
+
+### 2. Install the [BMAD Pack Installer](https://github.com/najibninaba/bmad-pack-installer) via `uv`
 
 ```bash
 # Install once (recommended for regular use)
 uv tool install bmad-pack-installer
 
 # Or run directly without installation
-uvx --from bmad-pack-installer bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project
+uvx --from bmad-pack-installer bmad-pack-installer deploy . /path/to/project
 ```
 
-### Deploy This Pack
+### 3. Deploy This Pack
 
 ```bash
-# Basic installation
-bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project
+# Basic installation (from cloned repo directory)
+bmad-pack-installer deploy . /path/to/project
 
 # Preview changes without installing
-bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project --dry-run
+bmad-pack-installer deploy . /path/to/project --dry-run
 
 # Force reinstall over existing pack
-bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project --force
+bmad-pack-installer deploy . /path/to/project --force
 ```
 
 ### Validation
@@ -64,8 +72,8 @@ bmad-pack-installer deploy ./bmad-aisg-aiml /path/to/project --force
 # Check if target is valid BMAD project
 bmad-pack-installer check /path/to/project
 
-# Validate this expansion pack
-bmad-pack-installer validate ./bmad-aisg-aiml
+# Validate this expansion pack (from cloned repo directory)
+bmad-pack-installer validate .
 ```
 
 The installer creates:
