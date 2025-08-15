@@ -4,7 +4,7 @@ This expansion pack extends the BMAD Method framework to support AI/ML engineeri
 
 ## Project History
 
-**Founder**: Laurence Liew - Developed the initial workflows and agent framework. His contributions established the core methodology and approach.
+**Founder**: Laurence Liew (@beowulf68)- Developed the initial workflows and agent framework. His contributions established the core methodology and approach.
 
 **Current Maintainers**: 
 - **Najib Ninaba** ([@najibninaba](https://github.com/najibninaba)) - Core Team Member
