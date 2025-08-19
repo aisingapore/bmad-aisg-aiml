@@ -12,6 +12,13 @@ workflow:
   elicitation: advanced-elicitation
 
 sections:
+  - id: project-type
+    title: Project Type
+    template: |
+      **Project Type:** {{project_type}} (e.g., SIP, 100E, 4I)
+      **Project Name:** {{project_name}}
+      **Project Description:** {{project_description}}
+
   - id: goals-context
     title: Goals and Background Context
     instruction: |
@@ -134,7 +141,10 @@ sections:
 
   - id: model-development
     title: Model Development
-    instruction: Define the ML model approach, experimentation strategy, and evaluation methodology
+    instruction: |
+      Check if Research document is available docs/literature-review.md. If NO Research Document exists, STRONGLY recommend creating one first using aiml-brief-tmpl (it provides essential foundation: problem statement, target users, success metrics, scope, constraints). If user insists on continuing without Research Document, based it off your own knowledge. If Research Document exists, review and use it to populate Goals and Background Context. 
+      
+      Define the ML model approach, experimentation strategy, and evaluation methodology
     elicit: true
     sections:
       - id: model-selection
@@ -204,10 +214,10 @@ sections:
         template: |
           **Serving Pattern:**
           - Type: {{rest_grpc_streaming}}
-          - Infrastructure: {{kubernetes_lambda_etc}}
+          - Infrastructure: {{monolithic_microservices}}
           - Scaling: {{horizontal_vertical}}
-          - Load balancing: {{strategy}}
-          
+          - Load handling: {{batching_queuing}}
+
           **Deployment Strategy:**
           - Method: {{blue_green_canary_shadow}}
           - Rollout: {{percentage_based}}
@@ -220,13 +230,11 @@ sections:
           - Code quality: {{linting_testing}}
           - Model validation: {{checks}}
           - Data validation: {{checks}}
-          - Security scanning: {{tools}}
           
           **Continuous Deployment:**
           - Containerization: {{docker}}
           - Registry: {{ecr_gcr}}
-          - Orchestration: {{kubernetes_kubeflow}}
-          - Approval gates: {{manual_automated}}
+
       - id: monitoring-strategy
         title: Monitoring & Observability
         template: |
@@ -241,11 +249,6 @@ sections:
           - Application: {{latency_errors_throughput}}
           - Business KPIs: {{metrics}}
           - Alerting: {{pagerduty_slack}}
-          
-          **Dashboards:**
-          - Tool: {{grafana_datadog}}
-          - Update frequency: {{real_time_batch}}
-          - Stakeholder views: {{different_dashboards}}
 
   - id: experimentation-framework
     title: Experimentation Framework

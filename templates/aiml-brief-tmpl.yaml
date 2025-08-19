@@ -16,6 +16,18 @@ sections:
       This template creates a comprehensive AI/ML project brief that serves as the foundation for all subsequent ML development work. The brief should capture the essential vision, scope, requirements, and constraints needed to create a detailed ML Design Document.
       
       This brief is typically created early in the ideation process, often after stakeholder meetings and initial data exploration, to crystallize the ML solution concept before moving into detailed design.
+  
+  - id: project-type
+    title: Project Type
+    instruction: Ask the user for project type 
+      - Short Industry Project (SIP) (3/4 month MVP, 2 senior AI engineers)
+      - 100 Experiments (100E) (6 month MVP, 4 junior AI engineers)
+      - 4 Innovate (4I) (3 month POC, 4 junior AI engineers)
+      If the user does not specify, default to 100E.
+    template: |
+      **Project Type:** {{project_type}} (e.g., SIP, 100E, 4I), {{project_duration}}
+      **Project Name:** {{project_name}}
+      **Project Description:** {{project_description}}
 
   - id: project-vision
     title: Project Vision
@@ -183,15 +195,20 @@ sections:
           - Performance optimization
           - Model validation
           
-          **Phase 3 - Productionization ({{weeks}}):**
+          **Phase 3 - Initial Deployment ({{weeks}}):**
           - MLOps pipeline
           - API development
           - Monitoring setup
           
-          **Phase 4 - Deployment ({{weeks}}):**
-          - Production deployment
+          **Phase 4 - Model/Pipeline Optimisation ({{weeks}}):**
+          - Performance optimization
           - A/B testing
+          - Model refinement
+          
+          **Phase 5 - Final Deployment ({{weeks}}):**
+          - Production deployment
           - Handover and documentation
+          
       - id: success-metrics
         title: Success Metrics by Phase
         template: |
@@ -199,6 +216,7 @@ sections:
           **Phase 2:** {{metrics}}
           **Phase 3:** {{metrics}}
           **Phase 4:** {{metrics}}
+          **Phase 5:** {{metrics}}
 
   - id: resource-requirements
     title: Resource Requirements

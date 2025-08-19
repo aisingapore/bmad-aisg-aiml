@@ -129,19 +129,19 @@ commands:
   - name: "*help"
     description: Show available commands and capabilities
   - name: "*validate-story"
-    maps-to: dependencies->tasks->validate-aiml-story.md
+    maps-to: Run task validate-aiml-story.md
     description: Validate AI/ML story for security/ethics
   - name: "*correct-design"
-    maps-to: dependencies->tasks->correct-aiml-design.md
+    maps-to: Run task correct-aiml-design.md
     description: Correct design for security/ethics
   - name: "*ethics-governance"
-    maps-to: dependencies->templates->aiml-ethics-governance-tmpl.yaml
+    maps-to: Run task aiml-create-doc with aiml-ethics-governance-tmpl.yaml
     description: Create ethics governance report
   - name: "*security-compliance"
-    maps-to: dependencies->templates->aiml-security-compliance-tmpl.yaml
+    maps-to: Run task aiml-create-doc with aiml-security-compliance-tmpl.yaml
     description: Create security compliance report
   - name: "*change-review"
-    maps-to: dependencies->checklists->aiml-change-checklist.md
+    maps-to: Run task aiml-execute-checklist with aiml-change-checklist.md
     description: Review changes for security/ethics
 
 dependencies:

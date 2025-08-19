@@ -1,0 +1,384 @@
+template:
+  id: literature-review-template-v1
+  name: ML Research Literature Review
+  version: 1.0
+  output:
+    format: markdown
+    filename: docs/literature-review.md
+    title: "{{research_topic}} Literature Review"
+
+workflow:
+  mode: interactive
+
+sections:
+  - id: initial-setup
+    instruction: |
+      You must ask the user if Project Brief is available. If NO Project Brief exists, STRONGLY recommend creating one first using aiml-brief-tmpl (it provides essential foundation: problem statement, target users, success metrics, scope, constraints) or ask the user for the problem statement. This template creates a comprehensive literature review for ML research topics. The review should systematically analyze existing research, identify gaps, and provide insights for future work.
+
+      This template is designed for academic and industry researchers conducting systematic literature reviews in machine learning, AI, and related fields.
+      Use web search to provide citation and clickable links for any suggestions.
+
+  - id: research-context
+    title: Research Context
+    instruction: Establish the scope and methodology of the literature review. Present each subsection and gather user feedback before proceeding.
+    sections:
+      - id: research-question
+        title: Research Question & Scope
+        instruction: Define the specific research question or topic area being reviewed. Use web search to provide citation and clickable links for any suggestions.
+        template: |
+          **Research Question:** {{research_question}}
+          **Topic Area:** {{domain_subfield}}
+          **Scope:** {{boundaries_limitations}}
+          **Time Period:** {{date_range}} (e.g., 2020-2024)
+          **Geographic/Cultural Scope:** {{geographic_focus}}
+      - id: search-methodology
+        title: Search Methodology
+        instruction: Document the systematic search strategy used
+        template: |
+          **Search Terms:** {{primary_terms}}, {{secondary_terms}}, {{boolean_operators}}
+          **Databases:** {{arxiv_scholar_ieee_acm}}
+          **Search Strategy:** {{search_approach}}
+          **Language:** {{english_multilingual}}
+          **Publication Types:** {{conference_journal_preprint}}
+      - id: inclusion-exclusion
+        title: Inclusion & Exclusion Criteria
+        instruction: Define criteria for paper selection
+        template: |
+          **Inclusion Criteria:**
+          - {{criterion_1}}
+          - {{criterion_2}}
+          - {{criterion_3}}
+          
+          **Exclusion Criteria:**
+          - {{exclusion_1}}
+          - {{exclusion_2}}
+          - {{exclusion_3}}
+          
+          **Total Papers:** {{initial_results}} → {{after_screening}} → {{final_count}}
+
+  - id: thematic-analysis
+    title: Thematic Analysis
+    instruction: Organize the literature into major themes and research directions. Create separate subsections for each major theme identified.
+    sections:
+      - id: theme-1
+        title: "Theme 1: {{theme_name}}"
+        instruction: Analyze the first major research theme
+        template: |
+          **Description:** {{theme_description}}
+          
+          **Key Papers:**
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          
+          **Methodological Approaches:**
+          - {{approach_1}}: {{description}}
+          - {{approach_2}}: {{description}}
+          
+          **Strengths:** {{what_works_well}}
+          **Limitations:** {{current_challenges}}
+          **Evolution:** {{how_field_progressed}}
+      - id: theme-2
+        title: "Theme 2: {{theme_name}}"
+        instruction: Analyze the second major research theme
+        template: |
+          **Description:** {{theme_description}}
+          
+          **Key Papers:**
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          
+          **Methodological Approaches:**
+          - {{approach_1}}: {{description}}
+          - {{approach_2}}: {{description}}
+          
+          **Strengths:** {{what_works_well}}
+          **Limitations:** {{current_challenges}}
+          **Evolution:** {{how_field_progressed}}
+      - id: theme-3
+        title: "Theme 3: {{theme_name}}"
+        instruction: Analyze the third major research theme
+        template: |
+          **Description:** {{theme_description}}
+          
+          **Key Papers:**
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          - **{{author_year}}** - {{paper_title}} - {{key_contribution}}
+          
+          **Methodological Approaches:**
+          - {{approach_1}}: {{description}}
+          - {{approach_2}}: {{description}}
+          
+          **Strengths:** {{what_works_well}}
+          **Limitations:** {{current_challenges}}
+          **Evolution:** {{how_field_progressed}}
+
+  - id: comparative-analysis
+    title: Comparative Analysis
+    instruction: Compare approaches, methods, and results across the literature
+    sections:
+      - id: performance-comparison
+        title: Performance Comparison
+        instruction: Compare quantitative results across studies
+        type: table
+        columns: [Method/Approach, Dataset, Metric, Performance, Notes]
+        template: |
+          | {{method_name}} | {{dataset_used}} | {{evaluation_metric}} | {{score_result}} | {{key_observations}} |
+      - id: methodological-comparison
+        title: Methodological Comparison
+        instruction: Compare research methodologies and experimental designs
+        type: table
+        columns: [Paper, Approach, Strengths, Weaknesses, Reproducibility]
+        template: |
+          | {{paper_reference}} | {{methodology_brief}} | {{key_strengths}} | {{key_weaknesses}} | {{reproducible_y_n}} |
+      - id: dataset-benchmarks
+        title: Datasets and Benchmarks
+        instruction: Analyze the datasets and evaluation benchmarks used
+        template: |
+          **Standard Datasets:**
+          - {{dataset_1}}: {{domain}}, {{size}}, {{usage_frequency}}
+          - {{dataset_2}}: {{domain}}, {{size}}, {{usage_frequency}}
+          
+          **Evaluation Metrics:**
+          - {{metric_1}}: {{description_usage}}
+          - {{metric_2}}: {{description_usage}}
+          
+          **Benchmark Trends:** {{evolution_of_benchmarks}}
+
+  - id: chronological-analysis
+    title: Chronological Evolution
+    instruction: Trace the historical development of the research area
+    sections:
+      - id: foundational-work
+        title: Foundational Work
+        instruction: Identify and analyze the foundational papers and early breakthroughs
+        template: |
+          **Pre-2020 Foundations:**
+          - {{foundational_paper_1}}: {{breakthrough_contribution}}
+          - {{foundational_paper_2}}: {{breakthrough_contribution}}
+          
+          **Key Paradigm Shifts:**
+          - {{shift_1}}: {{from_what_to_what}}
+          - {{shift_2}}: {{from_what_to_what}}
+          
+          **Early Challenges:** {{historical_limitations}}
+      - id: recent-developments
+        title: Recent Developments
+        instruction: Analyze recent advances and emerging trends
+        template: |
+          **2020-2023 Advances:**
+          - {{advance_1}}: {{description_impact}}
+          - {{advance_2}}: {{description_impact}}
+          
+          **Emerging Techniques:**
+          - {{technique_1}}: {{potential_impact}}
+          - {{technique_2}}: {{potential_impact}}
+          
+          **Current Momentum:** {{active_research_areas}}
+      - id: current-state
+        title: Current State (2024-Present)
+        instruction: Describe the current state-of-the-art and ongoing work
+        template: |
+          **State-of-the-Art:**
+          - Best performance: {{current_sota}}
+          - Leading approaches: {{dominant_methods}}
+          
+          **Active Research:**
+          - {{active_area_1}}: {{description}}
+          - {{active_area_2}}: {{description}}
+          
+          **Industry Adoption:** {{practical_applications}}
+
+  - id: research-landscape
+    title: Research Landscape
+    instruction: Map the key researchers, institutions, and research groups
+    sections:
+      - id: key-contributors
+        title: Key Contributors
+        instruction: Identify leading researchers and their contributions
+        template: |
+          **Leading Researchers:**
+          - **{{researcher_name}}** ({{affiliation}}): {{key_contributions}}
+          - **{{researcher_name}}** ({{affiliation}}): {{key_contributions}}
+          - **{{researcher_name}}** ({{affiliation}}): {{key_contributions}}
+          
+          **Collaboration Networks:** {{cross_institutional_patterns}}
+      - id: research-groups
+        title: Research Groups and Institutions
+        instruction: Map the institutional landscape
+        template: |
+          **Top Research Labs:**
+          - **{{lab_name}}** ({{institution}}): {{focus_area}}, {{notable_papers}}
+          - **{{lab_name}}** ({{institution}}): {{focus_area}}, {{notable_papers}}
+          
+          **Geographic Distribution:** {{regional_strengths}}
+          **Industry vs Academic:** {{publication_patterns}}
+
+  - id: gaps-opportunities
+    title: Research Gaps and Opportunities
+    instruction: Identify gaps in current research and future opportunities
+    sections:
+      - id: identified-gaps
+        title: Research Gaps
+        instruction: Systematically identify what's missing in current research
+        template: |
+          **Methodological Gaps:**
+          - {{gap_1}}: {{description_why_important}}
+          - {{gap_2}}: {{description_why_important}}
+          
+          **Empirical Gaps:**
+          - {{gap_3}}: {{description_why_important}}
+          - {{gap_4}}: {{description_why_important}}
+          
+          **Application Gaps:**
+          - {{gap_5}}: {{description_why_important}}
+      - id: contradictory-findings
+        title: Contradictory Findings
+        instruction: Identify and analyze conflicting results in the literature
+        template: |
+          **Contradiction 1:** {{finding_claim}}
+          - Supporting: {{supporting_papers}}
+          - Contradicting: {{contradicting_papers}}
+          - Analysis: {{possible_explanations}}
+          
+          **Contradiction 2:** {{finding_claim}}
+          - Supporting: {{supporting_papers}}
+          - Contradicting: {{contradicting_papers}}
+          - Analysis: {{possible_explanations}}
+      - id: future-directions
+        title: Future Research Directions
+        instruction: Propose specific directions for future research
+        template: |
+          **High-Priority Directions:**
+          1. **{{direction_1}}:** {{rationale_potential_impact}}
+          2. **{{direction_2}}:** {{rationale_potential_impact}}
+          3. **{{direction_3}}:** {{rationale_potential_impact}}
+          
+          **Emerging Opportunities:**
+          - {{opportunity_1}}: {{why_now_is_the_time}}
+          - {{opportunity_2}}: {{why_now_is_the_time}}
+
+  - id: critical-assessment
+    title: Critical Assessment
+    instruction: Provide critical analysis of the research quality and methodology
+    sections:
+      - id: methodological-quality
+        title: Methodological Quality Assessment
+        instruction: Assess the quality of research methodology across papers
+        template: |
+          **Common Strengths:**
+          - {{strength_1}}: {{prevalence_impact}}
+          - {{strength_2}}: {{prevalence_impact}}
+          
+          **Common Weaknesses:**
+          - {{weakness_1}}: {{prevalence_concern}}
+          - {{weakness_2}}: {{prevalence_concern}}
+          
+          **Reproducibility Status:**
+          - Code available: {{percentage_trends}}
+          - Data available: {{percentage_trends}}
+          - Full reproducibility: {{assessment}}
+      - id: reporting-standards
+        title: Reporting Standards
+        instruction: Evaluate how well the field follows good reporting practices
+        template: |
+          **Documentation Quality:**
+          - Experimental setup: {{assessment}}
+          - Statistical analysis: {{assessment}}
+          - Negative results: {{reporting_frequency}}
+          
+          **Transparency Trends:** {{improving_declining}}
+          **Best Practices:** {{exemplary_papers}}
+
+  - id: synthesis-conclusions
+    title: Synthesis and Conclusions
+    instruction: Synthesize findings and draw conclusions from the literature review
+    sections:
+      - id: key-findings
+        title: Key Findings
+        instruction: Summarize the most important insights from the review
+        template: |
+          **Major Consensus Points:**
+          1. {{consensus_1}}
+          2. {{consensus_2}}
+          3. {{consensus_3}}
+          
+          **Unresolved Questions:**
+          1. {{question_1}}
+          2. {{question_2}}
+          
+          **Field Maturity:** {{assessment_mature_emerging}}
+      - id: recommendations
+        title: Recommendations
+        instruction: Provide actionable recommendations for researchers
+        template: |
+          **For Researchers:**
+          1. **{{recommendation_1}}:** {{specific_action}}
+          2. **{{recommendation_2}}:** {{specific_action}}
+          3. **{{recommendation_3}}:** {{specific_action}}
+          
+          **For the Field:**
+          - {{field_recommendation_1}}
+          - {{field_recommendation_2}}
+          
+          **Priority Research Questions:**
+          1. {{priority_question_1}}
+          2. {{priority_question_2}}
+
+  - id: appendix-metadata
+    title: Appendix and Metadata
+    instruction: Document the review process and provide supplementary information
+    sections:
+      - id: search-log
+        title: Search Query Log
+        instruction: Document all search queries and results
+        template: |
+          **Search History:**
+          ```
+          Database: {{database_name}}
+          Date: {{search_date}}
+          Query: {{exact_search_terms}}
+          Results: {{number_of_results}}
+          ```
+          
+          **Refinement Process:** {{how_searches_evolved}}
+      - id: paper-classification
+        title: Paper Classification
+        instruction: Categorize all reviewed papers
+        template: |
+          **Classification Scheme:**
+          - **Highly Relevant:** {{count}} papers
+          - **Moderately Relevant:** {{count}} papers  
+          - **Background/Context:** {{count}} papers
+          
+          **Quality Assessment:**
+          - **High Quality:** {{count}} papers
+          - **Medium Quality:** {{count}} papers
+          - **Lower Quality:** {{count}} papers
+      - id: references
+        title: Complete Bibliography
+        instruction: Provide full citation list
+        template: |
+          **Full Reference List:**
+          [Auto-generated or manually curated bibliography of all papers reviewed]
+          
+          **Citation Format:** {{apa_ieee_acm}}
+          **Total References:** {{count}}
+
+  - id: review-metadata
+    title: Review Metadata
+    instruction: Document the review process details
+    template: |
+      **Review Completed:** {{completion_date}}
+      **Primary Reviewer:** {{reviewer_name}}
+      **Secondary Reviewers:** {{additional_reviewers}}
+      **Review Duration:** {{weeks_months}}
+      **Last Updated:** {{update_date}}
+      **Version:** {{version_number}}
+      
+      **Quality Assurance:**
+      - Peer review: {{yes_no}}
+      - Cross-validation: {{methodology}}
+      - Bias mitigation: {{strategies_used}}

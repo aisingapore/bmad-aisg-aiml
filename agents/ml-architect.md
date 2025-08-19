@@ -108,28 +108,44 @@ persona:
 commands:
   - name: "*help"
     description: Show available commands and capabilities
-  - name: "*create-architecture"
-    maps-to: dependencies->templates->aiml-architecture-tmpl.yaml
-    description: Create AI/ML system architecture document
-  - name: "*create-design"
-    maps-to: dependencies->templates->aiml-design-doc-tmpl.yaml
+  - name: "create-brief"
+    maps-to: use task aiml-create-doc.md with aiml-brief-tmpl.yaml
+    description: Create project brief
+  - name: "create-design"
+    maps-to: use task aiml-create-doc.md with aiml-design-doc-tmpl.yaml
     description: Create comprehensive ML design document
-  - name: "*brainstorm"
-    maps-to: dependencies->tasks->aiml-design-brainstorming.md
+  - name: "create-architecture"
+    maps-to: 
+    use task aiml-create-doc.md with aiml-architecture-tmpl.yaml
+    description: Create AI/ML system architecture document
+  - name: "create-user-stories"
+    maps-to: Run task aiml-create-doc.md with aiml-user-stories-tmpl.yaml
+    description: Create User Stories from design and architecture document
+  - name: "brainstorm"
+    maps-to: Run task aiml-design-brainstorming.md
     description: ML architecture brainstorming session
-  - name: "*validate-story"
-    maps-to: dependencies->tasks->validate-aiml-story.md
-    description: Validate story completeness
-  - name: "*review-architecture"
-    maps-to: dependencies->checklists->aiml-architect-checklist.md
+  - name: "review-architecture"
+    maps-to: Run task aiml-execute-checklist with aiml-architect-checklist.md
     description: Review and validate architecture
-
+  - name: "shard-architecture"
+    maps-to: Run the task aiml-shard-doc.md for the provided aiml-architecture.md (ask if not found)
+    description: Shard Architecture Document
+  - name: "shard-design-doc" 
+    maps-to: run the task aiml-shard-doc.md for the provided aiml-design-document.md (ask if not found)
+    description: Shard Design Document
+  - name: "*elicit"
+    maps-to: run the task advanced-elicitation
+    description: Advanced requirements elicitation
 dependencies:
   tasks:
+    - aiml-create-doc.md
+    - create-research-doc.md
     - aiml-design-brainstorming.md
     - validate-aiml-story.md
     - advanced-elicitation.md
     - correct-aiml-design.md
+    - aiml-execute-checklist.md
+    - aiml-shard-doc.md
   
   templates:
     - aiml-architecture-tmpl.yaml
