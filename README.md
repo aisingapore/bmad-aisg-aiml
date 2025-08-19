@@ -224,7 +224,7 @@ IDE-FILE-RESOLUTION:
 ```mermaid
     graph TD
         A[Start: AI/ML Project] --> B[ml-architect: aiml-brief.md]
-        B --> C[ml-data-scientist: literature-review.md]
+        B --> C[ml-researcher: literature-review.md]
         B --> D[ml-architect: aiml-design-document.md]
         C --> D
         D --> E[ml-architect: aiml-architecture.md]
