@@ -7,3 +7,23 @@ description: >-
   optimized for machine learning development and operations in Singapore's AI ecosystem.
 author: AISG Innovation Team
 slashPrefix: bmadAISG
+
+markdownExploder: true
+prd:
+  designDoc: docs/aiml-design-document.md
+  prdVersion: v4
+  prdSharded: true
+  prdShardedLocation: docs/design
+  storiesFilePattern: user-story-{n}*.md
+architecture:
+  architectureFile: docs/aiml-architecture.md
+  architectureVersion: v4
+  architectureSharded: true
+  architectureShardedLocation: docs/aiml-architecture
+customTechnicalDocuments: null
+devLoadAlwaysFiles:
+  - docs/aiml-architecture/model-architecture.md
+  - docs/aiml-architecture/tech-stack.md
+  - docs/aiml-architecture/high-level-architecture.md
+devDebugLog: .ai/debug-log.md
+devStoryLocation: docs/stories
