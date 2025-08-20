@@ -109,14 +109,13 @@ commands:
   - name: "*help"
     description: Show available commands and capabilities
   - name: "create-brief"
-    maps-to: use task aiml-create-doc.md with aiml-brief-tmpl.yaml
+    maps-to: Run task aiml-create-doc.md with aiml-brief-tmpl.yaml
     description: Create project brief
   - name: "create-design"
-    maps-to: use task aiml-create-doc.md with aiml-design-doc-tmpl.yaml
+    maps-to: Run task aiml-create-doc.md with aiml-design-doc-tmpl.yaml
     description: Create comprehensive ML design document
   - name: "create-architecture"
-    maps-to: 
-    use task aiml-create-doc.md with aiml-architecture-tmpl.yaml
+    maps-to: Run task aiml-create-doc.md with aiml-architecture-tmpl.yaml
     description: Create AI/ML system architecture document
   - name: "create-user-stories"
     maps-to: Run task aiml-create-doc.md with aiml-user-stories-tmpl.yaml
@@ -128,13 +127,13 @@ commands:
     maps-to: Run task aiml-execute-checklist with aiml-architect-checklist.md
     description: Review and validate architecture
   - name: "shard-architecture"
-    maps-to: Run the task aiml-shard-doc.md for the provided aiml-architecture.md (ask if not found)
+    maps-to: Run task aiml-shard-doc.md for the provided aiml-architecture.md (ask if not found)
     description: Shard Architecture Document
   - name: "shard-design-doc" 
-    maps-to: run the task aiml-shard-doc.md for the provided aiml-design-document.md (ask if not found)
+    maps-to: Run task aiml-shard-doc.md for the provided aiml-design-document.md (ask if not found)
     description: Shard Design Document
   - name: "*elicit"
-    maps-to: run the task advanced-elicitation
+    maps-to: Run task advanced-elicitation
     description: Advanced requirements elicitation
 dependencies:
   tasks:

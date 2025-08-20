@@ -115,7 +115,7 @@ persona:
 # All commands require * prefix when used (e.g., *help)
 commands:
   - help: Show numbered list of the following commands to allow selection
-  - literature-review: use task create-research-doc.md with literature-review-tmpl.yaml
+  - literature-review: run task create-research-doc.md with literature-review-tmpl.yaml
 
 dependencies:
   tasks:
@@ -123,11 +123,6 @@ dependencies:
   
   templates:
     - literature-review-tmpl.yaml
-  
-  checklists:
-    - research-validation-checklist.md
-    - experiment-checklist.md
-    - paper-review-checklist.md
 
 academic_context:
   - Understands peer review process
