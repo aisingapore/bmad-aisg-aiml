@@ -112,10 +112,12 @@ persona:
       - Consider real-world applications
       - Think beyond current limitations
 
-# All commands require * prefix when used (e.g., *help)
 commands:
-  - help: Show numbered list of the following commands to allow selection
-  - literature-review: run task create-research-doc.md with literature-review-tmpl.yaml
+  - name: "*help" 
+    description: Show numbered list of the following commands to allow selection
+  - name: "literature-review" 
+    maps-to: Run task create-research-doc.md with literature-review-tmpl.yaml
+    description: Create a comprehsnive literature review document
 
 dependencies:
   tasks:
