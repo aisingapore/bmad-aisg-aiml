@@ -1,0 +1,485 @@
+template:
+  id: user-stories-template-v1
+  name: User Stories Document
+  version: 1.0
+  output:
+    format: markdown
+    filename: docs/user-stories.md
+    title: "{{project_name}} User Stories Document"
+
+workflow:
+  mode: interactive
+  elicitation: advanced-elicitation
+
+sections:
+  - id: introduction
+    title: Introduction
+    instruction: |
+      Read design document aiml-design-document.md and architecture aiml-architecture.md. If available, review any provided relevant documents to gather all relevant context before beginning. At a minimum you should locate and review: Design Document. The user persona for all stories is the AI Engineer. If these are not available, ask the user what docs will provide the basis for the user stories.
+    sections:
+      - id: intro-content
+        content: |
+          This document captures the complete set of user stories for {{project_name}} from the AI Engineer perspective, organized by ML/AI system components. It serves as the foundation for feature development, ensuring all implementation aligns with AI Engineer needs and technical architecture.
+
+          These user stories are designed to support AI/ML development workflows while maintaining focus on AI Engineer productivity, ML system development efficiency, and Singapore regulatory compliance (PDPA, IMDA, MAS FEAT where applicable).
+
+          Take into account the duration of the project (e.g., 3 months for SIP, 6 months for 100E).
+      - id: existing-research
+        title: Existing User Research or Requirements
+        instruction: |
+          Before proceeding with user story creation, check if the project has existing user research:
+
+          1. Review the Design Document and technical docs for any mentions of:
+          - AI Engineer workflow requirements
+          - Development environment preferences
+          - ML system development requirements
+          - ML architecture and technical constraints
+          - Data architecture and access patterns
+          - MLOps and deployment requirements
+
+          2. If existing requirements are available:
+          - Ask the user to provide access or documentation
+          - Analyze current AI Engineer workflow pain points
+          - Identify development goals and productivity needs
+          - Use this analysis to inform story creation
+
+          3. If this is a new AI/ML project without research:
+          - Focus on standard AI Engineer workflow patterns
+          - Explain importance of developer experience for ML systems
+          - Let the user decide on research approach
+
+          Document the decision here before proceeding with story creation. If none, just say N/A
+        elicit: true
+      - id: changelog
+        title: Change Log
+        type: table
+        columns: [Date, Version, Description, Author]
+        instruction: Track document versions and changes
+        
+  - id: ai-engineer-persona
+    title: AI Engineer Persona
+    instruction: |
+      This section defines the single user persona for all user stories: the AI Engineer.
+      
+      Focus on AI Engineer-Centered Design:
+      - Development Goals: Use specific, measurable objectives for ML system development
+      - Pain Points: Use concrete problems AI Engineers face with ML development workflows
+      - Context: Use realistic ML development and deployment scenarios
+      - Technical Proficiency: Consider advanced ML/software engineering expertise
+    elicit: true
+    sections:
+      - id: ai-engineer-summary
+        title: AI Engineer Profile
+        instruction: |
+          Provide a comprehensive profile (5-7 sentences) of the AI Engineer persona:
+          - AI Engineer role and responsibilities in ML system development
+          - Primary goals related to ML system architecture and implementation
+          - Key pain points or challenges in current ML development workflows
+          - Technical proficiency and domain expertise expectations
+          - Primary usage contexts (development, testing, deployment, monitoring)
+          - How this persona drives all user story creation
+      - id: ai-engineer-details
+        title: AI Engineer Detailed Profile
+        template: |
+          **AI Engineer** - ML System Developer and Architect
+          - **Primary Goals:** {{ai_engineer_development_goals}}
+          - **Pain Points:** {{ml_development_frustrations}}
+          - **Development Context:** {{ml_development_environment}}
+          - **Technical Level:** {{advanced_ml_software_engineering}}
+          - **Key Responsibilities:** {{ml_system_responsibilities}}
+          - **Success Metrics:** {{productivity_quality_metrics}}
+        examples:
+          - "**AI Engineer:** ML System Developer and Architect: Primary Goals: Rapidly develop, test, and deploy scalable ML systems; Pain Points: Complex toolchain integration, inconsistent environments, manual deployment processes; Development Context: Cloud-native development, CI/CD pipelines, production monitoring; Technical Level: Advanced ML + Software Engineering; Key Responsibilities: End-to-end ML system development, architecture design, performance optimization; Success Metrics: Development velocity, system reliability, model performance"
+
+  - id: component-organization
+    title: Component Organization & Story Structure
+    instruction: |
+      This section organizes user stories by ML/AI system components for development planning.
+    elicit: true
+    sections:
+      - id: component-structure
+        title: ML Component Structure
+        instruction: |
+          The user stories are organized by the following ML/AI system components:
+
+          - **Component::EDA** - Exploratory Data Analysis and visualization
+          - **Component::Data** - Data management, storage, and processing
+          - **Component::Model** - Machine learning models and algorithms
+          - **Component::Feature** - Feature Engineering
+          - **Component::SW Engg** - Software engineering practices
+          - **Component::Testing** - Testing frameworks and strategies
+          - **Component::Pipeline** - Data and processing pipelines
+          - **Component::Deployment** - Deployment and infrastructure
+          - **Component::Lit Review** - Literature review and research
+          - **Component::Documentation** - Documentation and knowledge management
+
+          Each component addresses specific user needs and technical requirements within the ML system architecture.
+        template: "- **{{component_name}}:** {{component_description}} - _Focus:_ {{user_value_focus}}"
+        examples:
+          - "**Component::EDA:** Exploratory Data Analysis and visualization - _Focus:_ Data understanding and insight discovery"
+          - "**Component::Model:** Machine learning models and algorithms - _Focus:_ Predictive capability and model performance"
+          - "**Component::Pipeline:** Data and processing pipelines - _Focus:_ Automated workflow efficiency"
+
+      - id: component-priority
+        title: Component Prioritization
+        type: table
+        columns: [Component, User Value, Business Impact, Technical Complexity, Priority]
+        instruction: |
+          Work with the user to prioritize components based on:
+          - User value and impact on ML workflow efficiency
+          - Business value and strategic importance
+          - Technical complexity and ML system dependencies
+          - Development timeline and resource constraints
+          - All Components must be included.
+
+  - id: detailed-stories
+    title: Detailed User Stories by Component
+    instruction: |
+      This is the DEFINITIVE user story collection for the ML/AI project. Work with the user to create comprehensive stories:
+
+      1. Review personas and user journey for ML workflow context
+      2. For each component, create detailed user stories
+      3. Include acceptance criteria and success metrics
+      4. Get explicit user approval for story scope
+      5. Ensure stories are testable and measurable
+      6. This section is the single source of truth for ML system development
+
+      Key elements for each story:
+      - Clear user role and ML-specific goal
+      - Specific acceptance criteria
+      - Success metrics and validation
+      - Priority and effort estimation
+      - Dependencies and assumptions
+      - Component classification
+
+      Upon completion, ensure the user understands these stories drive all ML development.
+    elicit: true
+    sections:
+      - id: story-template
+        title: Story Template & Standards
+        template: |
+          **Story Format:** As an AI Engineer, I want [functionality] so that [benefit/value]
+          
+          **Required Elements:**
+          - User role is always "AI Engineer"
+          - Specific, measurable functionality for ML development
+          - Clear AI Engineer value or development benefit
+          - Testable acceptance criteria
+          - Success metrics where applicable
+          - Priority level (Must Have, Should Have, Could Have, Won't Have)
+          - Component classification (Component::XXX)
+
+      - id: component-eda-stories
+        title: "Component::EDA Stories"
+        instruction: |
+          Create detailed user stories for Exploratory Data Analysis and visualization. For each story include:
+          - Story statement (As a... I want... So that...)
+          - Acceptance criteria (Given... When... Then...)
+          - Success metrics (measurable outcomes)
+          - Priority level and effort estimate
+          - Dependencies and assumptions
+        template: |
+          **Story {{story_id}}:** {{story_title}}
+          **Component:** Component::EDA
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-data-stories
+        title: "Component::Data Stories"
+        instruction: |
+          Create detailed user stories for Data management, storage, and processing.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **User Story {{story_id}}:** {{story_title}}
+          **Component:** Component::Data
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-model-stories
+        title: "Component::Model Stories"
+        instruction: |
+          Create detailed user stories for Machine learning models and algorithms.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **User Story {{story_id}}:** {{story_title}}
+          **Component:** Component::Model
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-feature-stories
+        title: "Component::Feature Stories"
+        instruction: |
+          Create detailed user stories for Feature Engineering.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **Uesr Story {{story_id}}:** {{story_title}}
+          **Component:** Component::Feature
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-sweng-stories
+        title: "Component::SW Engg Stories"
+        instruction: |
+          Create detailed user stories for Software engineering practices.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **User Story {{story_id}}:** {{story_title}}
+          **Component:** Component::SW Engg
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-testing-stories
+        title: "Component::Testing Stories"
+        instruction: |
+          Create detailed user stories for Testing frameworks and strategies.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **User Story {{story_id}}:** {{story_title}}
+          **Component:** Component::Testing
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-pipeline-stories
+        title: "Component::Pipeline Stories"
+        instruction: |
+          Create detailed user stories for Data and processing pipelines.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **User Story {{story_id}}:** {{story_title}}
+          **Component:** Component::Pipeline
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-deployment-stories
+        title: "Component::Deployment Stories"
+        instruction: |
+          Create detailed user stories for Deployment and infrastructure.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **User Story {{story_id}}:** {{story_title}}
+          **Component:** Component::Deployment
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-litreview-stories
+        title: "Component::Lit Review Stories"
+        instruction: |
+          Create detailed user stories for Literature review and research.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **User Story {{story_id}}:** {{story_title}}
+          **Component:** Component::Lit Review
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+      - id: component-documentation-stories
+        title: "Component::Documentation Stories"
+        instruction: |
+          Create detailed user stories for Documentation and knowledge management.
+          story_id should just be an integer e.g. 1, 2, 3...
+        template: |
+          **User Story {{story_id}}:** {{story_title}}
+          **Component:** Component::Documentation
+          
+          **User Story:** As an AI Engineer, I want {{functionality}} so that {{user_value}}.
+          
+          **Acceptance Criteria:**
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          - Given {{precondition}}, when {{action}}, then {{expected_result}}
+          
+          **Success Metrics:** {{measurable_outcomes}}
+          **Priority:** {{must_should_could_wont}}
+          **Effort:** {{story_points_or_estimate}}
+          **Dependencies:** {{other_stories_or_systems}}
+
+  - id: acceptance-testing
+    title: Acceptance Testing Strategy
+    instruction: |
+      Define how user stories will be validated and tested.
+    elicit: true
+    sections:
+      - id: testing-approach
+        title: Testing Approach
+        template: |
+          **User Acceptance Testing:**
+          - Test environment: {{staging_production}}
+          - User involvement: {{internal_external_beta}}
+          - Testing timeline: {{duration_and_phases}}
+          
+          **Success Criteria:**
+          - Functional: {{feature_completeness}}
+          - Usability: {{user_experience_metrics}}
+          - Performance: {{speed_reliability_targets}}
+      - id: validation-metrics
+        title: Validation Metrics
+        instruction: |
+          Define specific metrics for validating user story success:
+          1. Feature adoption and usage rates
+          2. User satisfaction and feedback scores
+          3. Task completion rates and time
+          4. Error rates and support requests
+          5. Business impact measurements
+      - id: testing-scenarios
+        title: Key Testing Scenarios
+        template: |
+          **Scenario {{scenario_id}}:** {{scenario_name}}
+          - **User Type:** AI Engineer
+          - **Context:** {{usage_situation}}
+          - **Steps:** {{user_actions}}
+          - **Expected Outcome:** {{success_criteria}}
+          - **Metrics:** {{measurable_results}}
+
+  - id: traceability
+    title: Requirements Traceability
+    instruction: |
+      Link user stories back to technical implementation.
+    elicit: true
+    sections:
+      - id: design-mapping
+        title: Design Requirements Mapping
+        type: table
+        columns: [Related Stories, Component, User Value, Success Metrics]
+        instruction: |
+          Map each design requirement to specific user stories showing:
+          - How user stories fulfill design needs
+          - Which ML component addresses the requirement
+          - User value delivered
+          - Measurable success criteria
+      - id: component-dependencies
+        title: Component Dependencies
+        instruction: |
+          Document dependencies between components and stories:
+          1. Technical dependencies (ML infrastructure, APIs, data sources)
+          2. Functional dependencies (prerequisite ML capabilities)
+          3. Workflow dependencies (ML pipeline order)
+          4. Data dependencies (features, models, training data)
+          5. Component interdependencies (EDA → Feature → Model → Deployment)
+      - id: implementation-notes
+        title: Implementation Guidance
+        template: |
+          **Component Development Priorities:**
+          - Phase 1: {{foundational_components}} (typically Data, EDA)
+          - Phase 2: {{core_ml_components}} (typically Feature, Model)
+          - Phase 3: {{deployment_components}} (typically Pipeline, Deployment, Testing)
+          
+          **ML Technical Considerations:**
+          - Data integration points: {{data_sources}}
+          - Model performance requirements: {{accuracy_latency}}
+          - MLOps requirements: {{monitoring_deployment}}
+          - Compliance requirements: {{pdpa_governance}}
+
+  - id: summary
+
+    title: Summary
+    instruction: |
+      Create a table listing all the user stories:
+      | User Story ID | Description | Component | User Value | Success Metrics |
+      |----------------|-------------|-----------|------------|------------------|
+
+  - id: appendices
+    title: Appendices
+    sections:
+      - id: story-glossary
+        title: User Story Glossary
+        instruction: Define AI Engineer role, ML terms, and component concepts used throughout the stories
+      - id: component-reference
+        title: Component Reference
+        instruction: |
+          Detailed description of each ML component and its scope:
+          - Component::EDA: Data exploration, visualization, statistical analysis
+          - Component::Data: Data ingestion, storage, processing, quality
+          - Component::Model: Algorithm selection, training, evaluation, optimization
+          - Component::Feature: Feature extraction, selection, engineering, stores
+          - Component::SW Engg: Code quality, architecture, best practices
+          - Component::Testing: Unit tests, integration tests, model validation
+          - Component::Pipeline: Workflow orchestration, automation, scheduling
+          - Component::Deployment: Model serving, infrastructure, scaling
+          - Component::Lit Review: Research, benchmarking, methodology
+          - Component::Documentation: Technical docs, user guides, knowledge management
+      - id: research-references
+        title: Research References
+        instruction: List user research, ML literature, surveys, interviews, and other sources used
+      - id: revision-history
+        title: Story Revision History
+        instruction: Track changes to stories over time, including rationale for changes

@@ -1,0 +1,131 @@
+workflow:
+  id: aiml-development
+  name: AI/ML Project Development
+  description: >-
+    Agent workflow for building AI/ML applications from research to implementation.
+    Supports comprehensive research, design, and architecture for ML projects.
+  type: aiml
+  project_types:
+    - machine-learning
+    - deep-learning
+    - ai-application
+    - data-science
+    - mlops
+
+  sequence:
+    - agent: ml-architect
+      creates: aiml-brief.md
+      optional_steps:
+        - problem_definition_session
+        - domain_research_prompt
+      notes: "Defines the AI/ML problem, objectives, and high-level approach. SAVE OUTPUT: Copy final aiml-brief.md to your project's docs/ folder."
+
+    - agent: ml-researcher
+      creates: literature-review.md
+      requires: aiml-brief.md
+      optional_steps:
+        - academic_paper_research
+        - sota_analysis_prompt
+      notes: "Conducts comprehensive literature review of relevant research, SOTA methods, and existing solutions. SAVE OUTPUT: Copy final literature-review.md to your project's docs/ folder."
+
+    - agent: ml-architect
+      creates: aiml-design-document.md
+      requires: 
+        - aiml-brief.md
+        - literature-review.md
+      optional_steps:
+        - technical_feasibility_analysis
+        - model_selection_research
+      notes: "Creates detailed technical design including data requirements, model architecture, training strategy, and evaluation metrics. SAVE OUTPUT: Copy final aiml-design-document.md to your project's docs/ folder."
+
+    - agent: ml-architect
+      creates: aiml-architecture.md
+      requires: aiml-design-document.md
+      optional_steps:
+        - infrastructure_planning
+        - deployment_strategy_review
+      notes: "Defines system architecture, MLOps pipeline, infrastructure requirements, and deployment strategy. SAVE OUTPUT: Copy final aiml-architecture.md to your project's docs/ folder."
+
+    - agent: ml-engineer
+      creates: user-stories.md
+      requires: 
+        - aiml-design-document.md
+        - aiml-architecture.md
+      notes: "Creates implementation user stories covering data pipeline, model training, evaluation, and deployment tasks. SAVE OUTPUT: Copy final user-stories.md to your project's docs/ folder."
+
+    - project_setup_guidance:
+      action: guide_ml_project_structure
+      notes: "Set up ML project structure with data/, models/, notebooks/, src/, and tests/ directories. Configure virtual environment and requirements."
+
+    - development_order_guidance:
+      action: guide_ml_development_sequence
+      notes: "Based on user stories: Start with data pipeline and EDA, then model development, training, evaluation, and finally deployment components."
+
+    - agent: ml-engineer
+      action: shard_documents
+      creates: sharded_docs
+      requires: all_artifacts_in_project
+      notes: |
+        Shard documents for IDE development:
+        - Option A: Use ML Architect agent to shard: @ml-architect then ask to shard docs/user-stories.md
+        - Creates docs/stories/ and docs/architecture/ folders with sharded content
+    
+    - repeat_user_story_cycle:
+      action: continue_for_all_stories
+      notes: |
+        Repeat story cycle (create_story → validate_story) for all user stories
+        Continue until all stories in user_stories.md are sharded.
+
+
+  flow_diagram: |
+    ```mermaid
+        graph TD
+          A[Start: AI/ML Project] --> B[ml-architect: aiml-brief.md]
+          B --> C[ml-data-scientist: literature-review.md]
+          B --> D[ml-architect: aiml-design-document.md]
+          C --> D
+          D --> E[ml-architect: aiml-architecture.md]
+          E --> F[ml-architect: user-stories.md]
+          F --> G[ml-architect: shard documents]
+          G --> H[ml-engineer: create story]
+          H --> I[ml-engineer: validate story]
+          I -->|Yes| H
+          I -->|No| J[user: provide feedback]
+          J --> H
+          
+          %% Styling with black font and unique colors for each agent
+          style A fill:#E8F5E8,color:#000000,stroke:#000000
+          style B fill:#FFE4E1,color:#000000,stroke:#000000
+          style C fill:#E6F3FF,color:#000000,stroke:#000000
+          style D fill:#FFE4E1,color:#000000,stroke:#000000
+          style E fill:#FFE4E1,color:#000000,stroke:#000000
+          style F fill:#FFE4E1,color:#000000,stroke:#000000
+          style G fill:#FFE4E1,color:#000000,stroke:#000000
+          style H fill:#FFF2CC,color:#000000,stroke:#000000
+          style I fill:#FFF2CC,color:#000000,stroke:#000000
+          style J fill:#F0E68C,color:#000000,stroke:#000000
+          
+          %% Color legend for agents:
+          %% ml-architect (Rizwan): #FFE4E1 (Light Coral)
+          %% ml-engineer (Marcus): #FFF2CC (Light Yellow)
+          %% ml-data-scientist (Sophia): #E6F3FF (Light Blue)
+          %% ml-security-ethics-specialist (Priya): #E8F8E8 (Light Green)
+    ```
+
+  decision_guidance:
+    when_to_use:
+      - Building production ML applications
+      - Research-heavy ML projects
+      - Complex data science initiatives
+      - Need comprehensive ML documentation
+      - MLOps and deployment requirements
+      - Enterprise ML solutions
+
+  handoff_prompts:
+    ml_architect_to_researcher: "AI/ML brief is complete. Save it as docs/aiml-brief.md in your project, then conduct the literature review."
+    researcher_to_architect: "Literature review complete. Save it as docs/literature-review.md in your project, then create the design document."
+    design_to_architecture: "Design document complete. Save it as docs/aiml-design-document.md in your project, then create the system architecture."
+    architecture_to_engineer: "Architecture complete. Save it as docs/aiml-architecture.md in your project, then create the user stories."
+    engineer_to_po: "User stories complete. Save it as docs/user-stories.md. Please validate all artifacts for consistency."
+    po_issues: "PO found issues with [document]. Please return to [agent] to fix and re-save the updated document."
+    complete: "All ML planning artifacts validated and saved in docs/ folder. Move to IDE environment to begin development."

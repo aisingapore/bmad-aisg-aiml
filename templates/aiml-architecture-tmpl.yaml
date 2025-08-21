@@ -15,7 +15,7 @@ sections:
   - id: introduction
     title: Introduction
     instruction: |
-      If available, review any provided relevant documents to gather all relevant context before beginning. At a minimum you should locate and review: Business Requirements Document (BRD), Product Requirements Document (PRD), Data Analysis Reports, Technical Preferences. If these are not available, ask the user what docs will provide the basis for the AI/ML architecture.
+      Ask if Design Document is available. If available, review any provided relevant documents to gather all relevant context before beginning. At a minimum you should locate and review: Design Document. If these are not available, ask the user what docs will provide the basis for the AI/ML architecture.
     sections:
       - id: intro-content
         content: |
@@ -57,6 +57,12 @@ sections:
     title: High Level Architecture
     instruction: |
       This section contains multiple subsections that establish the foundation of the AI/ML system architecture. Present all subsections together at once.
+
+      Use Generic Terms instead of Specific Technologies:
+      - Data Ingestion: Use a generic term for the data ingestion method (e.g., "streaming" or "batch").
+      - Data Storage: Use a generic term for the data storage solution (e.g., "cloud storage" or "data lake").
+      - Model Training: Use a generic term for the model training framework (e.g., "distributed training" or "autoML").
+      - Model Serving: Use a generic term for the model serving infrastructure (e.g., "API endpoint" or "batch inference").
     elicit: true
     sections:
       - id: technical-summary
@@ -90,7 +96,6 @@ sections:
           - Model registry and versioning
           - Serving infrastructure (REST/gRPC)
           - Monitoring and observability
-          - External system integrations
 
       - id: architectural-patterns
         title: Architectural and Design Patterns
@@ -111,7 +116,7 @@ sections:
         examples:
           - "**Microservices Architecture:** Separate services for training, serving, monitoring - _Rationale:_ Independent scaling, technology flexibility, fault isolation"
           - "**Feature Store Pattern:** Centralized feature management - _Rationale:_ Feature reusability, training-serving consistency"
-          - "**Event-Driven Pipeline:** Kafka-based streaming - _Rationale:_ Real-time processing, scalability, fault tolerance"
+          - "**Event-Driven Pipeline:** distributed streaming platform - _Rationale:_ Real-time processing, scalability, fault tolerance"
 
   - id: tech-stack
     title: Tech Stack
@@ -120,12 +125,12 @@ sections:
 
       1. Review BRD requirements and any technical preferences
       2. For each category, present 2-3 viable options with pros/cons
-      3. Make a clear recommendation based on project needs
+      3. Give multiple recommendations for each tech stack based on project needs
       4. Get explicit user approval for each selection
       5. Document exact versions (avoid "latest" - pin specific versions)
       6. This table is the single source of truth - all other docs must reference these choices
 
-      Key decisions to finalize:
+      Key decisions to recommend:
       - Python version and ML frameworks
       - Cloud platform and services
       - Data processing tools

@@ -109,40 +109,25 @@ commands:
   - name: "*help"
     description: Show available commands and capabilities
   - name: "*create-story"
-    maps-to: dependencies->tasks->create-aiml-story.md
+    maps-to: Run task create-next-aiml-story.md
     description: Create development story from design
   - name: "*validate-story" 
-    maps-to: dependencies->tasks->validate-aiml-story.md
+    maps-to: Run task validate-aiml-story.md
     description: Validate story completeness
-  - name: "*brainstorm"
-    maps-to: dependencies->tasks->aiml-design-brainstorming.md
-    description: ML design brainstorming session
-  - name: "*elicit"
-    maps-to: dependencies->tasks->advanced-elicitation.md
-    description: Advanced requirements elicitation
   - name: "*correct-design"
-    maps-to: dependencies->tasks->correct-aiml-design.md
+    maps-to: Run task correct-aiml-design.md
     description: Navigate design changes
 
 dependencies:
   tasks:
-    - create-aiml-story.md
+    - create-next-aiml-story.md
     - validate-aiml-story.md
-    - aiml-design-brainstorming.md
-    - advanced-elicitation.md
     - correct-aiml-design.md
   
   templates:
     - aiml-architecture-tmpl.yaml
     - aiml-design-doc-tmpl.yaml
     - aiml-story-tmpl.yaml
-    - aiml-model-card-tmpl.yaml
-    - aiml-workflow-tmpl.yaml
-  
-  checklists:
-    - aiml-story-dod-checklist.md
-    - aiml-design-checklist.md
-    - aiml-change-checklist.md
 
 singaporean_context:
   - Familiar with AISG programs and requirements

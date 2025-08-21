@@ -83,49 +83,20 @@ The installer creates:
 
 ## Usage
 
-### Choose Your Program
-
-```
-Decision Tree:
-├── Need to train apprentices?
-│   ├── Yes → 6 months available? → MVP
-│   └── Yes → 3 months only? → POC
-├── Need fast MVP without training?
-│   └── Yes → SIP (3 months)
-└── Learning LLM development?
-    └── Yes → LADP (4 months)
-```
-
 ### Follow the Workflow
 
-```bash
-# Navigate to installed workflows
-cd .bmad-aisg-aiml/workflows/
-# Choose your program-specific workflow
-cat aisg-[mvp|poc|sip|ladp].md
-```
+1. **Check workflows folder** for workflow files:
+   ```bash
+   # Navigate to installed workflows
+   cd .bmad-aisg-aiml/workflows/
+   ls
+   ```
 
-### Quick Commands
-
-#### Agent Activation
-```
-@marcus - ML Engineering & MLOps
-@rizwan - System Architecture
-@sophia - Data Science
-@priya - Security & Ethics
-```
-
-#### Workflow Selection
-```
-"Start 6-month MVP with 4 apprentices"
-"Begin 3-month POC for feasibility"
-"Launch 3-month SIP for fast MVP"
-"Start LADP programme for LLM training"
-```
+2. **For Claude Code implementation**: Run the agents and tasks manually using `/{agent-name}` command.
 
 ## Core Agent Team
 
-### 4 Agents
+### 5 Agents
 
 1. **Marcus Tan Wei Ming** - ML/AI Engineer & MLOps Specialist (`ml-engineer`)
    - **Heritage**: Singaporean Chinese
@@ -150,6 +121,56 @@ cat aisg-[mvp|poc|sip|ladp].md
    - **Expertise**: ML security, adversarial testing, AI ethics, compliance
    - **Technical Skills**: Red teaming, bias detection, privacy protection
    - **Focus Areas**: Security audits, ethical reviews, regulatory compliance
+
+5. **Dr. Dylan Poh** - ML Research Scientist & Experimental Design Specialist (`ml-researcher`)
+   - **Heritage**: Singaporean Chinese
+   - **Expertise**: ML research planning, experimental design, literature review, hypothesis formulation
+   - **Technical Skills**: Advanced mathematics, ML frameworks, distributed computing, scientific writing
+   - **Focus Areas**: Research methodology, state-of-the-art ML techniques, reproducible experiments
+
+## Creating New Agents
+
+### 1. Use previous agents as a template
+Use previous agents as a template to create new agent folder:
+
+Run in Claude Code (example):
+```bash
+Use agents/ml-architect.md as a template to create a ml-researcher agent
+```
+
+### 2. Define Agent Commands in Prompt
+Insert commands under "commands" in agent file:
+
+```yaml
+commands:
+  - help: Show numbered list of the following commands to allow selection
+  - literature-review: use task create-research-doc.md with literature-review-tmpl.yaml
+```
+
+#### Explanation for literature-review command
+- You should use formats like `use {task} with {template}` or `execute {task}` for the commands. (Refer to original bmad agents)
+- `create-research-doc.md` should be placed in the **tasks** folder
+- `literature-review-tmpl.yaml` should be placed in the **templates** folder
+
+#### Tips for creating commands
+- Original BMAD has generic tasks like `create-doc` and `advanced-elicitation` which are included in this package.
+- For complex tasks, generate your own task file
+
+## How It Works
+
+- The installer copies some folders into `.claude/commands` folder these are the files which `/{command}` run in bmad.
+- `/{agent-name}` Run the prompt from the `.claude/commands/bmad-expansion-name/agents/agent-name` file.
+
+- To enable the agent to locate your file ensure the file path is inside the agent prompt. (This should be done by the installer)
+- This is a protion of the original prompt from a BMAD agent.
+```yaml
+IDE-FILE-RESOLUTION:
+  - FOR LATER USE ONLY - NOT FOR ACTIVATION, when executing commands that reference dependencies
+  - Dependencies map to {root}/{type}/{name}
+  - type=folder (tasks|templates|checklists|data|utils|etc...), name=file-name
+  - Example: create-doc.md → .bmad-core/tasks/create-doc.md.   #This line tells the agent where the hidden folder to check
+  - IMPORTANT: Only load these files when user requests specific command execution
+```
 
 ## Workflows
 
@@ -198,61 +219,61 @@ cat aisg-[mvp|poc|sip|ladp].md
 - **SIP**: Production MVPs completed in 3 months
 - **LADP**: LLM applications developed in 4 months
 
-## Resources
+### 100E User Story Generation Workflow
 
-### Tasks
-1. `advanced-elicitation.md` - Requirements gathering
-2. `correct-aiml-design.md` - Design correction and validation
-3. `create-aiml-story.md` - User story creation
-4. `aiml-design-brainstorming.md` - Solution ideation
-5. `validate-aiml-story.md` - Story validation
+```mermaid
+    graph TD
+        A[Start: AI/ML Project] --> B[ml-architect: aiml-brief.md]
+        B --> C[ml-researcher: literature-review.md]
+        B --> D[ml-architect: aiml-design-document.md]
+        C --> D
+        D --> E[ml-architect: aiml-architecture.md]
+        E --> F[ml-architect: user-stories.md]
+        F --> G[ml-architect: shard documents]
+        G --> H[ml-engineer: create story]
+        H --> I[ml-engineer: validate story]
+        I -->|Yes| H
+        I -->|No| J[user: provide feedback]
+        J --> H
+        
+        %% Styling with black font and unique colors for each agent
+        style A fill:#E8F5E8,color:#000000,stroke:#000000
+        style B fill:#FFE4E1,color:#000000,stroke:#000000
+        style C fill:#E6F3FF,color:#000000,stroke:#000000
+        style D fill:#FFE4E1,color:#000000,stroke:#000000
+        style E fill:#FFE4E1,color:#000000,stroke:#000000
+        style F fill:#FFE4E1,color:#000000,stroke:#000000
+        style G fill:#FFE4E1,color:#000000,stroke:#000000
+        style H fill:#FFF2CC,color:#000000,stroke:#000000
+        style I fill:#FFF2CC,color:#000000,stroke:#000000
+        style J fill:#F0E68C,color:#000000,stroke:#000000
+        
+        %% Color legend for agents:
+        %% ml-architect (Rizwan): #FFE4E1 (Light Coral)
+        %% ml-engineer (Marcus): #FFF2CC (Light Yellow)
+        %% ml-data-scientist (Sophia): #E6F3FF (Light Blue)
+        %% ml-security-ethics-specialist (Priya): #E8F8E8 (Light Green)
+```
 
-### Checklists
-1. `aiml-architect-checklist.md` - Architecture review
-2. `aiml-change-checklist.md` - Change management
-3. `aiml-design-checklist.md` - Design validation
-4. `aiml-story-dod-checklist.md` - Definition of done
 
-### Templates
-1. `aiml-architecture-tmpl.yaml` - System architecture
-2. `aiml-brief-tmpl.yaml` - Project brief
-3. `aiml-design-doc-tmpl.yaml` - Design documentation
-4. `aiml-story-tmpl.yaml` - User stories
-5. `aiml-ethics-governance-tmpl.yaml` - AI ethics
-6. `aiml-security-compliance-tmpl.yaml` - Security & compliance
-7. `aiml-model-card-tmpl.yaml` - Model transparency
-8. `aiml-workflow-tmpl.yaml` - Workflow definitions
+## 🇸🇬 Singapore Context
 
-### Data
-1. `bmad-kd.md` - Complete BMAD knowledge base
-2. `development-guidelines.md` - Python standards, ML patterns, MLOps requirements
-
-## Web Bundles
-
-Bundles for web-based AI platforms:
-
-1. **`ai-ml-team-full.txt`** - All 4 agents for flexible use
-2. **`aisg-mvp-team.txt`** - 6-month MVP workflow
-3. **`aisg-poc-team.txt`** - 3-month POC workflow
-4. **`aisg-short-industry-team.txt`** - 3-month SIP workflow (NEW)
-5. **`aisg-ladp-team.txt`** - 4-month LADP programme
-
-## Singapore Context
 All agents include:
-- Local regulatory knowledge (PDPA, IMDA, MAS)
-- AISG program experience
-- Understanding of local market dynamics
-- Government standards compliance
+- **Local regulatory knowledge**: PDPA, IMDA, MAS
+- **AISG program experience**: MVP, POC, SIP, LADP workflows
+- **Understanding of local market dynamics**: Singapore tech ecosystem
+- **Government standards compliance**: National AI governance standards
 
 ## File Structure
 
 ```
 bmad-ai-ml-engineering/
-├── agents/                    # 4 core agents
+├── agents/                    # 5 core agents
 │   ├── ml-engineer.md
 │   ├── ml-architect.md
 │   ├── ml-data-scientist.md
-│   └── ml-security-ethics-specialist.md
+│   ├── ml-security-ethics-specialist.md
+│   └── ml-researcher.md
 ├── agent-teams/              # 5 team configurations
 ├── checklists/              # 4 checklists
 ├── templates/               # 8 templates
@@ -263,13 +284,13 @@ bmad-ai-ml-engineering/
 └── config.yaml             # Configuration
 ```
 
-## Dependencies
+## 📋 Dependencies
 
-- **Required**: bmad-core >= 4.0.0
-- **Recommended**: Python >= 3.8, Docker, Kubernetes
-- **Optional**: Terraform, MLflow, Kubeflow
+- **✅ Required**: bmad-core >= 4.0.0
+- **🔧 Recommended**: Python >= 3.8, Docker, Kubernetes
+- **➕ Optional**: Terraform, MLflow, Kubeflow
 
-## Compliance & Standards
+## ⚖️ Compliance & Standards
 
 ### Singapore Regulations
 - **PDPA**: Personal Data Protection Act compliance
@@ -280,7 +301,7 @@ bmad-ai-ml-engineering/
 - ISO/IEC 23053: Framework for AI using ML
 - ISO/IEC 23894: AI risk management
 
-## Contributing
+## 🤝 Contributing
 
 Contribution process:
 - **Core Team**: Direct commit access for maintenance and development
@@ -291,15 +312,15 @@ See our [Contributing Guidelines](CONTRIBUTING.md) for detailed information on h
 
 For a complete list of contributors, see [CONTRIBUTORS.md](CONTRIBUTORS.md).
 
-## Training & Support
+## 🎓 Training & Support
 
-### Documentation
+### 📚 Documentation
 - **Quick Start**: This README
 - **Workflows**: `/workflows/README.md`
 - **Web Bundles**: `/web-bundles/WEB-BUNDLE-INSTRUCTIONS.md`
 - **Agents**: Individual agent files in `/agents/`
 
-### Support Channels
+### 🛠️ Support Channels
 - Review `REFACTORING-SUMMARY.md` for v2.0 changes
 - Check agent-specific documentation
 - Consult workflow guides
@@ -307,10 +328,10 @@ For a complete list of contributors, see [CONTRIBUTORS.md](CONTRIBUTORS.md).
 
 ---
 
-## Version History
+## 📝 Version History
 
 ### v2.0.0 (Current)
-- 4 core agents
+- **5 core agents** (added ml-researcher)
 - Added SIP workflow for MVP delivery
 - Updated LADP to 4-month programme
 - Added Singapore context
