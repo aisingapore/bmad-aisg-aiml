@@ -1,0 +1,199 @@
+title: "GitLab Issues - Execution Results & Project Status"
+version: "1.0"
+purpose: "Template for generating project-status.json after GitLab issues are created"
+sprint_info:
+  sprint_number: "[Sprint Number]"
+  sprint_name: "[Sprint Name]"
+  project_type: "[100E/SIP]"
+  start_date: "[Start Date]"
+  end_date: "[End Date]"
+execution_info:
+  gitlab_url: "[GitLab Instance URL]"
+  project_id: "[GitLab Project ID]"
+  milestone_id: "[Sprint Milestone ID]"
+  execution_timestamp: "[Timestamp]"
+author: "[PM Name]"
+date: "[Date]"
+total_issues_created: "[Number]"
+total_issues_failed: "[Number]"
+
+project_status_structure:
+  json_format: |
+    {
+      "lastUpdated": "[Current timestamp]",
+      "projectInfo": {
+        "name": "[From GitLab API response]",
+        "id": "[PROJECT_ID from .env]",
+        "url": "[From GitLab API web_url]",
+        "namespace": "[From GitLab API path_with_namespace]"
+      },
+      "sprintInfo": {
+        "currentSprint": "[From user input or milestone]",
+        "sprintGoals": ["[Goal 1]", "[Goal 2]"],
+        "sprintDates": {
+          "start": "[Start date]",
+          "end": "[End date]"
+        },
+        "milestoneId": "[GitLab milestone ID]",
+        "milestoneName": "[Milestone name]"
+      },
+      "issuesCreated": {
+        "total": "[Total number]",
+        "successful": "[Successful creations]",
+        "failed": "[Failed creations]",
+        "urls": ["[Issue URL array]"],
+        "executionDate": "[Date when issues were created]"
+      },
+      "issueTracking": {
+        "[issue-id]": {
+          "title": "[Issue title]",
+          "status": "[open|closed|in-progress|doing|sprint-backlog]",
+          "assignee": "[GitLab username or 'Unassigned']",
+          "assigneeName": "[Full name of person working on issue]",
+          "createdDate": "[GitLab created_at timestamp]",
+          "updatedDate": "[GitLab updated_at timestamp]",
+          "startedDate": "[When work started - from labels or activity]",
+          "mergeRequestDate": "[When MR created - from GitLab MR API]",
+          "closedDate": "[GitLab closed_at timestamp]",
+          "url": "[GitLab web_url]",
+          "labels": ["[GitLab labels array]"],
+          "component": "[Extracted from title or labels]",
+          "priority": "[high|medium|low from labels]",
+          "milestone": "[GitLab milestone title]",
+          "weight": "[GitLab issue weight]",
+          "userStoryLink": "[Link to related user story issue if applicable]",
+          "blockedBy": ["[Array of blocking issue IDs]"],
+          "blocking": ["[Array of issues this blocks]"]
+        }
+      },
+      "teamAssignments": {
+        "[apprentice-key]": {
+          "name": "[Apprentice name]",
+          "userId": "[GitLab user ID]",
+          "assignedIssues": "[Number of issues]",
+          "issueUrls": ["[Issue URL array]"]
+        }
+      },
+      "status": "sprint_issues_created",
+      "nextActions": [
+        "Apprentices should access assigned issues via GitLab",
+        "PM should monitor sprint progress",
+        "Project agent sync completed"
+      ]
+    }
+
+document_structure:
+  execution_summary:
+    content: |
+      # GitLab Issues Execution Summary
+      
+      ## Sprint Information
+      - **Sprint**: [Sprint Number] - [Sprint Name]
+      - **Project Type**: [100E/SIP]
+      - **Duration**: [Start Date] to [End Date]
+      - **GitLab Project**: [Project URL]
+      - **Sprint Milestone**: [Milestone URL]
+      
+      ## Execution Results
+      - **✅ Issues Created Successfully**: [Number]
+      - **❌ Issues Failed**: [Number]
+      - **📊 Total Effort Planned**: [Total days] days
+      - **👥 Apprentices Assigned**: [Number] apprentices
+      - **⏱️ Execution Time**: [Duration] seconds
+      
+      ## Project Configuration
+      - **GitLab URL**: [GitLab Instance URL]
+      - **Project ID**: [Project ID]
+      - **Milestone ID**: [Milestone ID]
+      - **API Token**: [Token status - Valid/Invalid]
+
+  created_issues:
+    content: |
+      # Successfully Created Issues
+      
+      ## Issue Overview
+      
+      | Issue # | Title | Assignee | Component | Effort | GitLab URL |
+      |---------|-------|----------|-----------|--------|------------|
+      | #[IID] | [Title] | [Assignee] | [Component] | [Effort] | [URL] |
+      | #[IID] | [Title] | [Assignee] | [Component] | [Effort] | [URL] |
+      
+      ## By Component
+      
+      ### EDA Component ([N] issues)
+      - **#[IID]**: [Title] - Assigned to [Apprentice] ([Effort] days)
+        - **URL**: [GitLab Issue URL]
+        - **User Story**: [User Story Link]
+        - **Description**: [Brief description]
+      
+      ### Data Component ([N] issues)  
+      - **#[IID]**: [Title] - Assigned to [Apprentice] ([Effort] days)
+        - **URL**: [GitLab Issue URL]
+        - **User Story**: [User Story Link]
+        - **Description**: [Brief description]
+      
+      ### Model Component ([N] issues)
+      - **#[IID]**: [Title] - Assigned to [Apprentice] ([Effort] days)
+        - **URL**: [GitLab Issue URL] 
+        - **User Story**: [User Story Link]
+        - **Description**: [Brief description]
+      
+      ## By Apprentice Assignment
+      
+      ### [Apprentice Name] ([N] issues, [Total] days)
+      - **#[IID]**: [Component] - [Title] ([Effort] days)
+        - **URL**: [GitLab Issue URL]
+        - **Sprint Goal**: [How this contributes to sprint goals]
+      
+      ### [Apprentice Name] ([N] issues, [Total] days)
+      - **#[IID]**: [Component] - [Title] ([Effort] days)
+        - **URL**: [GitLab Issue URL]
+        - **Sprint Goal**: [How this contributes to sprint goals]
+
+  team_notifications:
+    content: |
+      # Team Notifications
+      
+      ## Sprint Kickoff Notification
+      
+      ### For Apprentices
+      ```
+      🚀 Sprint [Sprint Number] Issues Ready!
+      
+      Hi team! Your sprint issues have been created in GitLab:
+      
+      📋 Your Assigned Issues:
+      [Apprentice Name]:
+      - #[IID]: [Title] ([Effort] days) - [URL]
+      - #[IID]: [Title] ([Effort] days) - [URL]
+      
+      🎯 Sprint Goals:
+      - [Primary goal]
+      - [Secondary goal]
+      
+      📅 Important Dates:
+      - Sprint Start: [Date]
+      - Sprint End: [Date]
+      - Sprint Review: [Date]
+      
+      💡 Getting Started:
+      1. Review your assigned issues
+      2. Ask questions in #sprint-[number] channel
+      3. Set up your development environment
+      4. Begin with the highest priority issue
+      
+      Happy coding! 🎉
+      ```
+
+metadata:
+  execution_timestamp: "[ISO timestamp]"
+  pm_agent_version: "1.0"
+  gitlab_api_version: "v4"
+  issues_created_count: "[number]"
+  issues_failed_count: "[number]"
+  apprentices_assigned: "[number]"
+  total_effort_days: "[number]"
+  average_issue_complexity: "[1-3]"
+  sprint_milestone_url: "[url]"
+  project_board_url: "[url]"
+  output_file: "docs/project-status.json"
