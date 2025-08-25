@@ -1,0 +1,120 @@
+title: "GitLab Issues Generation"
+version: "1.0"
+purpose: "Template for generating GitLab issues JSON file for user review before API execution"
+sprint_info:
+  sprint_number: "[Sprint Number]"
+  sprint_name: "[Sprint Name]"
+  project_type: "[100E/SIP]"
+  start_date: "[Start Date]"
+  end_date: "[End Date]"
+author: "[PM Name]"
+date: "[Date]"
+total_issues_generated: "[Number]"
+
+document_structure:
+  sprint_overview:
+    content: |
+      # GitLab Issues for [Sprint Name]
+      
+      ## Sprint Information
+      - **Sprint**: [Sprint Number] - [Sprint Name]
+      - **Project Type**: [100E/SIP]
+      - **Duration**: [Start Date] to [End Date]
+      - **Sprint Goals**: [Primary objectives]
+      - **Total Issues Generated**: [Number of issues]
+      
+      ## User Stories Covered
+      ### AISG Team User Stories
+      - **[User Story ID]**: [User story description]
+      - **[User Story ID]**: [User story description]
+      
+      ### Client User Stories  
+      - **[User Story ID]**: [User story description]
+      - **[User Story ID]**: [User story description]
+      
+      ## Component Distribution
+      | Component | Number of Issues | Total Effort (days) |
+      |-----------|------------------|---------------------|
+      | EDA | [Number] | [Days] |
+      | Data | [Number] | [Days] |
+      | Model | [Number] | [Days] |
+      | Others | [Number] | [Days] |
+      | Documentation | [Number] | [Days] |
+      | Integration | [Number] | [Days] |
+      | Lit Review | [Number] | [Days] |
+      | Deployment | [Number] | [Days] |
+      | Pipeline | [Number] | [Days] |
+      | Testing | [Number] | [Days] |
+      | Feature | [Number] | [Days] |
+      
+      ## Team Allocation Suggestions
+      - **[Apprentice Name]**: [Assigned issues] ([Total effort days])
+      - **[Apprentice Name]**: [Assigned issues] ([Total effort days])
+      - **[Apprentice Name]**: [Assigned issues] ([Total effort days])
+
+  structured_data_export:
+    content: |
+      # JSON Format for GitLab API Execution
+      
+      ```json
+      {
+        "sprint_info": {
+          "sprint_number": "[Sprint Number]",
+          "sprint_name": "[Sprint Name]",
+          "project_type": "[100E/SIP]",
+          "start_date": "[Start Date]",
+          "end_date": "[End Date]"
+        },
+        "issues": [
+          {
+            "title": "[Component] - [Brief Task Description]",
+            "description": "## Context\n[Task context]\n\n## Requirements\n[Requirements]\n\n## Definition of Done\n- [ ] [DoD 1]\n- [ ] [DoD 2]\n\n## Developer Notes\n[Notes]\n\n## User Story Link\n[Link]",
+            "labels": ["component::[component]", "effort::[effort]", "user-story::[id]"],
+            "assignee_id": "[apprentice-user-id]",
+            "milestone_id": "[sprint-milestone-id]",
+            "weight": [1-3],
+            "due_date": "[due-date]"
+          }
+        ],
+        "user_stories": [
+          {
+            "id": "[User Story ID]",
+            "title": "[User story title]",
+            "description": "[User story description]",
+            "type": "[AISG/Client]",
+            "priority": "[High/Medium/Low]"
+          }
+        ]
+      }
+      ```
+
+  issue_structure:
+    user_story_format: |
+      {
+        "title": "[User Story <S/N>] As a <Type of User>, I want to <Perform Some Task>, so that <Achieve Some Goal>",
+        "description": "## User Story Details\n**As a:** <Type of User>\n**I want to:** <Perform Some Task>\n**So that:** <Achieve Some Goal>\n\n## Additional Information\n**Date Created:** <Date Created>\n**Created By:** <Created By>\n**Notes:** <Remarks>\n\n## Acceptance Criteria\n- [ ] [Criterion 1]\n- [ ] [Criterion 2]",
+        "labels": ["user-story", "component::<Component>", "priority::<Priority>"],
+        "assignee_id": [user-id],
+        "milestone_id": [milestone-id],
+        "weight": [1-3]
+      }
+    
+    sprint_task_format: |
+      {
+        "title": "[Component] - [Brief Task Description]",
+        "description": "## Context\n[Background]\n\n## Requirements\n[Details]\n\n## Definition of Done\n- [ ] [DoD 1]\n- [ ] [DoD 2]\n\n## Developer Notes\n[Guidance]\n\n## User Story Link\n[Link to user story]",
+        "labels": ["component::[component]", "effort::[days]", "priority::[priority]"],
+        "assignee_id": [user-id],
+        "milestone_id": [milestone-id],
+        "weight": [1-3]
+      }
+
+metadata:
+  generated_date: "[Date]"
+  pm_name: "[PM Name]"
+  sprint_milestone: "[Sprint Milestone ID]"
+  project_id: "[GitLab Project ID]"
+  total_estimated_days: "[Total effort in days]"
+  apprentices_involved: "[Number of apprentices]"
+  review_required: "true"
+  output_file: "docs/gitlab-issues-generated.json"
